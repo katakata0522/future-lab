@@ -1,0 +1,805 @@
+<html lang="ja"><head>
+
+<script class="injected-ffc2e83d85">
+(function(){'use strict';function q(b){var c=0;return function(){return c<b.length?{done:!1,value:b[c++]}:{done:!0}}}function t(b){var c=typeof Symbol!="undefined"&&Symbol.iterator&&b[Symbol.iterator];if(c)return c.call(b);if(typeof b.length=="number")return{next:q(b)};throw Error(String(b)+" is not an iterable or ArrayLike");}var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,c,g){if(b==Array.prototype||b==Object.prototype)return b;b[c]=g.value;return b};
+function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<b.length;++c){var g=b[c];if(g&&g.Math==Math)return g}throw Error("Cannot find global object");}var w=v(this);function x(b,c){if(c)a:{var g=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var l=b[h];if(!(l in g))break a;g=g[l]}b=b[b.length-1];h=g[b];c=c(h);c!=h&&c!=null&&u(g,b,{configurable:!0,writable:!0,value:c})}}
+function y(){this.j=!1;this.g=null;this.u=void 0;this.h=1;this.v=this.l=0;this.i=null}function z(b){if(b.j)throw new TypeError("Generator is already running");b.j=!0}y.prototype.o=function(b){this.u=b};function A(b,c){b.i={I:c,J:!0};b.h=b.l||b.v}y.prototype.return=function(b){this.i={return:b};this.h=this.v};function B(b){this.g=new y;this.h=b}function E(b,c){z(b.g);var g=b.g.g;if(g)return F(b,"return"in g?g["return"]:function(h){return{value:h,done:!0}},c,b.g.return);b.g.return(c);return G(b)}
+function F(b,c,g,h){try{var l=c.call(b.g.g,g);if(!(l instanceof Object))throw new TypeError("Iterator result "+l+" is not an object");if(!l.done)return b.g.j=!1,l;var m=l.value}catch(f){return b.g.g=null,A(b.g,f),G(b)}b.g.g=null;h.call(b.g,m);return G(b)}function G(b){for(;b.g.h;)try{var c=b.h(b.g);if(c)return b.g.j=!1,{value:c.value,done:!1}}catch(g){b.g.u=void 0,A(b.g,g)}b.g.j=!1;if(b.g.i){c=b.g.i;b.g.i=null;if(c.J)throw c.I;return{value:c.return,done:!0}}return{value:void 0,done:!0}}
+function H(b){this.next=function(c){z(b.g);b.g.g?c=F(b,b.g.g.next,c,b.g.o):(b.g.o(c),c=G(b));return c};this.throw=function(c){z(b.g);b.g.g?c=F(b,b.g.g["throw"],c,b.g.o):(A(b.g,c),c=G(b));return c};this.return=function(c){return E(b,c)};this[Symbol.iterator]=function(){return this}}function I(b){function c(h){return b.next(h)}function g(h){return b.throw(h)}return new Promise(function(h,l){function m(f){f.done?h(f.value):Promise.resolve(f.value).then(c,g).then(m,l)}m(b.next())})}
+x("Symbol",function(b){function c(m){if(this instanceof c)throw new TypeError("Symbol is not a constructor");return new g(h+(m||"")+"_"+l++,m)}function g(m,f){this.g=m;u(this,"description",{configurable:!0,writable:!0,value:f})}if(b)return b;g.prototype.toString=function(){return this.g};var h="jscomp_symbol_"+(Math.random()*1E9>>>0)+"_",l=0;return c});
+x("Symbol.iterator",function(b){if(b)return b;b=Symbol("Symbol.iterator");u(Array.prototype,b,{configurable:!0,writable:!0,value:function(){return J(q(this))}});return b});function J(b){b={next:b};b[Symbol.iterator]=function(){return this};return b}
+x("Promise",function(b){function c(f){this.h=0;this.i=void 0;this.g=[];this.u=!1;var a=this.j();try{f(a.resolve,a.reject)}catch(d){a.reject(d)}}function g(){this.g=null}function h(f){return f instanceof c?f:new c(function(a){a(f)})}if(b)return b;g.prototype.h=function(f){if(this.g==null){this.g=[];var a=this;this.i(function(){a.l()})}this.g.push(f)};var l=w.setTimeout;g.prototype.i=function(f){l(f,0)};g.prototype.l=function(){for(;this.g&&this.g.length;){var f=this.g;this.g=[];for(var a=0;a<f.length;++a){var d=
+f[a];f[a]=null;try{d()}catch(e){this.j(e)}}}this.g=null};g.prototype.j=function(f){this.i(function(){throw f;})};c.prototype.j=function(){function f(e){return function(k){d||(d=!0,e.call(a,k))}}var a=this,d=!1;return{resolve:f(this.D),reject:f(this.l)}};c.prototype.D=function(f){if(f===this)this.l(new TypeError("A Promise cannot resolve to itself"));else if(f instanceof c)this.G(f);else{a:switch(typeof f){case "object":var a=f!=null;break a;case "function":a=!0;break a;default:a=!1}a?this.C(f):this.o(f)}};
+c.prototype.C=function(f){var a=void 0;try{a=f.then}catch(d){this.l(d);return}typeof a=="function"?this.H(a,f):this.o(f)};c.prototype.l=function(f){this.v(2,f)};c.prototype.o=function(f){this.v(1,f)};c.prototype.v=function(f,a){if(this.h!=0)throw Error("Cannot settle("+f+", "+a+"): Promise already settled in state"+this.h);this.h=f;this.i=a;this.h===2&&this.F();this.K()};c.prototype.F=function(){var f=this;l(function(){if(f.B()){var a=w.console;typeof a!=="undefined"&&a.error(f.i)}},1)};c.prototype.B=
+function(){if(this.u)return!1;var f=w.CustomEvent,a=w.Event,d=w.dispatchEvent;if(typeof d==="undefined")return!0;typeof f==="function"?f=new f("unhandledrejection",{cancelable:!0}):typeof a==="function"?f=new a("unhandledrejection",{cancelable:!0}):(f=w.document.createEvent("CustomEvent"),f.initCustomEvent("unhandledrejection",!1,!0,f));f.promise=this;f.reason=this.i;return d(f)};c.prototype.K=function(){if(this.g!=null){for(var f=0;f<this.g.length;++f)m.h(this.g[f]);this.g=null}};var m=new g;c.prototype.G=
+function(f){var a=this.j();f.A(a.resolve,a.reject)};c.prototype.H=function(f,a){var d=this.j();try{f.call(a,d.resolve,d.reject)}catch(e){d.reject(e)}};c.prototype.then=function(f,a){function d(n,r){return typeof n=="function"?function(C){try{e(n(C))}catch(D){k(D)}}:r}var e,k,p=new c(function(n,r){e=n;k=r});this.A(d(f,e),d(a,k));return p};c.prototype.catch=function(f){return this.then(void 0,f)};c.prototype.A=function(f,a){function d(){switch(e.h){case 1:f(e.i);break;case 2:a(e.i);break;default:throw Error("Unexpected state: "+
+e.h);}}var e=this;this.g==null?m.h(d):this.g.push(d);this.u=!0};c.resolve=h;c.reject=function(f){return new c(function(a,d){d(f)})};c.race=function(f){return new c(function(a,d){for(var e=t(f),k=e.next();!k.done;k=e.next())h(k.value).A(a,d)})};c.all=function(f){var a=t(f),d=a.next();return d.done?h([]):new c(function(e,k){function p(C){return function(D){n[C]=D;r--;r==0&&e(n)}}var n=[],r=0;do n.push(void 0),r++,h(d.value).A(p(n.length-1),k),d=a.next();while(!d.done)})};return c});
+function K(b,c){return Object.prototype.hasOwnProperty.call(b,c)}x("Object.is",function(b){return b?b:function(c,g){return c===g?c!==0||1/c===1/g:c!==c&&g!==g}});x("Array.prototype.includes",function(b){return b?b:function(c,g){var h=this;h instanceof String&&(h=String(h));var l=h.length;g=g||0;for(g<0&&(g=Math.max(g+l,0));g<l;g++){var m=h[g];if(m===c||Object.is(m,c))return!0}return!1}});
+x("String.prototype.includes",function(b){return b?b:function(c,g){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(c instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(c,g||0)!==-1}});
+x("WeakMap",function(b){function c(d){this.g=(a+=Math.random()+1).toString();if(d){d=t(d);for(var e;!(e=d.next()).done;)e=e.value,this.set(e[0],e[1])}}function g(){}function h(d){var e=typeof d;return e==="object"&&d!==null||e==="function"}function l(d){if(!K(d,f)){var e=new g;u(d,f,{value:e})}}function m(d){var e=Object[d];e&&(Object[d]=function(k){if(k instanceof g)return k;Object.isExtensible(k)&&l(k);return e(k)})}if(function(){if(!b||!Object.seal)return!1;try{var d=Object.seal({}),e=Object.seal({}),
+k=new b([[d,2],[e,3]]);if(k.get(d)!=2||k.get(e)!=3)return!1;k.delete(d);k.set(e,4);return!k.has(d)&&k.get(e)==4}catch(p){return!1}}())return b;var f="$jscomp_hidden_"+Math.random();m("freeze");m("preventExtensions");m("seal");var a=0;c.prototype.set=function(d,e){if(!h(d))throw Error("Invalid WeakMap key");l(d);if(!K(d,f))throw Error("WeakMap key fail: "+d);d[f][this.g]=e;return this};c.prototype.get=function(d){return h(d)&&K(d,f)?d[f][this.g]:void 0};c.prototype.has=function(d){return h(d)&&K(d,
+f)&&K(d[f],this.g)};c.prototype.delete=function(d){return h(d)&&K(d,f)&&K(d[f],this.g)?delete d[f][this.g]:!1};return c});
+x("Map",function(b){function c(){var a={};return a.m=a.next=a.head=a}function g(a,d){var e=a[1];return J(function(){if(e){for(;e.head!=a[1];)e=e.m;for(;e.next!=e.head;)return e=e.next,{done:!1,value:d(e)};e=null}return{done:!0,value:void 0}})}function h(a,d){var e=d&&typeof d;e=="object"||e=="function"?m.has(d)?e=m.get(d):(e=""+ ++f,m.set(d,e)):e="p_"+d;var k=a[0][e];if(k&&K(a[0],e))for(a=0;a<k.length;a++){var p=k[a];if(d!==d&&p.key!==p.key||d===p.key)return{id:e,list:k,index:a,entry:p}}return{id:e,
+list:k,index:-1,entry:void 0}}function l(a){this[0]={};this[1]=c();this.size=0;if(a){a=t(a);for(var d;!(d=a.next()).done;)d=d.value,this.set(d[0],d[1])}}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var a=Object.seal({x:4}),d=new b(t([[a,"s"]]));if(d.get(a)!="s"||d.size!=1||d.get({x:4})||d.set({x:4},"t")!=d||d.size!=2)return!1;var e=d.entries(),k=e.next();if(k.done||k.value[0]!=a||k.value[1]!="s")return!1;k=e.next();return k.done||k.value[0].x!=
+4||k.value[1]!="t"||!e.next().done?!1:!0}catch(p){return!1}}())return b;var m=new WeakMap;l.prototype.set=function(a,d){a=a===0?0:a;var e=h(this,a);e.list||(e.list=this[0][e.id]=[]);e.entry?e.entry.value=d:(e.entry={next:this[1],m:this[1].m,head:this[1],key:a,value:d},e.list.push(e.entry),this[1].m.next=e.entry,this[1].m=e.entry,this.size++);return this};l.prototype.delete=function(a){a=h(this,a);return a.entry&&a.list?(a.list.splice(a.index,1),a.list.length||delete this[0][a.id],a.entry.m.next=a.entry.next,
+a.entry.next.m=a.entry.m,a.entry.head=null,this.size--,!0):!1};l.prototype.clear=function(){this[0]={};this[1]=this[1].m=c();this.size=0};l.prototype.has=function(a){return!!h(this,a).entry};l.prototype.get=function(a){return(a=h(this,a).entry)&&a.value};l.prototype.entries=function(){return g(this,function(a){return[a.key,a.value]})};l.prototype.keys=function(){return g(this,function(a){return a.key})};l.prototype.values=function(){return g(this,function(a){return a.value})};l.prototype.forEach=
+function(a,d){for(var e=this.entries(),k;!(k=e.next()).done;)k=k.value,a.call(d,k[1],k[0],this)};l.prototype[Symbol.iterator]=l.prototype.entries;var f=0;return l});
+x("Set",function(b){function c(g){this.g=new Map;if(g){g=t(g);for(var h;!(h=g.next()).done;)this.add(h.value)}this.size=this.g.size}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var g=Object.seal({x:4}),h=new b(t([g]));if(!h.has(g)||h.size!=1||h.add(g)!=h||h.size!=1||h.add({x:4})!=h||h.size!=2)return!1;var l=h.entries(),m=l.next();if(m.done||m.value[0]!=g||m.value[1]!=g)return!1;m=l.next();return m.done||m.value[0]==g||m.value[0].x!=4||
+m.value[1]!=m.value[0]?!1:l.next().done}catch(f){return!1}}())return b;c.prototype.add=function(g){g=g===0?0:g;this.g.set(g,g);this.size=this.g.size;return this};c.prototype.delete=function(g){g=this.g.delete(g);this.size=this.g.size;return g};c.prototype.clear=function(){this.g.clear();this.size=0};c.prototype.has=function(g){return this.g.has(g)};c.prototype.entries=function(){return this.g.entries()};c.prototype.values=function(){return this.g.values()};c.prototype.keys=c.prototype.values;c.prototype[Symbol.iterator]=
+c.prototype.values;c.prototype.forEach=function(g,h){var l=this;this.g.forEach(function(m){return g.call(h,m,m,l)})};return c});(function(){function b(){return m?Promise.resolve(m):f?f:f=fetch("https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json").then(function(a){if(!a.ok)throw Error("HTTP error! status: "+a.status+" fetching https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json");return a.json()}).then(function(a){if(!Array.isArray(a))throw new TypeError("Fetched icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json is not an array.");
+return m=a}).catch(function(a){console.error("IconChecker: Failed to load valid icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json.",a);f=null;throw a;})}function c(a){var d,e,k,p;return I(new H(new B(function(n){switch(n.h){case 1:d=(a.textContent||"").trim();if(!d||a.classList.contains("js-replaced-missing-icon")&&d==="radio_button_unchecked")return n.return();e=window.getComputedStyle(a);if(e.display==="none"||e.visibility==="hidden")return n.return();
+n.l=2;var r=b();n.h=4;return{value:r};case 4:k=n.u;n.h=3;n.l=0;break;case 2:return n.l=0,n.i=null,console.warn('IconChecker: Skipping check for icon "'+d+'" as valid names could not be loaded.'),n.return();case 3:(p=k.includes(d))?a.classList.contains("js-replaced-missing-icon")&&a.classList.remove("js-replaced-missing-icon"):d==="radio_button_unchecked"&&a.classList.contains("js-replaced-missing-icon")||(a.textContent="radio_button_unchecked",a.classList.add("js-replaced-missing-icon")),n.h=0}})))}
+function g(a){a=a===void 0?document.body:a;a.querySelectorAll(l).forEach(function(d){c(d)})}function h(){b().catch(function(){});document.fonts.ready.then(function(){requestAnimationFrame(function(){g(document.body);(new MutationObserver(function(a){var d=new Set;a=t(a);for(var e=a.next();!e.done;e=a.next())if(e=e.value,e.type==="childList")e.addedNodes.forEach(function(p){p.nodeType===Node.ELEMENT_NODE&&(p.matches(l)&&d.add(p),p.querySelectorAll(l).forEach(function(n){d.add(n)}))});else if(e.type===
+"attributes"&&e.attributeName==="class"){var k=e.target;e.target.nodeType===Node.ELEMENT_NODE&&k.matches(l)&&d.add(k)}else e.type==="characterData"&&e.target.parentNode&&(e=e.target.parentNode,e.nodeType===Node.ELEMENT_NODE&&e.matches(l)&&d.add(e));d.size>0&&setTimeout(function(){d.forEach(function(p){c(p)})},500)})).observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"],characterData:!0})})}).catch(function(a){console.error("IconChecker: Font loading error. Scanning icons anyway.",
+a);requestAnimationFrame(function(){g(document.body)})})}var l=["material-icons","material-symbols-outlined","material-symbols-rounded","material-symbols-sharp"].map(function(a){return"."+a}).join(","),m=null,f=null;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){h()}):h()})();}).call(this);
+
+</script>
+
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>かんじ・ガッタイ・ラボ Ver.8</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- 日本語フォント: Zen Maru Gothic (丸ゴシック) & Yuji Syuku (筆文字風) -->
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&amp;family=Yuji+Syuku&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,700,1,0" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<style>
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: #FFF7ED; /* Orange-50 */
+            background-image: radial-gradient(#FDBA74 2px, transparent 2px);
+            background-size: 32px 32px;
+            color: #431407; /* Amber-950 */
+        }
+        .font-fude { font-family: 'Yuji Syuku', serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 4px solid #FED7AA; /* Orange-200 */
+            box-shadow: 0 8px 0 #FDBA74; /* Orange-300 */
+        }
+        .kanji-part-btn {
+            transition: all 0.1s;
+            border-bottom: 4px solid #D1D5DB;
+        }
+        .kanji-part-btn:active {
+            transform: translateY(2px);
+            border-bottom: 0px solid transparent;
+            margin-bottom: 4px;
+        }
+        .kanji-part-btn.selected {
+            background-color: #FDBA74; color: white;
+            border-color: #C2410C; border-bottom-width: 4px;
+        }
+        @keyframes pop-in {
+            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+            80% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        .animate-pop-in { animation: pop-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .animate-shake { animation: shake 0.2s linear 3; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #FDBA74; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #EA580C; }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-right-6{right:-1.5rem}.-top-6{top:-1.5rem}.bottom-0{bottom:0px}.left-0{left:0px}.right-0{right:0px}.right-4{right:1rem}.top-0{top:0px}.top-4{top:1rem}.z-10{z-index:10}.z-30{z-index:30}.z-50{z-index:50}.col-span-3{grid-column:span 3 / span 3}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:0.5rem;margin-bottom:0.5rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-32{height:8rem}.h-4{height:1rem}.h-full{height:100%}.h-12{height:3rem}.h-28{height:7rem}.min-h-\[120px\]{min-height:120px}.min-h-\[220px\]{min-height:220px}.min-h-\[3rem\]{min-height:3rem}.min-h-\[500px\]{min-height:500px}.min-h-screen{min-height:100vh}.w-32{width:8rem}.w-full{width:100%}.w-28{width:7rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-90{--tw-rotate:90deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.cursor-not-allowed{cursor:not-allowed}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.flex-col{flex-direction:column}.content-start{align-content:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-b-4{border-bottom-width:4px}.border-b-8{border-bottom-width:8px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-blue-400{--tw-border-opacity:1;border-color:rgb(96 165 250 / var(--tw-border-opacity, 1))}.border-orange-100{--tw-border-opacity:1;border-color:rgb(255 237 213 / var(--tw-border-opacity, 1))}.border-orange-200{--tw-border-opacity:1;border-color:rgb(254 215 170 / var(--tw-border-opacity, 1))}.border-orange-400{--tw-border-opacity:1;border-color:rgb(251 146 60 / var(--tw-border-opacity, 1))}.border-orange-500{--tw-border-opacity:1;border-color:rgb(249 115 22 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.bg-amber-400{--tw-bg-opacity:1;background-color:rgb(251 191 36 / var(--tw-bg-opacity, 1))}.bg-amber-500{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-orange-100{--tw-bg-opacity:1;background-color:rgb(255 237 213 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity, 1))}.bg-orange-900\/90{background-color:rgb(124 45 18 / 0.9)}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-300{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-slate-900\/50{background-color:rgb(15 23 42 / 0.5)}.bg-slate-900\/80{background-color:rgb(15 23 42 / 0.8)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-yellow-500\/90{background-color:rgb(234 179 8 / 0.9)}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-orange-400{--tw-gradient-from:#fb923c var(--tw-gradient-from-position);--tw-gradient-to:rgb(251 146 60 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-orange-600{--tw-gradient-to:#ea580c var(--tw-gradient-to-position)}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-10{padding:2.5rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-8xl{font-size:6rem;line-height:1}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-5xl{font-size:3rem;line-height:1}.text-7xl{font-size:4.5rem;line-height:1}.font-black{font-weight:900}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:0.05em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-orange-400{--tw-text-opacity:1;color:rgb(251 146 60 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity:1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-orange-700{--tw-text-opacity:1;color:rgb(194 65 12 / var(--tw-text-opacity, 1))}.text-orange-800{--tw-text-opacity:1;color:rgb(154 52 18 / var(--tw-text-opacity, 1))}.text-orange-900{--tw-text-opacity:1;color:rgb(124 45 18 / var(--tw-text-opacity, 1))}.text-red-400{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-orange-300{--tw-text-opacity:1;color:rgb(253 186 116 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_3px_0_\#059669\]{--tw-shadow:0 3px 0 #059669;--tw-shadow-colored:0 3px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_3px_0_\#1e293b\]{--tw-shadow:0 3px 0 #1e293b;--tw-shadow-colored:0 3px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_3px_0_\#b45309\]{--tw-shadow:0 3px 0 #b45309;--tw-shadow-colored:0 3px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_6px_0_\#9a3412\]{--tw-shadow:0 6px 0 #9a3412;--tw-shadow-colored:0 6px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.selection\:bg-orange-200 *::selection{--tw-bg-opacity:1;background-color:rgb(254 215 170 / var(--tw-bg-opacity, 1))}.selection\:bg-orange-200::selection{--tw-bg-opacity:1;background-color:rgb(254 215 170 / var(--tw-bg-opacity, 1))}.hover\:-translate-y-1:hover{--tw-translate-y:-0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11 / var(--tw-bg-opacity, 1))}.hover\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-orange-50:hover{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.hover\:bg-orange-600:hover{--tw-bg-opacity:1;background-color:rgb(234 88 12 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-300:hover{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-600:hover{--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/40:hover{background-color:rgb(255 255 255 / 0.4)}.hover\:text-orange-500:hover{--tw-text-opacity:1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.active\:translate-y-1:active{--tw-translate-y:0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:translate-y-2:active{--tw-translate-y:0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:shadow-none:active{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}@media (min-width: 768px){.md\:my-0{margin-top:0px;margin-bottom:0px}.md\:mr-2{margin-right:0.5rem}.md\:h-40{height:10rem}.md\:h-14{height:3.5rem}.md\:h-32{height:8rem}.md\:w-40{width:10rem}.md\:w-32{width:8rem}.md\:rotate-0{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:gap-3{gap:0.75rem}.md\:gap-6{gap:1.5rem}.md\:gap-4{gap:1rem}.md\:px-4{padding-left:1rem;padding-right:1rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-8xl{font-size:6rem;line-height:1}.md\:text-9xl{font-size:8rem;line-height:1}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}}</style></head>
+<body class="min-h-screen flex flex-col selection:bg-orange-200">
+<!-- Header -->
+<header class="bg-white border-b-4 border-orange-200 px-4 py-3 flex justify-between items-center sticky top-0 z-30 shadow-sm">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="bg-orange-500 text-white p-2 rounded-xl shadow-sm transform rotate-3">
+<span class="material-symbols-rounded text-2xl block">extension</span>
+</div>
+<h1 class="text-lg md:text-2xl font-black tracking-wider text-orange-900">かんじ・ガッタイ・ラボ</h1>
+</div>
+<div class="flex gap-2">
+<div class="flex bg-orange-50 p-1 rounded-xl border-2 border-orange-200 mr-1 md:mr-2">
+<button class="px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold text-slate-400 hover:text-slate-600 transition-all" id="tab-lab" onclick="switchTab('lab')">
+<span class="flex items-center gap-1"><span class="material-symbols-rounded text-sm">science</span> つくる</span>
+</button>
+<button class="px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-orange-600 shadow-sm" id="tab-game" onclick="switchTab('game')">
+<span class="flex items-center gap-1"><span class="material-symbols-rounded text-sm">quiz</span> クイズ</span>
+</button>
+</div>
+<button class="bg-amber-400 hover:bg-amber-500 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-[0_3px_0_#b45309] active:shadow-none active:translate-y-1 transition-all text-xs md:text-sm" onclick="openHelp()">
+<span class="material-symbols-rounded text-lg">help</span>
+</button>
+<button class="bg-emerald-400 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-[0_3px_0_#059669] active:shadow-none active:translate-y-1 transition-all text-xs md:text-sm" id="mute-btn" onclick="toggleMute()">
+<span class="material-symbols-rounded text-lg" id="mute-icon">volume_up</span>
+</button>
+<button class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-[0_3px_0_#1e293b] active:shadow-none active:translate-y-1 transition-all text-xs md:text-sm" onclick="downloadSource()">
+<span class="material-symbols-rounded text-lg">save</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-5xl mx-auto p-4 flex flex-col gap-6">
+<!-- VIEW: LAB (つくる) -->
+<div class="flex flex-col gap-6 w-full transition-opacity duration-300 hidden" id="view-lab">
+<!-- Lab Mode Switcher -->
+<div class="flex justify-center">
+<div class="bg-white p-1 rounded-full border-2 border-orange-200 flex shadow-sm">
+<button class="px-6 py-2 rounded-full text-sm font-bold transition-all bg-orange-100 text-orange-700 shadow-inner" id="mode-lr" onclick="setLabMode('lr')">へん・つくり (左右)</button>
+<button class="px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 hover:bg-slate-50" id="mode-ud" onclick="setLabMode('ud')">かんむり・あし (上下)</button>
+</div>
+</div>
+<!-- Result Area -->
+<div class="glass-panel w-full p-6 rounded-3xl flex flex-col items-center justify-center min-h-[220px] relative overflow-hidden bg-white">
+<div class="absolute top-0 left-0 w-full h-4 bg-orange-100 border-b border-orange-200"></div>
+<div class="absolute bottom-0 left-0 w-full h-4 bg-orange-100 border-t border-orange-200"></div>
+<!-- The Kanji Stage -->
+<div class="flex flex-col md:flex-row items-center gap-2 md:gap-6 relative z-10" id="stage-container">
+<!-- Left + Right (Dynamically set by JS) -->
+<div class="flex items-center gap-2 md:gap-4 transition-all" id="parts-container">
+                    <div class="flex flex-col items-center">
+                        <div class="w-28 h-28 md:w-32 md:h-32 border-4 border-dashed border-slate-300 rounded-3xl flex items-center justify-center bg-slate-50 text-slate-300 text-7xl font-fude" id="display-left">?</div>
+                        <span class="text-xs font-bold text-slate-400 mt-2 bg-slate-100 px-2 py-1 rounded-full">へん (左)</span>
+                    </div>
+                    <span class="material-symbols-rounded text-5xl text-orange-300 animate-bounce">add</span>
+                    <div class="flex flex-col items-center">
+                        <div class="w-28 h-28 md:w-32 md:h-32 border-4 border-dashed border-slate-300 rounded-3xl flex items-center justify-center bg-slate-50 text-slate-300 text-7xl font-fude" id="display-right">?</div>
+                        <span class="text-xs font-bold text-slate-400 mt-2 bg-slate-100 px-2 py-1 rounded-full">つくり (右)</span>
+                    </div>
+                </div>
+<!-- Arrow -->
+<span class="material-symbols-rounded text-6xl text-slate-300 rotate-90 md:rotate-0 my-2 md:my-0">arrow_forward</span>
+<!-- Result -->
+<div class="flex flex-col items-center">
+<div class="relative group">
+<div class="w-28 h-28 md:w-32 md:h-32 border-4 border-orange-200 rounded-3xl flex items-center justify-center bg-white shadow-xl transform transition-all" id="result-box">
+<span class="text-7xl md:text-8xl font-fude text-slate-200" id="result-char">?</span>
+</div>
+<div class="absolute -top-6 -right-6 text-yellow-400 text-6xl opacity-0 transition" id="result-sparkle">✨</div>
+</div>
+<!-- Meaning -->
+<div class="mt-2 text-center opacity-0 transition-opacity duration-500 min-h-[3rem]" id="result-info">
+<h2 class="text-xl font-bold text-orange-600 leading-tight" id="result-reading">よみ</h2>
+<p class="text-sm text-slate-500 font-medium bg-orange-50 px-3 py-1 rounded-lg inline-block border border-orange-100 mt-1" id="result-meaning">いみ</p>
+</div>
+</div>
+</div>
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-orange-500 transition flex flex-col items-center gap-1" onclick="toggleCollection()">
+<span class="material-symbols-rounded text-3xl">menu_book</span>
+<span class="text-[10px] font-bold">ずかん</span>
+</button>
+</div>
+</div>
+<!-- Parts List -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white rounded-3xl p-4 shadow-lg border-2 border-orange-100">
+<div class="flex items-center gap-2 mb-4 px-2">
+<span class="bg-blue-100 text-blue-600 p-1.5 rounded-lg"><span class="material-symbols-rounded" id="icon-p1">format_align_left</span></span>
+<h3 class="font-black text-slate-700" id="label-p1">へん</h3>
+</div>
+<div class="grid grid-cols-5 gap-2" id="list-p1"><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">木</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">日</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">言</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">氵</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">土</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">亻</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">女</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">口</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">魚</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">金</button></div>
+</div>
+<div class="bg-white rounded-3xl p-4 shadow-lg border-2 border-orange-100">
+<div class="flex items-center gap-2 mb-4 px-2">
+<span class="bg-red-100 text-red-600 p-1.5 rounded-lg"><span class="material-symbols-rounded" id="icon-p2">format_align_right</span></span>
+<h3 class="font-black text-slate-700" id="label-p2">つくり</h3>
+</div>
+<div class="grid grid-cols-5 gap-2" id="list-p2"><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">也</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">交</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">公</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">十</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">反</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">可</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">吾</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">寺</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">少</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">工</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">成</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">日</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">月</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">木</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">未</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">本</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">毎</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">白</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">羊</button><button class="bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700">青</button></div>
+</div>
+</div>
+<div class="flex justify-center">
+<button class="bg-gradient-to-b from-orange-400 to-orange-600 text-white px-12 py-4 rounded-full font-black text-2xl shadow-[0_6px_0_#9a3412] active:shadow-none active:translate-y-2 transition transform hover:scale-105 flex items-center gap-2" onclick="combineKanji()">
+<span class="material-symbols-rounded text-3xl">science</span> がったい！
+                </button>
+</div>
+</div>
+<!-- VIEW: GAME -->
+<div class="flex-col gap-6 w-full h-full min-h-[500px]" id="view-game">
+<div class="w-full h-full flex flex-col items-center justify-center gap-8 py-12 animate-pop-in hidden" id="game-menu">
+<div class="text-center">
+<h2 class="text-4xl font-black text-orange-800 mb-4">かんじクイズ</h2>
+<p class="text-slate-600 font-bold text-lg">あそびかたを えらんでね！<br><span class="text-sm font-normal">10問ごとに区切られていて、途中でやめても続きから遊べるよ！</span></p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl px-4">
+<button class="group bg-white hover:bg-orange-50 border-4 border-orange-400 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-left flex flex-col items-center relative overflow-hidden" onclick="startGame('combine')">
+<div class="z-10 text-center">
+<span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-black mb-3 inline-block">全30もん</span>
+<h3 class="text-3xl font-black text-orange-600 mb-2">がったい クイズ</h3>
+<p class="text-slate-500 font-bold mb-4">「読み」と「意味」を見て、<br>漢字をつくろう！</p>
+<div class="flex gap-2 justify-center text-slate-400 font-fude text-2xl">
+<span>?</span> + <span>?</span> = <span class="text-orange-500">林</span>
+</div>
+<p class="mt-4 text-xs font-bold text-orange-400" id="progress-combine">つづきから: 1もんめ</p>
+</div>
+</button>
+<button class="group bg-white hover:bg-blue-50 border-4 border-blue-400 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-left flex flex-col items-center relative overflow-hidden" onclick="startGame('decompose')">
+<div class="z-10 text-center">
+<span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-black mb-3 inline-block">全30もん</span>
+<h3 class="text-3xl font-black text-blue-600 mb-2">ぶんかい クイズ</h3>
+<p class="text-slate-500 font-bold mb-4">表示された漢字を<br>バラバラにしよう！</p>
+<div class="flex gap-2 justify-center text-slate-400 font-fude text-2xl">
+<span class="text-blue-500">林</span> = <span>?</span> + <span>?</span>
+</div>
+<p class="mt-4 text-xs font-bold text-blue-400" id="progress-decompose">つづきから: 1もんめ</p>
+</div>
+</button>
+</div>
+</div>
+<div class="w-full max-w-3xl mx-auto flex-col gap-6" id="game-play">
+<div class="flex justify-between items-center bg-white p-4 rounded-2xl shadow-sm border-2 border-orange-100">
+<button class="text-slate-400 hover:text-orange-500 font-bold flex items-center gap-1 text-sm" onclick="exitGame()">
+<span class="material-symbols-rounded">arrow_back</span> セーブしてやめる
+                    </button>
+<div class="flex gap-4 text-sm font-bold">
+<span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full">ステージ <span id="quiz-stage">1</span> / 3</span>
+<span class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full">もんだい <span id="quiz-num">1</span> / 10</span>
+</div>
+</div>
+<div class="bg-white rounded-3xl p-8 text-center shadow-lg border-b-8 border-orange-200 relative overflow-hidden">
+<p class="text-slate-400 font-bold mb-2 text-sm" id="quiz-instruction">この漢字をつくろう！</p>
+<div class="min-h-[120px] flex flex-col items-center justify-center">
+<div class="hidden" id="quiz-combine-display">
+<p class="text-4xl md:text-5xl font-bold text-orange-600 mb-2" id="quiz-target-reading">?</p>
+<p class="text-lg text-slate-500 bg-orange-50 px-4 py-1 rounded-lg inline-block" id="quiz-target-meaning">?</p>
+</div>
+<h2 class="text-6xl md:text-8xl font-fude text-slate-800 hidden" id="quiz-target-char">?</h2>
+</div>
+<div class="flex justify-center gap-4 mt-8" id="quiz-slots-container">
+<!-- JS Generated -->
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white/80 p-4 rounded-2xl border-2 border-orange-100">
+<p class="text-xs font-bold text-center text-blue-400 mb-2" id="quiz-label-left">パーツ1</p>
+<div class="grid grid-cols-4 gap-2" id="quiz-choices-left"></div>
+</div>
+<div class="bg-white/80 p-4 rounded-2xl border-2 border-orange-100">
+<p class="text-xs font-bold text-center text-red-400 mb-2" id="quiz-label-right">パーツ2</p>
+<div class="grid grid-cols-4 gap-2" id="quiz-choices-right"></div>
+</div>
+</div>
+<div class="text-center mt-2">
+<button class="bg-slate-300 text-white px-8 py-3 rounded-full font-bold text-xl cursor-not-allowed transition" disabled="" id="quiz-submit-btn" onclick="checkQuiz()">決定</button>
+</div>
+</div>
+<div class="hidden absolute inset-0 bg-orange-900/90 z-50 flex flex-col items-center justify-center p-4 animate-pop-in" id="game-result">
+<div class="bg-white p-8 rounded-3xl shadow-2xl text-center max-w-sm w-full">
+<span class="material-symbols-rounded text-6xl mb-4 block" id="result-icon">check_circle</span>
+<h2 class="text-3xl font-black text-slate-800 mb-2" id="result-title">せいかい！</h2>
+<div class="text-6xl font-fude text-orange-600 mb-4" id="result-kanji"></div>
+<div class="text-sm text-slate-500 mb-6 bg-orange-50 p-2 rounded-lg" id="result-detail"></div>
+<button class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg w-full" id="result-btn" onclick="nextQuiz()">つぎへ</button>
+</div>
+</div>
+<div class="hidden absolute inset-0 bg-yellow-500/90 z-50 flex flex-col items-center justify-center p-4 animate-pop-in" id="stage-clear">
+<div class="bg-white p-10 rounded-3xl shadow-2xl text-center max-w-md w-full">
+<span class="material-symbols-rounded text-8xl text-yellow-400 mb-4 animate-bounce">military_tech</span>
+<h2 class="text-4xl font-black text-orange-600 mb-4">ステージクリア！</h2>
+<p class="text-xl font-bold text-slate-600 mb-8">おめでとう！<br>つぎのステージにすすむ？</p>
+<div class="flex gap-4">
+<button class="flex-1 bg-slate-200 hover:bg-slate-300 text-slate-600 px-4 py-3 rounded-xl font-bold transition" onclick="exitGame()">メニューへ</button>
+<button class="flex-1 bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-xl font-bold shadow-lg transition" onclick="nextStage()">すすむ！</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modals -->
+<div class="fixed inset-0 bg-slate-900/50 z-50 hidden transition-opacity" id="collection-modal">
+<div class="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white shadow-2xl p-6 flex flex-col transform transition-transform translate-x-full" id="collection-panel">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-black text-slate-700 flex items-center gap-2"><span class="material-symbols-rounded text-orange-500">menu_book</span> かんじ図鑑</h2>
+<button class="bg-slate-100 hover:bg-slate-200 rounded-full p-1" onclick="toggleCollection()"><span class="material-symbols-rounded">close</span></button>
+</div>
+<div class="flex-1 overflow-y-auto grid grid-cols-3 gap-4 content-start p-2" id="collection-grid">
+<div class="col-span-3 text-center text-slate-400 text-sm mt-10">まだ見つけた漢字はないよ。<br>ラボで新しい漢字を作ろう！</div>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity" id="help-modal">
+<div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden transform scale-95 transition-transform" id="help-content">
+<div class="bg-amber-400 p-4 flex justify-between items-center">
+<h2 class="text-xl font-black text-white flex items-center gap-2"><span class="material-symbols-rounded">school</span> あそびかた</h2>
+<button class="bg-white/20 hover:bg-white/40 text-white rounded-full p-1 transition" onclick="closeHelp()"><span class="material-symbols-rounded">close</span></button>
+</div>
+<div class="p-6 space-y-6 text-slate-600">
+<div class="flex gap-4">
+<span class="material-symbols-rounded text-3xl text-blue-400">science</span>
+<div><h3 class="font-bold text-slate-800">つくるモード</h3><p class="text-sm">2つのパーツを選んで「がったい」ボタンを押そう！左右や上下の組み合わせがあるよ！</p></div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-rounded text-3xl text-orange-400">quiz</span>
+<div><h3 class="font-bold text-slate-800">クイズモード</h3><p class="text-sm">「がったい」と「ぶんかい」の2つのモードで遊べるよ！全30問、10問ごとのステージ制だよ。</p></div>
+</div>
+<div class="bg-orange-50 p-4 rounded-xl text-center">
+<button class="bg-amber-500 text-white px-6 py-2 rounded-full font-bold shadow-sm" onclick="closeHelp()">わかった！</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+(() => {
+  const KANJI_LR = [
+    { l: '木', r: '木', k: '林', y: 'はやし', m: '木がたくさん' },
+    { l: '木', r: '公', k: '松', y: 'まつ', m: '一年中緑の木' },
+    { l: '木', r: '白', k: '柏', y: 'かしわ', m: 'もちを包む葉' },
+    { l: '木', r: '交', k: '校', y: 'こう', m: '学校' },
+    { l: '木', r: '才', k: '材', y: 'ざい', m: '材料' },
+    { l: '木', r: '村', k: '村', y: 'むら', m: '集落' },
+    { l: '木', r: '目', k: '相', y: 'あい', m: 'お互い' },
+    { l: '木', r: '反', k: '板', y: 'いた', m: '平らな木' },
+    { l: '木', r: '風', k: '楓', y: 'かえで', m: '紅葉する木' },
+    { l: '木', r: '毎', k: '梅', y: 'うめ', m: '春の花' },
+    { l: '日', r: '月', k: '明', y: 'あかるい', m: '光がある' },
+    { l: '日', r: '青', k: '晴', y: 'はれ', m: 'いい天気' },
+    { l: '日', r: '寺', k: '時', y: 'じ', m: '時間' },
+    { l: '日', r: '音', k: '暗', y: 'くらい', m: '光がない' },
+    { l: '日', r: '免', k: '晩', y: 'ばん', m: '夜' },
+    { l: '日', r: '生', k: '星', y: 'ほし', m: '夜空の光' },
+    { l: '日', r: '西', k: '晒', y: 'さらし', m: '日光に当てる' },
+    { l: '日', r: '光', k: '晃', y: 'あきら', m: 'あきらか' },
+    { l: '言', r: '吾', k: '語', y: 'ご', m: 'ことば' },
+    { l: '言', r: '舌', k: '話', y: 'はなし', m: 'おしゃべり' },
+    { l: '言', r: '売', k: '読', y: 'よむ', m: '本を読む' },
+    { l: '言', r: '十', k: '計', y: 'けい', m: '数える' },
+    { l: '言', r: '成', k: '誠', y: 'まこと', m: 'うそのない心' },
+    { l: '言', r: '寺', k: '詩', y: 'し', m: 'うた' },
+    { l: '言', r: '己', k: '記', y: 'き', m: 'しるす' },
+    { l: '氵', r: '毎', k: '海', y: 'うみ', m: '広い海' },
+    { l: '氵', r: '也', k: '池', y: 'いけ', m: '池' },
+    { l: '氵', r: '羊', k: '洋', y: 'よう', m: '西洋' },
+    { l: '氵', r: '去', k: '法', y: 'ほう', m: 'ルール' },
+    { l: '氵', r: '可', k: '河', y: 'かわ', m: '大きな川' },
+    { l: '氵', r: '少', k: '沙', y: 'すな', m: 'すな' },
+    { l: '氵', r: '工', k: '江', y: 'え', m: '入り江' },
+    { l: '氵', r: '青', k: '清', y: 'きよい', m: 'きれいな水' },
+    { l: '土', r: '也', k: '地', y: 'ち', m: '地面' },
+    { l: '土', r: '成', k: '城', y: 'しろ', m: 'お城' },
+    { l: '土', r: '寸', k: '寺', y: 'てら', m: 'お寺' },
+    { l: '土', r: '旦', k: '坦', y: 'たん', m: '平ら' },
+    { l: '土', r: '方', k: '坊', y: 'ぼう', m: 'お坊さん' },
+    { l: '亻', r: '本', k: '体', y: 'からだ', m: 'からだ' },
+    { l: '亻', r: '木', k: '休', y: 'やすむ', m: '休む' },
+    { l: '亻', r: '言', k: '信', y: 'しん', m: '信じる' },
+    { l: '亻', r: '山', k: '仙', y: 'せん', m: '仙人' },
+    { l: '亻', r: '動', k: '働', y: 'はたらく', m: 'はたらく' },
+    { l: '女', r: '子', k: '好', y: 'すき', m: '好き' },
+    { l: '女', r: '少', k: '妙', y: 'みょう', m: '不思議' },
+    { l: '女', r: '未', k: '妹', y: 'いもうと', m: '年下の姉妹' },
+    { l: '女', r: '市', k: '姉', y: 'あね', m: '年上の姉妹' },
+    { l: '女', r: '生', k: '姓', y: 'せい', m: 'みょうじ' },
+    { l: '口', r: '未', k: '味', y: 'あじ', m: 'あじ' },
+    { l: '口', r: '十', k: '叶', y: 'かなう', m: '願いが叶う' },
+    { l: '口', r: '鳥', k: '鳴', y: 'なく', m: '鳴く' },
+    { l: '口', r: '可', k: '呵', y: 'か', m: 'わらう' },
+    { l: '魚', r: '青', k: '鯖', y: 'さば', m: '青い魚' },
+    { l: '魚', r: '羊', k: '鮮', y: 'せん', m: '新鮮' },
+    { l: '魚', r: '京', k: '鯨', y: 'くじら', m: '大きな哺乳類' },
+    { l: '魚', r: '交', k: '鮫', y: 'さめ', m: '海のハンター' },
+    { l: '金', r: '十', k: '針', y: 'はり', m: 'ぬい針' },
+    { l: '金', r: '同', k: '銅', y: 'どう', m: '10円玉' },
+    { l: '金', r: '本', k: '鉢', y: 'はち', m: '植木鉢' },
+    { l: '金', r: '失', k: '鉄', y: 'てつ', m: 'かたい金属' }
+  ];
+
+  const KANJI_UD = [
+    { l: '艹', r: '化', k: '花', y: 'はな', m: '植物の花' },
+    { l: '艹', r: '早', k: '草', y: 'くさ', m: '地面の草' },
+    { l: '艹', r: '楽', k: '薬', y: 'くすり', m: '病気を治す' },
+    { l: '宀', r: '玉', k: '宝', y: 'たから', m: '大事なもの' },
+    { l: '宀', r: '女', k: '安', y: 'やす', m: '安全' },
+    { l: '宀', r: '子', k: '字', y: 'じ', m: '文字' },
+    { l: '竹', r: '馬', k: '篤', y: 'とく', m: 'あつい' },
+    { l: '竹', r: '目', k: '算', y: 'さん', m: '計算' },
+    { l: '雨', r: '田', k: '雷', y: 'かみなり', m: '稲妻' },
+    { l: '雨', r: '云', k: '雲', y: 'くも', m: '空の雲' },
+    { l: '雨', r: '相', k: '霜', y: 'しも', m: '冬の氷' },
+    { l: '穴', r: '工', k: '空', y: 'そら', m: '大空' },
+    { l: '竹', r: '毛', k: '筆', y: 'ふで', m: '書く道具' },
+    { l: '广', r: '林', k: '麻', y: 'あさ', m: '植物の麻' },
+    { l: '戸', r: '方', k: '房', y: 'ふさ', m: 'ぶどうの房' }
+  ];
+
+  const PARTS_L_LR = ['木', '日', '言', '氵', '土', '亻', '女', '口', '魚', '金'];
+  const PARTS_R_LR = ['音', '可', '去', '京', '月', '言', '己', '吾', '交', '光', '公', '工', '才', '山', '子', '市', '寺', '失', '十', '少', '寸', '成', '生', '西', '青', '舌', '村', '旦', '鳥', '動', '同', '売', '白', '反', '風', '方', '本', '毎', '未', '免', '木', '目', '也', '羊'].sort();
+  const PARTS_L_UD = ['艹', '宀', '竹', '雨', '穴', '戸', '广'];
+  const PARTS_R_UD = ['化', '早', '楽', '玉', '女', '子', '馬', '目', '田', '云', '工', '相', '毛', '方', '林'].sort();
+
+  const KANJI_ALL = [...KANJI_LR, ...KANJI_UD];
+  const STAGE_SIZE = 10;
+  const TOTAL_QUIZ = Math.min(30, KANJI_ALL.length);
+
+  let currentLabMode = 'lr';
+  let selectedL = null;
+  let selectedR = null;
+  let col = new Set();
+  let synth = null;
+  let isMuted = false;
+
+  let gameMode = 'combine';
+  let quizPool = [];
+  let currentQuizIndex = 0;
+  let currentQuiz = null;
+  let qL = null;
+  let qR = null;
+  let gameProgress = { combine: 0, decompose: 0 };
+
+  async function playSound(type) {
+    if (isMuted) return;
+    if (!synth) { await Tone.start(); synth = new Tone.PolySynth().toDestination(); }
+    if (type === 'select') synth.triggerAttackRelease('C5', '32n');
+    if (type === 'combine') synth.triggerAttackRelease(['C4', 'E4', 'G4'], '8n');
+    if (type === 'success') synth.triggerAttackRelease(['C5', 'E5', 'G5', 'C6'], '4n');
+    if (type === 'fail') synth.triggerAttackRelease(['F3', 'C3'], '4n');
+  }
+
+  function toggleMute() {
+    isMuted = !isMuted;
+    const btn = document.getElementById('mute-btn');
+    const icon = document.getElementById('mute-icon');
+    if (isMuted) {
+      icon.textContent = 'volume_off';
+      btn.className = 'bg-slate-400 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-inner transition-all text-xs md:text-sm';
+    } else {
+      icon.textContent = 'volume_up';
+      btn.className = 'bg-emerald-400 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 shadow-[0_3px_0_#059669] active:shadow-none active:translate-y-1 transition-all text-xs md:text-sm';
+    }
+  }
+
+  function downloadSource() {
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'kanji-lab-v8.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  }
+
+  function switchTab(t) {
+    const l = document.getElementById('view-lab');
+    const g = document.getElementById('view-game');
+    const tl = document.getElementById('tab-lab');
+    const tg = document.getElementById('tab-game');
+    if (t === 'lab') {
+      l.classList.remove('hidden'); g.classList.add('hidden');
+      tl.className = 'px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-orange-600 shadow-sm';
+      tg.className = 'px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold text-slate-400 hover:text-slate-600 transition-all';
+    } else {
+      l.classList.add('hidden'); g.classList.remove('hidden');
+      tl.className = 'px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold text-slate-400 hover:text-slate-600 transition-all';
+      tg.className = 'px-3 py-1.5 md:px-4 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-orange-600 shadow-sm';
+      exitGame();
+    }
+  }
+
+  const hm = document.getElementById('help-modal');
+  const hc = document.getElementById('help-content');
+  function openHelp() {
+    hm.classList.remove('hidden'); void hm.offsetWidth;
+    hm.classList.remove('opacity-0');
+    hc.classList.remove('scale-95'); hc.classList.add('scale-100');
+  }
+  function closeHelp() {
+    hm.classList.add('opacity-0');
+    hc.classList.remove('scale-100'); hc.classList.add('scale-95');
+    setTimeout(() => hm.classList.add('hidden'), 300);
+  }
+
+  const cm = document.getElementById('collection-modal');
+  const cp = document.getElementById('collection-panel');
+  function toggleCollection() {
+    if (cm.classList.contains('hidden')) {
+      cm.classList.remove('hidden');
+      setTimeout(() => cp.classList.remove('translate-x-full'), 10);
+    } else {
+      cp.classList.add('translate-x-full');
+      setTimeout(() => cm.classList.add('hidden'), 300);
+    }
+  }
+
+  function setLabMode(mode) {
+    currentLabMode = mode;
+    const mlr = document.getElementById('mode-lr');
+    const mud = document.getElementById('mode-ud');
+    if (mode === 'lr') {
+      mlr.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all bg-orange-100 text-orange-700 shadow-inner';
+      mud.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 hover:bg-slate-50';
+    } else {
+      mud.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all bg-orange-100 text-orange-700 shadow-inner';
+      mlr.className = 'px-6 py-2 rounded-full text-sm font-bold transition-all text-slate-500 hover:bg-slate-50';
+    }
+    renderLabUI();
+  }
+
+  function renderLabUI() {
+    const c1 = document.getElementById('list-p1');
+    const c2 = document.getElementById('list-p2');
+    const l1 = document.getElementById('label-p1');
+    const l2 = document.getElementById('label-p2');
+    const i1 = document.getElementById('icon-p1');
+    const i2 = document.getElementById('icon-p2');
+    const parts = document.getElementById('parts-container');
+    c1.innerHTML = ''; c2.innerHTML = '';
+
+    if (currentLabMode === 'lr') {
+      parts.className = 'flex items-center gap-2 md:gap-4 transition-all';
+      parts.innerHTML = `
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 md:w-32 md:h-32 border-4 border-dashed border-slate-300 rounded-3xl flex items-center justify-center bg-slate-50 text-slate-300 text-7xl font-fude" id="display-left">?</div>
+          <span class="text-xs font-bold text-slate-400 mt-2 bg-slate-100 px-2 py-1 rounded-full">へん (左)</span>
+        </div>
+        <span class="material-symbols-rounded text-5xl text-orange-300 animate-bounce">add</span>
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-28 md:w-32 md:h-32 border-4 border-dashed border-slate-300 rounded-3xl flex items-center justify-center bg-slate-50 text-slate-300 text-7xl font-fude" id="display-right">?</div>
+          <span class="text-xs font-bold text-slate-400 mt-2 bg-slate-100 px-2 py-1 rounded-full">つくり (右)</span>
+        </div>
+      `;
+      l1.textContent = 'へん'; i1.textContent = 'format_align_left';
+      l2.textContent = 'つくり'; i2.textContent = 'format_align_right';
+      PARTS_L_LR.forEach(p => createBtn(p, 'left', c1));
+      PARTS_R_LR.forEach(p => createBtn(p, 'right', c2));
+    } else {
+      parts.className = 'flex flex-col items-center gap-2 transition-all';
+      parts.innerHTML = `
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-14 md:w-32 md:h-16 border-4 border-dashed border-slate-300 rounded-xl flex items-center justify-center bg-slate-50 text-slate-300 text-4xl font-fude" id="display-left">?</div>
+          <span class="text-[10px] font-bold text-slate-400 mt-1 bg-slate-100 px-2 py-0.5 rounded-full">かんむり (上)</span>
+        </div>
+        <span class="material-symbols-rounded text-3xl text-orange-300 animate-bounce">add</span>
+        <div class="flex flex-col items-center">
+          <div class="w-28 h-14 md:w-32 md:h-16 border-4 border-dashed border-slate-300 rounded-xl flex items-center justify-center bg-slate-50 text-slate-300 text-4xl font-fude" id="display-right">?</div>
+          <span class="text-[10px] font-bold text-slate-400 mt-1 bg-slate-100 px-2 py-0.5 rounded-full">あし (下)</span>
+        </div>
+      `;
+      l1.textContent = 'かんむり'; i1.textContent = 'vertical_align_top';
+      l2.textContent = 'あし'; i2.textContent = 'vertical_align_bottom';
+      PARTS_L_UD.forEach(p => createBtn(p, 'left', c1));
+      PARTS_R_UD.forEach(p => createBtn(p, 'right', c2));
+    }
+    selectedL = null; selectedR = null; resetResult();
+  }
+
+  function createBtn(char, side, container) {
+    const btn = document.createElement('button');
+    btn.className = 'bg-white border-b-4 border-slate-200 rounded-xl h-12 md:h-14 text-2xl md:text-3xl font-fude hover:bg-orange-50 kanji-part-btn text-slate-700';
+    btn.textContent = char;
+    btn.onclick = () => selectPart(side, char, btn);
+    container.appendChild(btn);
+  }
+
+  function selectPart(side, char, el) {
+    playSound('select');
+    const parent = side === 'left' ? document.getElementById('list-p1') : document.getElementById('list-p2');
+    Array.from(parent.children).forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    const disp = document.getElementById(side === 'left' ? 'display-left' : 'display-right');
+    disp.textContent = char;
+    const clsLR = 'w-28 h-28 md:w-32 md:h-32 border-4 border-solid rounded-3xl flex items-center justify-center bg-white text-7xl font-fude';
+    const clsUD = 'w-28 h-14 md:w-32 md:h-16 border-4 border-solid rounded-xl flex items-center justify-center bg-white text-4xl font-fude';
+    if (side === 'left') {
+      selectedL = char;
+      disp.className = currentLabMode === 'lr' ? `${clsLR} border-blue-200 text-blue-600` : `${clsUD} border-blue-200 text-blue-600`;
+    } else {
+      selectedR = char;
+      disp.className = currentLabMode === 'lr' ? `${clsLR} border-red-200 text-red-600` : `${clsUD} border-red-200 text-red-600`;
+    }
+    resetResult();
+  }
+
+  function resetResult() {
+    const rc = document.getElementById('result-char');
+    const rb = document.getElementById('result-box');
+    const ri = document.getElementById('result-info');
+    rc.textContent = '?';
+    rc.className = 'text-7xl md:text-8xl font-fude text-slate-200';
+    rb.className = 'w-28 h-28 md:w-32 md:h-32 border-4 border-orange-200 rounded-3xl flex items-center justify-center bg-white shadow-xl transform transition-all';
+    ri.classList.add('opacity-0');
+  }
+
+  function combineKanji() {
+    if (!selectedL || !selectedR) { playSound('fail'); return; }
+    const match = KANJI_ALL.find(d => d.l === selectedL && d.r === selectedR);
+    const rb = document.getElementById('result-box');
+    const rc = document.getElementById('result-char');
+    const ri = document.getElementById('result-info');
+    if (match) {
+      playSound('success');
+      rc.textContent = match.k;
+      rc.className = 'text-8xl md:text-9xl font-fude text-orange-600';
+      rb.classList.add('border-orange-500', 'scale-110', 'animate-pop-in');
+      document.getElementById('result-reading').textContent = match.y;
+      document.getElementById('result-meaning').textContent = match.m;
+      ri.classList.remove('opacity-0');
+      const s = document.getElementById('result-sparkle');
+      s.classList.remove('opacity-0');
+      setTimeout(() => { rb.classList.remove('animate-pop-in'); s.classList.add('opacity-0'); }, 500);
+      if (!col.has(match.k)) { col.add(match.k); updateCol(); }
+    } else {
+      playSound('fail');
+      rb.classList.add('animate-shake');
+      setTimeout(() => { rb.classList.remove('animate-shake'); }, 500);
+      rc.textContent = '×';
+      rc.className = 'text-8xl md:text-9xl font-fude text-slate-400';
+    }
+  }
+
+  function updateCol() {
+    const g = document.getElementById('collection-grid');
+    if (col.size === 0) return;
+    g.innerHTML = '';
+    col.forEach(k => {
+      const d = document.createElement('div');
+      d.className = 'bg-white border-2 border-orange-100 rounded-xl h-20 flex items-center justify-center text-4xl font-fude text-orange-800 shadow-sm animate-pop-in';
+      d.textContent = k;
+      g.appendChild(d);
+    });
+  }
+
+  function shuffle(arr) { return [...arr].sort(() => 0.5 - Math.random()); }
+
+  function startGame(mode) {
+    playSound('select');
+    gameMode = mode;
+    quizPool = shuffle(KANJI_ALL).slice(0, TOTAL_QUIZ);
+    currentQuizIndex = gameProgress[mode] || 0;
+    if (currentQuizIndex >= quizPool.length) currentQuizIndex = 0;
+    document.getElementById('game-menu').classList.add('hidden');
+    document.getElementById('game-play').classList.remove('hidden');
+    loadQuiz();
+  }
+
+  function loadQuiz() {
+    if (quizPool.length === 0) {
+      quizPool = shuffle(KANJI_ALL).slice(0, TOTAL_QUIZ);
+      currentQuizIndex = 0;
+    }
+    if (currentQuizIndex >= quizPool.length) { exitGame(); return; }
+    currentQuiz = quizPool[currentQuizIndex];
+    const stage = Math.floor(currentQuizIndex / STAGE_SIZE) + 1;
+    const num = (currentQuizIndex % STAGE_SIZE) + 1;
+    document.getElementById('quiz-stage').textContent = stage;
+    document.getElementById('quiz-num').textContent = num;
+    document.getElementById('quiz-score').textContent = currentQuizIndex;
+
+    qL = null; qR = null;
+    const isUD = KANJI_UD.some(k => k.k === currentQuiz.k);
+    document.getElementById('quiz-label-left').textContent = isUD ? 'かんむり (上)' : 'へん (ひだり)';
+    document.getElementById('quiz-label-right').textContent = isUD ? 'あし (下)' : 'つくり (みぎ)';
+
+    const btn = document.getElementById('quiz-submit-btn');
+    btn.disabled = true;
+    btn.className = 'bg-slate-300 text-white px-8 py-3 rounded-full font-bold text-xl cursor-not-allowed transition';
+
+    const dispCombine = document.getElementById('quiz-combine-display');
+    const dispDecompose = document.getElementById('quiz-target-char');
+    if (gameMode === 'combine') {
+      dispCombine.classList.remove('hidden'); dispDecompose.classList.add('hidden');
+      document.getElementById('quiz-instruction').textContent = '「よみ」と「いみ」から漢字をつくろう！';
+      document.getElementById('quiz-target-reading').textContent = currentQuiz.y;
+      document.getElementById('quiz-target-meaning').textContent = currentQuiz.m;
+    } else {
+      dispCombine.classList.add('hidden'); dispDecompose.classList.remove('hidden');
+      document.getElementById('quiz-instruction').textContent = 'この漢字をバラバラにしよう！';
+      dispDecompose.textContent = currentQuiz.k;
+    }
+
+    const sourcePool = isUD ? KANJI_UD : KANJI_LR;
+    const allL = [...new Set(sourcePool.map(d => d.l))];
+    const allR = [...new Set(sourcePool.map(d => d.r))];
+    const choicesL = shuffle([currentQuiz.l, ...shuffle(allL.filter(p => p !== currentQuiz.l)).slice(0, 3)]);
+    const choicesR = shuffle([currentQuiz.r, ...shuffle(allR.filter(p => p !== currentQuiz.r)).slice(0, 3)]);
+    renderQuizChoices('left', choicesL);
+    renderQuizChoices('right', choicesR);
+    updateQuizSlotsDisplay(isUD);
+  }
+
+  function renderQuizChoices(side, chars) {
+    const container = document.getElementById(`quiz-choices-${side}`);
+    container.innerHTML = '';
+    chars.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'bg-slate-50 border-2 border-slate-200 rounded-lg h-12 text-xl font-fude text-slate-600 hover:bg-orange-50 transition active:scale-95';
+      b.textContent = c;
+      b.onclick = () => selectQuizPart(side, c, b);
+      container.appendChild(b);
+    });
+  }
+
+  function selectQuizPart(side, char, btn) {
+    playSound('select');
+    const container = document.getElementById(`quiz-choices-${side}`);
+    Array.from(container.children).forEach(el => el.className = 'bg-slate-50 border-2 border-slate-200 rounded-lg h-12 text-xl font-fude text-slate-600 hover:bg-orange-50 transition active:scale-95');
+    btn.className = 'bg-orange-100 border-2 border-orange-400 rounded-lg h-12 text-xl font-fude text-orange-800 shadow-sm transform scale-105 transition';
+    if (side === 'left') qL = char; else qR = char;
+    const isUD = KANJI_UD.some(k => k.k === currentQuiz.k);
+    updateQuizSlotsDisplay(isUD);
+  }
+
+  function updateQuizSlotsDisplay(isUD) {
+    const sl = document.getElementById('quiz-slot-left');
+    const sr = document.getElementById('quiz-slot-right');
+    const base = isUD ? 'w-24 h-12 border-4 rounded-xl flex items-center justify-center text-3xl font-fude' : 'w-20 h-20 border-4 rounded-2xl flex items-center justify-center text-4xl font-fude';
+    const container = document.getElementById('quiz-slots-container');
+    container.className = isUD ? 'flex flex-col items-center gap-2 mt-6' : 'flex justify-center gap-4 mt-8';
+    sl.textContent = qL || '?';
+    sr.textContent = qR || '?';
+    sl.className = qL ? `${base} border-solid border-blue-300 bg-blue-50 text-blue-800` : `${base} border-dashed border-slate-300 bg-slate-50 text-slate-300`;
+    sr.className = qR ? `${base} border-solid border-red-300 bg-red-50 text-red-800` : `${base} border-dashed border-slate-300 bg-slate-50 text-slate-300`;
+    if (qL && qR) {
+      const b = document.getElementById('quiz-submit-btn');
+      b.disabled = false;
+      b.className = 'bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold text-xl shadow-lg transition transform active:scale-95';
+    }
+  }
+
+  function checkQuiz() {
+    const modal = document.getElementById('game-result');
+    const title = document.getElementById('result-title');
+    const icon = document.getElementById('result-icon');
+    const kanji = document.getElementById('result-kanji');
+    const detail = document.getElementById('result-detail');
+    const btn = document.getElementById('result-btn');
+    modal.classList.remove('hidden');
+
+    if (qL === currentQuiz.l && qR === currentQuiz.r) {
+      playSound('success');
+      icon.textContent = 'check_circle';
+      icon.className = 'material-symbols-rounded text-6xl mb-4 block text-green-500 animate-bounce';
+      title.textContent = 'せいかい！';
+      kanji.textContent = currentQuiz.k;
+      kanji.className = 'text-6xl font-fude text-orange-600 mb-4';
+      detail.textContent = `${currentQuiz.y} - ${currentQuiz.m}`;
+      btn.textContent = 'つぎへ';
+    } else {
+      playSound('fail');
+      icon.textContent = 'cancel';
+      icon.className = 'material-symbols-rounded text-6xl mb-4 block text-red-500 animate-shake';
+      title.textContent = 'ざんねん...';
+      kanji.textContent = currentQuiz.k;
+      kanji.className = 'text-6xl font-fude text-slate-600 mb-4';
+      detail.textContent = `正解は [ ${currentQuiz.l} ] + [ ${currentQuiz.r} ] でした`;
+      btn.textContent = 'つぎへ';
+    }
+    currentQuizIndex++;
+    gameProgress[gameMode] = currentQuizIndex;
+    updateMenuProgress();
+  }
+
+  function nextQuiz() {
+    document.getElementById('game-result').classList.add('hidden');
+    if (currentQuizIndex >= quizPool.length || currentQuizIndex >= TOTAL_QUIZ) {
+      alert('全問クリア！おつかれさま！');
+      gameProgress[gameMode] = 0;
+      exitGame();
+      return;
+    }
+    loadQuiz();
+  }
+
+  function exitGame() {
+    document.getElementById('game-play').classList.add('hidden');
+    document.getElementById('game-result').classList.add('hidden');
+    const stageClear = document.getElementById('stage-clear');
+    if (stageClear) stageClear.classList.add('hidden');
+    document.getElementById('game-menu').classList.remove('hidden');
+    updateMenuProgress();
+  }
+
+  function updateMenuProgress() {
+    document.getElementById('progress-combine').textContent = `つづきから: ${gameProgress.combine + 1}もんめ`;
+    document.getElementById('progress-decompose').textContent = `つづきから: ${gameProgress.decompose + 1}もんめ`;
+  }
+
+  renderLabUI();
+  updateMenuProgress();
+})();
+</script>
+
+</body></html>
+
+
+
+
+

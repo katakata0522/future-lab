@@ -1,0 +1,522 @@
+<html lang="ja"><head>
+
+<script class="injected-ffc2e83d85">
+(function(){'use strict';function q(b){var c=0;return function(){return c<b.length?{done:!1,value:b[c++]}:{done:!0}}}function t(b){var c=typeof Symbol!="undefined"&&Symbol.iterator&&b[Symbol.iterator];if(c)return c.call(b);if(typeof b.length=="number")return{next:q(b)};throw Error(String(b)+" is not an iterable or ArrayLike");}var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,c,g){if(b==Array.prototype||b==Object.prototype)return b;b[c]=g.value;return b};
+function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<b.length;++c){var g=b[c];if(g&&g.Math==Math)return g}throw Error("Cannot find global object");}var w=v(this);function x(b,c){if(c)a:{var g=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var l=b[h];if(!(l in g))break a;g=g[l]}b=b[b.length-1];h=g[b];c=c(h);c!=h&&c!=null&&u(g,b,{configurable:!0,writable:!0,value:c})}}
+function y(){this.j=!1;this.g=null;this.u=void 0;this.h=1;this.v=this.l=0;this.i=null}function z(b){if(b.j)throw new TypeError("Generator is already running");b.j=!0}y.prototype.o=function(b){this.u=b};function A(b,c){b.i={I:c,J:!0};b.h=b.l||b.v}y.prototype.return=function(b){this.i={return:b};this.h=this.v};function B(b){this.g=new y;this.h=b}function E(b,c){z(b.g);var g=b.g.g;if(g)return F(b,"return"in g?g["return"]:function(h){return{value:h,done:!0}},c,b.g.return);b.g.return(c);return G(b)}
+function F(b,c,g,h){try{var l=c.call(b.g.g,g);if(!(l instanceof Object))throw new TypeError("Iterator result "+l+" is not an object");if(!l.done)return b.g.j=!1,l;var m=l.value}catch(f){return b.g.g=null,A(b.g,f),G(b)}b.g.g=null;h.call(b.g,m);return G(b)}function G(b){for(;b.g.h;)try{var c=b.h(b.g);if(c)return b.g.j=!1,{value:c.value,done:!1}}catch(g){b.g.u=void 0,A(b.g,g)}b.g.j=!1;if(b.g.i){c=b.g.i;b.g.i=null;if(c.J)throw c.I;return{value:c.return,done:!0}}return{value:void 0,done:!0}}
+function H(b){this.next=function(c){z(b.g);b.g.g?c=F(b,b.g.g.next,c,b.g.o):(b.g.o(c),c=G(b));return c};this.throw=function(c){z(b.g);b.g.g?c=F(b,b.g.g["throw"],c,b.g.o):(A(b.g,c),c=G(b));return c};this.return=function(c){return E(b,c)};this[Symbol.iterator]=function(){return this}}function I(b){function c(h){return b.next(h)}function g(h){return b.throw(h)}return new Promise(function(h,l){function m(f){f.done?h(f.value):Promise.resolve(f.value).then(c,g).then(m,l)}m(b.next())})}
+x("Symbol",function(b){function c(m){if(this instanceof c)throw new TypeError("Symbol is not a constructor");return new g(h+(m||"")+"_"+l++,m)}function g(m,f){this.g=m;u(this,"description",{configurable:!0,writable:!0,value:f})}if(b)return b;g.prototype.toString=function(){return this.g};var h="jscomp_symbol_"+(Math.random()*1E9>>>0)+"_",l=0;return c});
+x("Symbol.iterator",function(b){if(b)return b;b=Symbol("Symbol.iterator");u(Array.prototype,b,{configurable:!0,writable:!0,value:function(){return J(q(this))}});return b});function J(b){b={next:b};b[Symbol.iterator]=function(){return this};return b}
+x("Promise",function(b){function c(f){this.h=0;this.i=void 0;this.g=[];this.u=!1;var a=this.j();try{f(a.resolve,a.reject)}catch(d){a.reject(d)}}function g(){this.g=null}function h(f){return f instanceof c?f:new c(function(a){a(f)})}if(b)return b;g.prototype.h=function(f){if(this.g==null){this.g=[];var a=this;this.i(function(){a.l()})}this.g.push(f)};var l=w.setTimeout;g.prototype.i=function(f){l(f,0)};g.prototype.l=function(){for(;this.g&&this.g.length;){var f=this.g;this.g=[];for(var a=0;a<f.length;++a){var d=
+f[a];f[a]=null;try{d()}catch(e){this.j(e)}}}this.g=null};g.prototype.j=function(f){this.i(function(){throw f;})};c.prototype.j=function(){function f(e){return function(k){d||(d=!0,e.call(a,k))}}var a=this,d=!1;return{resolve:f(this.D),reject:f(this.l)}};c.prototype.D=function(f){if(f===this)this.l(new TypeError("A Promise cannot resolve to itself"));else if(f instanceof c)this.G(f);else{a:switch(typeof f){case "object":var a=f!=null;break a;case "function":a=!0;break a;default:a=!1}a?this.C(f):this.o(f)}};
+c.prototype.C=function(f){var a=void 0;try{a=f.then}catch(d){this.l(d);return}typeof a=="function"?this.H(a,f):this.o(f)};c.prototype.l=function(f){this.v(2,f)};c.prototype.o=function(f){this.v(1,f)};c.prototype.v=function(f,a){if(this.h!=0)throw Error("Cannot settle("+f+", "+a+"): Promise already settled in state"+this.h);this.h=f;this.i=a;this.h===2&&this.F();this.K()};c.prototype.F=function(){var f=this;l(function(){if(f.B()){var a=w.console;typeof a!=="undefined"&&a.error(f.i)}},1)};c.prototype.B=
+function(){if(this.u)return!1;var f=w.CustomEvent,a=w.Event,d=w.dispatchEvent;if(typeof d==="undefined")return!0;typeof f==="function"?f=new f("unhandledrejection",{cancelable:!0}):typeof a==="function"?f=new a("unhandledrejection",{cancelable:!0}):(f=w.document.createEvent("CustomEvent"),f.initCustomEvent("unhandledrejection",!1,!0,f));f.promise=this;f.reason=this.i;return d(f)};c.prototype.K=function(){if(this.g!=null){for(var f=0;f<this.g.length;++f)m.h(this.g[f]);this.g=null}};var m=new g;c.prototype.G=
+function(f){var a=this.j();f.A(a.resolve,a.reject)};c.prototype.H=function(f,a){var d=this.j();try{f.call(a,d.resolve,d.reject)}catch(e){d.reject(e)}};c.prototype.then=function(f,a){function d(n,r){return typeof n=="function"?function(C){try{e(n(C))}catch(D){k(D)}}:r}var e,k,p=new c(function(n,r){e=n;k=r});this.A(d(f,e),d(a,k));return p};c.prototype.catch=function(f){return this.then(void 0,f)};c.prototype.A=function(f,a){function d(){switch(e.h){case 1:f(e.i);break;case 2:a(e.i);break;default:throw Error("Unexpected state: "+
+e.h);}}var e=this;this.g==null?m.h(d):this.g.push(d);this.u=!0};c.resolve=h;c.reject=function(f){return new c(function(a,d){d(f)})};c.race=function(f){return new c(function(a,d){for(var e=t(f),k=e.next();!k.done;k=e.next())h(k.value).A(a,d)})};c.all=function(f){var a=t(f),d=a.next();return d.done?h([]):new c(function(e,k){function p(C){return function(D){n[C]=D;r--;r==0&&e(n)}}var n=[],r=0;do n.push(void 0),r++,h(d.value).A(p(n.length-1),k),d=a.next();while(!d.done)})};return c});
+function K(b,c){return Object.prototype.hasOwnProperty.call(b,c)}x("Object.is",function(b){return b?b:function(c,g){return c===g?c!==0||1/c===1/g:c!==c&&g!==g}});x("Array.prototype.includes",function(b){return b?b:function(c,g){var h=this;h instanceof String&&(h=String(h));var l=h.length;g=g||0;for(g<0&&(g=Math.max(g+l,0));g<l;g++){var m=h[g];if(m===c||Object.is(m,c))return!0}return!1}});
+x("String.prototype.includes",function(b){return b?b:function(c,g){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(c instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(c,g||0)!==-1}});
+x("WeakMap",function(b){function c(d){this.g=(a+=Math.random()+1).toString();if(d){d=t(d);for(var e;!(e=d.next()).done;)e=e.value,this.set(e[0],e[1])}}function g(){}function h(d){var e=typeof d;return e==="object"&&d!==null||e==="function"}function l(d){if(!K(d,f)){var e=new g;u(d,f,{value:e})}}function m(d){var e=Object[d];e&&(Object[d]=function(k){if(k instanceof g)return k;Object.isExtensible(k)&&l(k);return e(k)})}if(function(){if(!b||!Object.seal)return!1;try{var d=Object.seal({}),e=Object.seal({}),
+k=new b([[d,2],[e,3]]);if(k.get(d)!=2||k.get(e)!=3)return!1;k.delete(d);k.set(e,4);return!k.has(d)&&k.get(e)==4}catch(p){return!1}}())return b;var f="$jscomp_hidden_"+Math.random();m("freeze");m("preventExtensions");m("seal");var a=0;c.prototype.set=function(d,e){if(!h(d))throw Error("Invalid WeakMap key");l(d);if(!K(d,f))throw Error("WeakMap key fail: "+d);d[f][this.g]=e;return this};c.prototype.get=function(d){return h(d)&&K(d,f)?d[f][this.g]:void 0};c.prototype.has=function(d){return h(d)&&K(d,
+f)&&K(d[f],this.g)};c.prototype.delete=function(d){return h(d)&&K(d,f)&&K(d[f],this.g)?delete d[f][this.g]:!1};return c});
+x("Map",function(b){function c(){var a={};return a.m=a.next=a.head=a}function g(a,d){var e=a[1];return J(function(){if(e){for(;e.head!=a[1];)e=e.m;for(;e.next!=e.head;)return e=e.next,{done:!1,value:d(e)};e=null}return{done:!0,value:void 0}})}function h(a,d){var e=d&&typeof d;e=="object"||e=="function"?m.has(d)?e=m.get(d):(e=""+ ++f,m.set(d,e)):e="p_"+d;var k=a[0][e];if(k&&K(a[0],e))for(a=0;a<k.length;a++){var p=k[a];if(d!==d&&p.key!==p.key||d===p.key)return{id:e,list:k,index:a,entry:p}}return{id:e,
+list:k,index:-1,entry:void 0}}function l(a){this[0]={};this[1]=c();this.size=0;if(a){a=t(a);for(var d;!(d=a.next()).done;)d=d.value,this.set(d[0],d[1])}}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var a=Object.seal({x:4}),d=new b(t([[a,"s"]]));if(d.get(a)!="s"||d.size!=1||d.get({x:4})||d.set({x:4},"t")!=d||d.size!=2)return!1;var e=d.entries(),k=e.next();if(k.done||k.value[0]!=a||k.value[1]!="s")return!1;k=e.next();return k.done||k.value[0].x!=
+4||k.value[1]!="t"||!e.next().done?!1:!0}catch(p){return!1}}())return b;var m=new WeakMap;l.prototype.set=function(a,d){a=a===0?0:a;var e=h(this,a);e.list||(e.list=this[0][e.id]=[]);e.entry?e.entry.value=d:(e.entry={next:this[1],m:this[1].m,head:this[1],key:a,value:d},e.list.push(e.entry),this[1].m.next=e.entry,this[1].m=e.entry,this.size++);return this};l.prototype.delete=function(a){a=h(this,a);return a.entry&&a.list?(a.list.splice(a.index,1),a.list.length||delete this[0][a.id],a.entry.m.next=a.entry.next,
+a.entry.next.m=a.entry.m,a.entry.head=null,this.size--,!0):!1};l.prototype.clear=function(){this[0]={};this[1]=this[1].m=c();this.size=0};l.prototype.has=function(a){return!!h(this,a).entry};l.prototype.get=function(a){return(a=h(this,a).entry)&&a.value};l.prototype.entries=function(){return g(this,function(a){return[a.key,a.value]})};l.prototype.keys=function(){return g(this,function(a){return a.key})};l.prototype.values=function(){return g(this,function(a){return a.value})};l.prototype.forEach=
+function(a,d){for(var e=this.entries(),k;!(k=e.next()).done;)k=k.value,a.call(d,k[1],k[0],this)};l.prototype[Symbol.iterator]=l.prototype.entries;var f=0;return l});
+x("Set",function(b){function c(g){this.g=new Map;if(g){g=t(g);for(var h;!(h=g.next()).done;)this.add(h.value)}this.size=this.g.size}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var g=Object.seal({x:4}),h=new b(t([g]));if(!h.has(g)||h.size!=1||h.add(g)!=h||h.size!=1||h.add({x:4})!=h||h.size!=2)return!1;var l=h.entries(),m=l.next();if(m.done||m.value[0]!=g||m.value[1]!=g)return!1;m=l.next();return m.done||m.value[0]==g||m.value[0].x!=4||
+m.value[1]!=m.value[0]?!1:l.next().done}catch(f){return!1}}())return b;c.prototype.add=function(g){g=g===0?0:g;this.g.set(g,g);this.size=this.g.size;return this};c.prototype.delete=function(g){g=this.g.delete(g);this.size=this.g.size;return g};c.prototype.clear=function(){this.g.clear();this.size=0};c.prototype.has=function(g){return this.g.has(g)};c.prototype.entries=function(){return this.g.entries()};c.prototype.values=function(){return this.g.values()};c.prototype.keys=c.prototype.values;c.prototype[Symbol.iterator]=
+c.prototype.values;c.prototype.forEach=function(g,h){var l=this;this.g.forEach(function(m){return g.call(h,m,m,l)})};return c});(function(){function b(){return m?Promise.resolve(m):f?f:f=fetch("https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json").then(function(a){if(!a.ok)throw Error("HTTP error! status: "+a.status+" fetching https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json");return a.json()}).then(function(a){if(!Array.isArray(a))throw new TypeError("Fetched icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json is not an array.");
+return m=a}).catch(function(a){console.error("IconChecker: Failed to load valid icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json.",a);f=null;throw a;})}function c(a){var d,e,k,p;return I(new H(new B(function(n){switch(n.h){case 1:d=(a.textContent||"").trim();if(!d||a.classList.contains("js-replaced-missing-icon")&&d==="radio_button_unchecked")return n.return();e=window.getComputedStyle(a);if(e.display==="none"||e.visibility==="hidden")return n.return();
+n.l=2;var r=b();n.h=4;return{value:r};case 4:k=n.u;n.h=3;n.l=0;break;case 2:return n.l=0,n.i=null,console.warn('IconChecker: Skipping check for icon "'+d+'" as valid names could not be loaded.'),n.return();case 3:(p=k.includes(d))?a.classList.contains("js-replaced-missing-icon")&&a.classList.remove("js-replaced-missing-icon"):d==="radio_button_unchecked"&&a.classList.contains("js-replaced-missing-icon")||(a.textContent="radio_button_unchecked",a.classList.add("js-replaced-missing-icon")),n.h=0}})))}
+function g(a){a=a===void 0?document.body:a;a.querySelectorAll(l).forEach(function(d){c(d)})}function h(){b().catch(function(){});document.fonts.ready.then(function(){requestAnimationFrame(function(){g(document.body);(new MutationObserver(function(a){var d=new Set;a=t(a);for(var e=a.next();!e.done;e=a.next())if(e=e.value,e.type==="childList")e.addedNodes.forEach(function(p){p.nodeType===Node.ELEMENT_NODE&&(p.matches(l)&&d.add(p),p.querySelectorAll(l).forEach(function(n){d.add(n)}))});else if(e.type===
+"attributes"&&e.attributeName==="class"){var k=e.target;e.target.nodeType===Node.ELEMENT_NODE&&k.matches(l)&&d.add(k)}else e.type==="characterData"&&e.target.parentNode&&(e=e.target.parentNode,e.nodeType===Node.ELEMENT_NODE&&e.matches(l)&&d.add(e));d.size>0&&setTimeout(function(){d.forEach(function(p){c(p)})},500)})).observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"],characterData:!0})})}).catch(function(a){console.error("IconChecker: Font loading error. Scanning icons anyway.",
+a);requestAnimationFrame(function(){g(document.body)})})}var l=["material-icons","material-symbols-outlined","material-symbols-rounded","material-symbols-sharp"].map(function(a){return"."+a}).join(","),m=null,f=null;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){h()}):h()})();}).call(this);
+
+</script>
+
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>リズム・プログラミング Lab Ver.9</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,700,1,0" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #FDF2F8;
+            background-image: radial-gradient(#FBCFE8 2px, transparent 2px);
+            background-size: 24px 24px;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 2px solid white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes bounce-sm {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-bounce-sm { animation: bounce-sm 2s infinite; }
+        ::-webkit-scrollbar { height: 12px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 6px; }
+        ::-webkit-scrollbar-thumb { background: #DB2777; border-radius: 6px; }
+        
+        /* ゲーム用スタイル */
+        .cell-base {
+            background-color: #FDF2F8; /* 薄いピンク (デフォルト) */
+            border: 1px solid #FBCFE8;
+        }
+        .cell-target-active {
+            background-color: #EC4899 !important; /* Pink-500 (正解の場所) */
+            box-shadow: 0 0 10px #EC4899;
+            border-color: #FBCFE8 !important;
+        }
+        .cell-cursor {
+            border: 2px solid white !important;
+            background-color: rgba(255, 255, 255, 0.4) !important; /* カーソル位置 */
+            z-index: 10;
+            transform: scale(1.05);
+        }
+        .cell-hit-success {
+            background-color: #4ADE80 !important; /* Green-400 (正解ヒット) */
+            box-shadow: 0 0 15px #4ADE80;
+            border-color: white !important;
+            transform: scale(1.1);
+        }
+        .cell-hit-fail {
+            background-color: #EF4444 !important; /* Red-500 (間違いヒット) */
+            box-shadow: 0 0 15px #EF4444;
+            border-color: white !important;
+            transform: scale(0.9);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.top-0{top:0px}.right-2{right:0.5rem}.top-1\/2{top:50%}.z-20{z-index:20}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-4{margin-top:1rem}.mr-4{margin-right:1rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-16{height:4rem}.h-20{height:5rem}.h-32{height:8rem}.h-6{height:1.5rem}.h-8{height:2rem}.h-full{height:100%}.h-10{height:2.5rem}.h-2{height:0.5rem}.h-12{height:3rem}.max-h-24{max-height:6rem}.max-h-\[70vh\]{max-height:70vh}.min-h-\[400px\]{min-height:400px}.min-h-\[600px\]{min-height:600px}.min-h-screen{min-height:100vh}.w-12{width:3rem}.w-20{width:5rem}.w-24{width:6rem}.w-8{width:2rem}.w-full{width:100%}.w-\[80px\]{width:80px}.min-w-\[900px\]{min-width:900px}.max-w-3xl{max-width:48rem}.max-w-6xl{max-width:72rem}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.cursor-pointer{cursor:pointer}.cursor-help{cursor:help}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-xl{border-radius:0.75rem}.rounded-lg{border-radius:0.5rem}.border{border-width:1px}.border-2{border-width:2px}.border-4{border-width:4px}.border-b-4{border-bottom-width:4px}.border-t-2{border-top-width:2px}.border-pink-100{--tw-border-opacity:1;border-color:rgb(252 231 243 / var(--tw-border-opacity, 1))}.border-pink-200{--tw-border-opacity:1;border-color:rgb(251 207 232 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105 / var(--tw-border-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-orange-100{--tw-bg-opacity:1;background-color:rgb(255 237 213 / var(--tw-bg-opacity, 1))}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-pink-500{--tw-bg-opacity:1;background-color:rgb(236 72 153 / var(--tw-bg-opacity, 1))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-600{--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity, 1))}.bg-slate-700{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-800\/50{background-color:rgb(30 41 59 / 0.5)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/80{background-color:rgb(15 23 42 / 0.8)}.bg-slate-900\/90{background-color:rgb(15 23 42 / 0.9)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-yellow-100{--tw-bg-opacity:1;background-color:rgb(254 249 195 / var(--tw-bg-opacity, 1))}.bg-yellow-400{--tw-bg-opacity:1;background-color:rgb(250 204 21 / var(--tw-bg-opacity, 1))}.bg-slate-700\/30{background-color:rgb(51 65 85 / 0.3)}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-green-400{--tw-gradient-from:#4ade80 var(--tw-gradient-from-position);--tw-gradient-to:rgb(74 222 128 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-green-600{--tw-gradient-to:#16a34a var(--tw-gradient-to-position)}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.p-1\.5{padding:0.375rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-4{padding-bottom:1rem}.pl-\[100px\]{padding-left:100px}.pt-3{padding-top:0.75rem}.pr-12{padding-right:3rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-8xl{font-size:6rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10px\]{font-size:10px}.font-black{font-weight:900}.font-bold{font-weight:700}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-pink-500{--tw-text-opacity:1;color:rgb(236 72 153 / var(--tw-text-opacity, 1))}.text-pink-600{--tw-text-opacity:1;color:rgb(219 39 119 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.text-cyan-400{--tw-text-opacity:1;color:rgb(34 211 238 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.accent-pink-500{accent-color:#ec4899}.opacity-0{opacity:0}.opacity-50{opacity:0.5}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_4px_0_\#1e293b\]{--tw-shadow:0 4px 0 #1e293b;--tw-shadow-colored:0 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_4px_0_\#be185d\]{--tw-shadow:0 4px 0 #be185d;--tw-shadow-colored:0 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_4px_0_\#ca8a04\]{--tw-shadow:0 4px 0 #ca8a04;--tw-shadow-colored:0 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_6px_0_\#be185d\]{--tw-shadow:0 6px 0 #be185d;--tw-shadow-colored:0 6px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_8px_0_\#15803d\]{--tw-shadow:0 8px 0 #15803d;--tw-shadow-colored:0 8px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-100{transition-duration:100ms}.selection\:bg-pink-200 *::selection{--tw-bg-opacity:1;background-color:rgb(251 207 232 / var(--tw-bg-opacity, 1))}.selection\:bg-pink-200::selection{--tw-bg-opacity:1;background-color:rgb(251 207 232 / var(--tw-bg-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-slate-600:hover{--tw-border-opacity:1;border-color:rgb(71 85 105 / var(--tw-border-opacity, 1))}.hover\:bg-blue-200:hover{--tw-bg-opacity:1;background-color:rgb(191 219 254 / var(--tw-bg-opacity, 1))}.hover\:bg-green-200:hover{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.hover\:bg-orange-200:hover{--tw-bg-opacity:1;background-color:rgb(254 215 170 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-600:hover{--tw-bg-opacity:1;background-color:rgb(219 39 119 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-200:hover{--tw-bg-opacity:1;background-color:rgb(233 213 255 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-600:hover{--tw-bg-opacity:1;background-color:rgb(71 85 105 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/40:hover{background-color:rgb(255 255 255 / 0.4)}.hover\:bg-yellow-500:hover{--tw-bg-opacity:1;background-color:rgb(234 179 8 / var(--tw-bg-opacity, 1))}.hover\:text-red-500:hover{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.focus\:border-pink-400:focus{--tw-border-opacity:1;border-color:rgb(244 114 182 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:translate-y-0\.5:active{--tw-translate-y:0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:translate-y-1:active{--tw-translate-y:0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:translate-y-1\.5:active{--tw-translate-y:0.375rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:translate-y-2:active{--tw-translate-y:0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:shadow-none:active{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.disabled\:cursor-not-allowed:disabled{cursor:not-allowed}.disabled\:opacity-50:disabled{opacity:0.5}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}.group:active .group-active\:scale-95{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 768px){.md\:h-14{height:3.5rem}.md\:w-10{width:2.5rem}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:gap-2{gap:0.5rem}.md\:p-12{padding:3rem}.md\:p-8{padding:2rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}</style></head>
+<body class="text-slate-700 min-h-screen flex flex-col selection:bg-pink-200">
+<!-- Header -->
+<header class="bg-white border-b-4 border-pink-200 px-6 py-4 flex justify-between items-center z-20 shadow-sm sticky top-0">
+<div class="flex items-center gap-3">
+<div class="bg-pink-500 text-white p-2 rounded-2xl shadow-[0_4px_0_#be185d] transform -rotate-3">
+<span class="material-symbols-rounded text-3xl block">piano</span>
+</div>
+<div>
+<h1 class="text-xl md:text-2xl font-black tracking-wider text-slate-800">リズム・プログラミング Lab</h1>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="flex bg-slate-100 p-1 rounded-2xl border-2 border-slate-200 mr-2">
+<button class="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-slate-600 transition-all" id="tab-maker" onclick="switchMainTab('maker')">
+<span class="flex items-center gap-1"><span class="material-symbols-rounded">build</span> つくる</span>
+</button>
+<button class="px-4 py-2 rounded-xl text-sm font-bold transition-all bg-white text-blue-500 shadow-sm" id="tab-game" onclick="switchMainTab('game')">
+<span class="flex items-center gap-1"><span class="material-symbols-rounded">sports_esports</span> ゲーム</span>
+</button>
+</div>
+<button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-2 rounded-2xl font-bold flex items-center gap-2 shadow-[0_4px_0_#ca8a04] active:shadow-none active:translate-y-1 transition-all" onclick="openHelp()">
+<span class="material-symbols-rounded">help</span>
+</button>
+<button class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-2xl font-bold flex items-center gap-2 shadow-[0_4px_0_#1e293b] active:shadow-none active:translate-y-1 transition-all" onclick="downloadSource()">
+<span class="material-symbols-rounded">save</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-6xl mx-auto p-4 md:p-8 flex flex-col gap-6 relative">
+<!-- VIEW: MAKER -->
+<div class="flex flex-col gap-6 w-full transition-opacity duration-300 hidden" id="view-maker">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="glass-panel p-6 rounded-3xl flex items-center gap-6 justify-center md:justify-start">
+<button class="bg-pink-500 hover:bg-pink-600 text-white w-20 h-20 rounded-full shadow-[0_6px_0_#be185d] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 active:shadow-none active:translate-y-1.5 flex-shrink-0" id="play-btn" onclick="togglePlay()">
+<span class="material-symbols-rounded text-5xl ml-1" id="play-icon">play_arrow</span>
+</button>
+<div class="flex-1">
+<div class="bg-white px-4 py-2 rounded-2xl border-2 border-slate-100 flex flex-col justify-center shadow-sm mb-3">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">はやさ</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-rounded text-slate-400">speed</span>
+<input class="w-full accent-pink-500 cursor-pointer" max="240" min="60" oninput="updateTempo(this.value)" type="range" value="120">
+<span class="font-mono font-bold text-xl text-pink-600 w-12 text-center" id="tempo-display">120</span>
+</div>
+</div>
+<div class="flex justify-end">
+<button class="text-xs font-bold text-slate-400 hover:text-red-500 flex items-center gap-1 transition px-2 py-1 rounded hover:bg-slate-100" onclick="clearBeats()">
+<span class="material-symbols-rounded text-sm">delete</span> 全部けす
+                        </button>
+</div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-3xl flex flex-col gap-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">お手本リズム</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-2 rounded-xl bg-blue-100 text-blue-600 font-bold hover:bg-blue-200 transition text-sm flex items-center gap-1" onclick="loadPreset('rock')">⚡️ 8ビート</button>
+<button class="px-3 py-2 rounded-xl bg-purple-100 text-purple-600 font-bold hover:bg-purple-200 transition text-sm flex items-center gap-1" onclick="loadPreset('dance')">💃 ダンス</button>
+<button class="px-3 py-2 rounded-xl bg-orange-100 text-orange-600 font-bold hover:bg-orange-200 transition text-sm flex items-center gap-1" onclick="loadPreset('hiphop')">😎 ヒップホップ</button>
+<button class="px-3 py-2 rounded-xl bg-green-100 text-green-600 font-bold hover:bg-green-200 transition text-sm flex items-center gap-1" onclick="loadPreset('latin')">🏝 ラテン</button>
+</div>
+</div>
+<div class="border-t-2 border-slate-100 pt-3">
+<span class="text-xs font-bold text-pink-400 uppercase tracking-widest block mb-2">マイルーム</span>
+<div class="flex gap-2 mb-3">
+<input class="flex-1 bg-white border-2 border-slate-200 rounded-xl px-3 py-2 text-sm font-bold focus:outline-none focus:border-pink-400" id="preset-name" placeholder="リズムのなまえ" type="text">
+<button class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-xl font-bold text-sm shadow-md active:scale-95 transition" onclick="saveUserPreset()">保存</button>
+</div>
+<div class="flex flex-wrap gap-2 max-h-24 overflow-y-auto" id="user-preset-list">
+<span class="text-xs text-slate-400 italic py-1">まだ保存されていません</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-slate-800 rounded-3xl shadow-2xl p-6 overflow-hidden relative flex-1 flex flex-col justify-center min-h-[400px]">
+<div class="w-full overflow-x-auto pb-4">
+<div class="min-w-[900px] mx-auto">
+<div class="flex gap-2 mb-3 pl-[100px]" id="step-indicators"><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-0"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-1"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-2"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 mr-4" id="ind-3"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-4"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-5"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-6"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 mr-4" id="ind-7"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-8"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-9"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-10"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 mr-4" id="ind-11"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-12"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-13"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-14"></div><div class="w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 " id="ind-15"></div></div>
+<div class="space-y-3" id="sequencer-rows"><div class="flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12"><div class="w-[80px] flex flex-col items-center justify-center text-yellow-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('hihat')"><span class="material-symbols-rounded text-3xl">album</span><span class="text-[10px] font-bold mt-1">ハット</span></div><div class="flex gap-2 flex-1" id="row-hihat"><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="0"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="1"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="2"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="hihat" data-i="3"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="4"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="5"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="6"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="hihat" data-i="7"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="8"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="9"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="10"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="hihat" data-i="11"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="12"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="13"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="14"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="hihat" data-i="15"></div></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('hihat')"><span class="material-symbols-rounded">backspace</span></button></div><div class="flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12"><div class="w-[80px] flex flex-col items-center justify-center text-green-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('clap')"><span class="material-symbols-rounded text-3xl js-replaced-missing-icon">radio_button_unchecked</span><span class="text-[10px] font-bold mt-1">クラップ</span></div><div class="flex gap-2 flex-1" id="row-clap"><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="0"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="1"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="2"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="clap" data-i="3"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="4"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="5"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="6"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="clap" data-i="7"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="8"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="9"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="10"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="clap" data-i="11"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="12"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="13"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="14"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="clap" data-i="15"></div></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('clap')"><span class="material-symbols-rounded">backspace</span></button></div><div class="flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12"><div class="w-[80px] flex flex-col items-center justify-center text-cyan-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('snare')"><span class="material-symbols-rounded text-3xl">adjust</span><span class="text-[10px] font-bold mt-1">スネア</span></div><div class="flex gap-2 flex-1" id="row-snare"><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="0"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="1"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="2"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="snare" data-i="3"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="4"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="5"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="6"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="snare" data-i="7"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="8"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="9"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="10"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="snare" data-i="11"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="12"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="13"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="14"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="snare" data-i="15"></div></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('snare')"><span class="material-symbols-rounded">backspace</span></button></div><div class="flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12"><div class="w-[80px] flex flex-col items-center justify-center text-purple-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('tom')"><span class="material-symbols-rounded text-3xl">trip_origin</span><span class="text-[10px] font-bold mt-1">タム</span></div><div class="flex gap-2 flex-1" id="row-tom"><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="0"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="1"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="2"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="tom" data-i="3"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="4"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="5"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="6"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="tom" data-i="7"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="8"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="9"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="10"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="tom" data-i="11"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="12"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="13"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="14"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="tom" data-i="15"></div></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('tom')"><span class="material-symbols-rounded">backspace</span></button></div><div class="flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12"><div class="w-[80px] flex flex-col items-center justify-center text-pink-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('kick')"><span class="material-symbols-rounded text-3xl">circle</span><span class="text-[10px] font-bold mt-1">バスドラ</span></div><div class="flex gap-2 flex-1" id="row-kick"><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="0"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="1"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="2"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="kick" data-i="3"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="4"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="5"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="6"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="kick" data-i="7"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="8"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="9"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="10"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 mr-4" data-t="kick" data-i="11"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="12"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="13"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="14"></div><div class="w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 " data-t="kick" data-i="15"></div></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('kick')"><span class="material-symbols-rounded">backspace</span></button></div></div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<p class="text-slate-400 text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-rounded text-yellow-400 text-base animate-bounce-sm">lightbulb</span>
+                    アイコンをクリックで試聴、右の<span class="material-symbols-rounded text-sm bg-slate-600 px-1 rounded">backspace</span>で列をクリア
+                </p>
+</div>
+</div>
+</div>
+<!-- VIEW: GAME -->
+<div class="flex flex-col gap-6 w-full h-full min-h-[600px]" id="view-game">
+<div class="w-full h-full flex flex-col items-center justify-center gap-8 py-8 animate-fade-in hidden" id="game-menu">
+<div class="text-center">
+<span class="bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full font-black text-sm mb-4 inline-block">NEW GAME</span>
+<h2 class="text-4xl md:text-5xl font-black text-slate-800 mb-4">リズム・メモリー</h2>
+<p class="text-slate-500 font-bold text-lg">ピンクの場所を覚えて、同じリズムを叩こう！</p>
+</div>
+<div class="bg-white p-8 rounded-3xl shadow-xl border-4 border-pink-100 max-w-lg w-full text-center">
+<div class="flex justify-center gap-8 mb-8 items-center">
+<div class="text-center">
+<div class="bg-slate-800 p-3 rounded-xl mb-2"><span class="material-symbols-rounded text-pink-400 text-3xl">visibility</span></div>
+<span class="text-xs font-bold text-slate-400">1. みる</span>
+</div>
+<span class="material-symbols-rounded text-slate-300">arrow_forward</span>
+<div class="text-center">
+<div class="bg-slate-800 p-3 rounded-xl mb-2"><span class="material-symbols-rounded text-green-400 text-3xl">touch_app</span></div>
+<span class="text-xs font-bold text-slate-400">2. たたく</span>
+</div>
+</div>
+<button class="bg-pink-500 hover:bg-pink-600 text-white px-12 py-4 rounded-full font-black text-2xl shadow-[0_6px_0_#be185d] active:shadow-none active:translate-y-2 transition transform hover:scale-105 w-full" onclick="gameStart()">スタート！</button>
+</div>
+</div>
+<div class="w-full h-full bg-slate-900 rounded-3xl relative overflow-hidden flex flex-col items-center justify-between p-6 md:p-12" id="game-play">
+<div class="w-full flex justify-between items-center">
+<button class="text-slate-400 hover:text-white flex items-center gap-2 font-bold transition" onclick="exitGame()">
+<span class="material-symbols-rounded">arrow_back</span> やめる
+            </button>
+<div class="text-white font-black text-xl">Level <span class="text-yellow-400 text-2xl" id="game-level">1</span></div>
+</div>
+<div class="flex-1 flex flex-col justify-center w-full max-w-3xl gap-8">
+<div class="h-16 flex items-center justify-center">
+<div class="text-3xl md:text-5xl font-black text-white animate-bounce" id="game-message">Go!</div>
+</div>
+<div class="bg-slate-800/50 p-6 rounded-3xl border border-slate-700 backdrop-blur-sm">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-24 text-right font-bold text-pink-400 text-sm md:text-base">お手本</div>
+<div class="flex-1 flex gap-1 md:gap-2" id="game-row-demo"><div class="w-full h-12 rounded-lg border transition-all duration-100 cell-target-active" id="g-demo-0"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-1"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-2"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-3"></div><div class="w-full h-12 rounded-lg border transition-all duration-100 cell-target-active" id="g-demo-4"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-5"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-6"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-7"></div><div class="w-full h-12 rounded-lg border transition-all duration-100 cell-target-active" id="g-demo-8"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-9"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-10"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-11"></div><div class="w-full h-12 rounded-lg border transition-all duration-100 cell-target-active" id="g-demo-12"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-13"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-14"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600" id="g-demo-15"></div></div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-24 text-right font-bold text-green-400 text-sm md:text-base">あなた</div>
+<div class="flex-1 flex gap-1 md:gap-2" id="game-row-player"><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-0"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100 cell-cursor" id="g-player-1"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-2"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-3"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-4"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-5"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-6"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-7"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-8"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-9"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-10"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-11"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-12"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-13"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-14"></div><div class="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100" id="g-player-15"></div></div>
+</div>
+</div>
+<div class="text-center text-slate-400 text-sm font-bold h-6" id="game-instruction">白い枠にあわせて TAP！</div>
+</div>
+<div class="w-full max-w-md h-32 relative">
+<button class="w-full h-full bg-gradient-to-b from-green-400 to-green-600 rounded-2xl shadow-[0_8px_0_#15803d] active:shadow-none active:translate-y-2 transition-all flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed" id="game-tap-btn" onmousedown="gameTap()" ontouchstart="event.preventDefault(); gameTap()">
+<div class="flex flex-col items-center text-white group-active:scale-95 transition">
+<span class="material-symbols-rounded text-5xl">touch_app</span>
+<span class="font-black text-xl tracking-widest mt-1">TAP!</span>
+</div>
+</button>
+</div>
+</div>
+<div class="absolute inset-0 bg-slate-900/90 z-50 flex flex-col items-center justify-center p-4 animate-fade-in hidden" id="game-result">
+<span class="material-symbols-rounded text-8xl text-slate-400 mb-4" id="result-icon">sentiment_dissatisfied</span>
+<h2 class="text-4xl md:text-6xl font-black text-white mb-2" id="result-title">Try Again...</h2>
+<p class="text-slate-300 font-bold text-xl mb-8" id="result-desc">Score: 30点</p>
+<button class="bg-pink-500 hover:bg-pink-600 text-white px-10 py-3 rounded-full font-black text-xl shadow-lg hover:scale-105 transition" onclick="gameNextLevel()">もういちど</button>
+</div>
+</div>
+</main>
+<div class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 hidden opacity-0" id="help-modal">
+<div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden transform transition-all scale-95" id="help-content">
+<div class="bg-yellow-400 p-4 flex justify-between items-center">
+<h2 class="text-xl font-black text-white flex items-center gap-2"><span class="material-symbols-rounded">school</span> あそびかた</h2>
+<button class="bg-white/20 hover:bg-white/40 text-white rounded-full p-1 transition" onclick="closeHelp()"><span class="material-symbols-rounded">close</span></button>
+</div>
+<div class="p-6 space-y-6 overflow-y-auto max-h-[70vh]">
+<div class="flex gap-4 items-start">
+<div class="bg-pink-100 text-pink-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0">1</div>
+<div>
+<h3 class="text-lg font-bold text-slate-800 mb-1">つくる</h3>
+<p class="text-sm text-slate-600">マスをクリックしてリズムを作ろう。右上の保存ボタンでデータを保存できるよ。</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center font-black text-lg flex-shrink-0">2</div>
+<div>
+<h3 class="text-lg font-bold text-slate-800 mb-1">ゲーム</h3>
+<p class="text-sm text-slate-600">ピンクに光るお手本リズムを覚えて、白い枠が重なったタイミングでタップしよう！正解なら緑、間違いなら赤になるよ。</p>
+</div>
+</div>
+<div class="bg-slate-50 p-4 flex justify-center">
+<button class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-xl font-bold shadow-sm active:translate-y-0.5 transition w-full" onclick="closeHelp()">わかった！</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+    /* UTILS & TABS */
+    function downloadSource() {
+        const html = document.documentElement.outerHTML;
+        const blob = new Blob([html], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'rhythm-lab-final-fixed.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    function switchMainTab(tabId) {
+        if(isPlaying) togglePlay(); if(gameActive) exitGame();
+        const m = document.getElementById('view-maker'), g = document.getElementById('view-game');
+        const mt = document.getElementById('tab-maker'), gt = document.getElementById('tab-game');
+        if(tabId==='maker') { m.classList.remove('hidden'); g.classList.add('hidden'); mt.className="px-4 py-2 rounded-xl text-sm font-bold transition-all bg-white text-pink-500 shadow-sm"; gt.className="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-slate-600 transition-all"; }
+        else { m.classList.add('hidden'); g.classList.remove('hidden'); gt.className="px-4 py-2 rounded-xl text-sm font-bold transition-all bg-white text-blue-500 shadow-sm"; mt.className="px-4 py-2 rounded-xl text-sm font-bold text-slate-400 hover:text-slate-600 transition-all"; }
+    }
+    const modal=document.getElementById('help-modal'), mCnt=document.getElementById('help-content');
+    function openHelp(){modal.classList.remove('hidden');void modal.offsetWidth;modal.classList.remove('opacity-0');mCnt.classList.remove('scale-95');mCnt.classList.add('scale-100');}
+    function closeHelp(){modal.classList.add('opacity-0');mCnt.classList.remove('scale-100');mCnt.classList.add('scale-95');setTimeout(()=>{modal.classList.add('hidden')},300);}
+
+    /* AUDIO */
+    const STEPS=16; let isPlaying=false, currentStep=0, tempo=120;
+    const INSTRUMENTS=['hihat','clap','snare','tom','kick'];
+    let grid={hihat:Array(STEPS).fill(0),clap:Array(STEPS).fill(0),snare:Array(STEPS).fill(0),tom:Array(STEPS).fill(0),kick:Array(STEPS).fill(0)};
+    let synths={}, isAudioInit=false;
+    async function initAudio(){
+        if(isAudioInit) return; await Tone.start();
+        synths.kick = new Tone.MembraneSynth().toDestination();
+        synths.snare = new Tone.NoiseSynth({noise:{type:'white'},envelope:{decay:0.1}}).toDestination();
+        synths.hihat = new Tone.MetalSynth({harmonicity:5.1,modulationIndex:32}).toDestination(); synths.hihat.volume.value=-15;
+        synths.clap = new Tone.NoiseSynth({noise:{type:'pink'},envelope:{decay:0.1}}).toDestination(); synths.clap.volume.value=-10;
+        synths.tom = new Tone.MembraneSynth({pitchDecay:0.05,octaves:4}).toDestination();
+        synths.metro = new Tone.MembraneSynth().toDestination(); synths.metro.volume.value=-15;
+        isAudioInit=true;
+    }
+    function playOneShot(t){initAudio().then(()=>{
+        if(t==='kick')synths.kick.triggerAttackRelease("C1","8n");if(t==='snare')synths.snare.triggerAttackRelease("8n");
+        if(t==='hihat')synths.hihat.triggerAttackRelease("32n");if(t==='clap')synths.clap.triggerAttackRelease("8n");
+        if(t==='tom')synths.tom.triggerAttackRelease("G2","8n");if(t==='metro')synths.metro.triggerAttackRelease("C6","32n");
+    });}
+
+    /* MAKER */
+    function initGrid(){
+        const inds=document.getElementById('step-indicators'), rows=document.getElementById('sequencer-rows');
+        inds.innerHTML=''; rows.innerHTML='';
+        for(let i=0;i<STEPS;i++){
+            const m=(i+1)%4===0&&i!==15?'mr-4':'';
+            const d=document.createElement('div');d.className=`w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 ${m}`;d.id=`ind-${i}`;inds.appendChild(d);
+        }
+        const iData={hihat:{c:'yellow',i:'album',l:'ハット'},clap:{c:'green',i:'hands_clapping',l:'クラップ'},snare:{c:'cyan',i:'adjust',l:'スネア'},tom:{c:'purple',i:'trip_origin',l:'タム'},kick:{c:'pink',i:'circle',l:'バスドラ'}};
+        INSTRUMENTS.forEach(inst=>{
+            const d=document.createElement('div');d.className=`flex items-center gap-3 bg-slate-700/30 p-2 rounded-xl border border-slate-700 hover:border-slate-600 transition group relative pr-12`;
+            d.innerHTML=`<div class="w-[80px] flex flex-col items-center justify-center text-${iData[inst].c}-400 cursor-help transition transform group-hover:scale-105" onclick="playOneShot('${inst}')"><span class="material-symbols-rounded text-3xl">${iData[inst].i}</span><span class="text-[10px] font-bold mt-1">${iData[inst].l}</span></div><div class="flex gap-2 flex-1" id="row-${inst}"></div><button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-red-400 p-1.5 rounded hover:bg-slate-700 transition opacity-50 group-hover:opacity-100" onclick="clearRow('${inst}')"><span class="material-symbols-rounded">backspace</span></button>`;
+            rows.appendChild(d);
+            const cbr=d.querySelector(`#row-${inst}`);
+            for(let i=0;i<STEPS;i++){
+                const m=(i+1)%4===0&&i!==15?'mr-4':'';
+                const c=document.createElement('div');
+                c.className=`w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all duration-100 border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 ${m}`;
+                c.dataset.t=inst;c.dataset.i=i;c.onclick=()=>toggleNote(inst,i,c);
+                cbr.appendChild(c);
+            }
+        });
+    }
+    function toggleNote(t,i,e){initAudio();grid[t][i]=grid[t][i]?0:1;renderCell(t,i,e);if(grid[t][i])playOneShot(t);}
+    function renderCell(t,i,e){
+        const a=grid[t][i];
+        const c={kick:'bg-pink-500 border-pink-400 shadow-[0_0_10px_#ec4899]',snare:'bg-cyan-500 border-cyan-400 shadow-[0_0_10px_#06b6d4]',hihat:'bg-yellow-400 border-yellow-300 shadow-[0_0_10px_#eab308]',clap:'bg-green-500 border-green-400 shadow-[0_0_10px_#22c55e]',tom:'bg-purple-500 border-purple-400 shadow-[0_0_10px_#a855f7]'};
+        const m=(i+1)%4===0&&i!==15?'mr-4':'';
+        if(a)e.className=`w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all border scale-105 ${c[t]} flex-shrink-0 ${m}`;
+        else e.className=`w-8 h-10 md:w-10 md:h-14 rounded-lg cursor-pointer transition-all border border-slate-600 bg-slate-900 hover:bg-slate-700 flex-shrink-0 ${m}`;
+    }
+    function clearRow(t){grid[t].fill(0);const cs=document.querySelectorAll(`#row-${t} > div`);cs.forEach((e,i)=>renderCell(t,i,e));}
+    function togglePlay(){
+        initAudio().then(()=>{
+            isPlaying=!isPlaying; const ic=document.getElementById('play-icon'),bt=document.getElementById('play-btn');
+            if(isPlaying){ic.textContent='stop';bt.className="bg-slate-700 hover:bg-slate-800 text-white w-20 h-20 rounded-full shadow-inner flex items-center justify-center transition-transform scale-95 flex-shrink-0";Tone.Transport.bpm.value=tempo;Tone.Transport.scheduleRepeat(playStep,"16n");Tone.Transport.start();}
+            else{ic.textContent='play_arrow';bt.className="bg-pink-500 hover:bg-pink-600 text-white w-20 h-20 rounded-full shadow-[0_6px_0_#be185d] flex items-center justify-center transition-transform hover:scale-105 active:scale-95 active:shadow-none active:translate-y-1.5 flex-shrink-0";Tone.Transport.stop();Tone.Transport.cancel();currentStep=0;resetVisuals();}
+        });
+    }
+    function playStep(t){
+        Tone.Draw.schedule(()=>{updateStepVisuals(currentStep)},t);
+        if(grid.kick[currentStep])synths.kick.triggerAttackRelease("C1","8n",t);if(grid.snare[currentStep])synths.snare.triggerAttackRelease("8n",t);if(grid.hihat[currentStep])synths.hihat.triggerAttackRelease("32n",t);if(grid.clap[currentStep])synths.clap.triggerAttackRelease("8n",t);if(grid.tom[currentStep])synths.tom.triggerAttackRelease("G2","8n",t);
+        currentStep=(currentStep+1)%STEPS;
+    }
+    function updateStepVisuals(s){
+        const p=(s-1+STEPS)%STEPS, pe=document.getElementById(`ind-${p}`), pm=(p+1)%4===0&&p!==15?'mr-4':'';
+        if(pe)pe.className=`w-8 h-2 md:w-10 rounded-full bg-slate-700 transition-colors flex-shrink-0 ${pm}`;
+        const ce=document.getElementById(`ind-${s}`), cm=(s+1)%4===0&&s!==15?'mr-4':'';
+        if(ce)ce.className=`w-8 h-2 md:w-10 rounded-full bg-white shadow-[0_0_10px_white] scale-110 flex-shrink-0 ${cm}`;
+    }
+    function resetVisuals(){for(let i=0;i<STEPS;i++)updateStepVisuals((i+1)%STEPS);}
+    function updateTempo(v){tempo=v;document.getElementById('tempo-display').textContent=v;if(isPlaying)Tone.Transport.bpm.rampTo(v,0.1);}
+    function clearBeats(){INSTRUMENTS.forEach(inst=>clearRow(inst));}
+    const PRESETS={rock:{kick:[1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0],snare:[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],hihat:[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1]},dance:{kick:[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0],snare:[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],hihat:[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0]},hiphop:{kick:[1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0],snare:[0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],hihat:[1,0,1,0,1,0,1,0,1,0,0,1,1,0,1,0]},latin:{kick:[1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0],clap:[0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0],tom:[1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,1]}};
+    function loadPreset(n){initAudio();const p=PRESETS[n];if(!p)return;INSTRUMENTS.forEach(i=>{grid[i]=p[i]?[...p[i]]:Array(STEPS).fill(0);const cs=document.querySelectorAll(`#row-${i} > div`);cs.forEach((e,ix)=>renderCell(i,ix,e));});playOneShot('hihat');}
+    let userPresets=[];
+    function saveUserPreset(){const n=document.getElementById('preset-name').value.trim()||`リズム ${userPresets.length+1}`;const d={};INSTRUMENTS.forEach(i=>d[i]=[...grid[i]]);userPresets.push({name:n,data:d});document.getElementById('preset-name').value='';renderUPL();playOneShot('clap');}
+    function renderUPL(){const c=document.getElementById('user-preset-list');c.innerHTML=userPresets.length===0?'<span class="text-xs text-slate-400 italic py-1">まだ保存されていません</span>':'';userPresets.forEach((p,x)=>{const b=document.createElement('button');b.className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 hover:bg-pink-50 hover:border-pink-300 hover:text-pink-500 transition flex items-center gap-1 whitespace-nowrap";b.innerHTML=`<span class="material-symbols-rounded text-xs">music_note</span> ${p.name}`;b.onclick=()=>{INSTRUMENTS.forEach(i=>{grid[i]=p.data[i]?[...p.data[i]]:Array(STEPS).fill(0);const cs=document.querySelectorAll(`#row-${i} > div`);cs.forEach((e,ix)=>renderCell(i,ix,e));});playOneShot('hihat');};c.appendChild(b);});}
+
+    /* GAME LOGIC */
+    let gameActive=false, gameLevel=1, gamePhase='idle', gameUserPos=0, gameUserScore=0;
+    const GAME_STEPS=16;
+    const GAME_LEVELS=[
+        [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,0],
+        [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,0,1,0],
+        [1,0,0,1, 0,0,1,0, 1,0,0,1, 0,0,1,0],
+        [1,1,0,1, 0,1,0,0, 1,0,1,1, 0,0,1,0],
+        [0,1,1,0, 1,0,0,1, 0,1,1,0, 1,0,0,1]
+    ];
+
+    function initGameUI(){
+        const dr=document.getElementById('game-row-demo'), pr=document.getElementById('game-row-player');
+        dr.innerHTML=''; pr.innerHTML='';
+        for(let i=0;i<GAME_STEPS;i++){
+            const d=document.createElement('div'), p=document.createElement('div');
+            d.className="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100"; d.id=`g-demo-${i}`;
+            p.className="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100"; p.id=`g-player-${i}`;
+            dr.appendChild(d); pr.appendChild(p);
+        }
+    }
+
+    function gameStart(){initAudio();gameActive=true;gameLevel=1;document.getElementById('game-menu').classList.add('hidden');document.getElementById('game-play').classList.remove('hidden');document.getElementById('game-result').classList.add('hidden');initGameUI();startLevel(0);}
+
+    function startLevel(lx){
+        if(lx>=GAME_LEVELS.length){showResult(100,true);return;}
+        gameLevel=lx+1; gameSequence=GAME_LEVELS[lx];
+        document.getElementById('game-level').textContent=gameLevel;
+        
+        for(let i=0;i<GAME_STEPS;i++){
+            const dc=document.getElementById(`g-demo-${i}`), pc=document.getElementById(`g-player-${i}`);
+            dc.className=gameSequence[i]?"w-full h-12 rounded-lg border transition-all duration-100 cell-target-active":"w-full h-12 bg-slate-700 rounded-lg border border-slate-600";
+            pc.className="w-full h-12 bg-slate-700 rounded-lg border border-slate-600 transition-all duration-100";
+        }
+        
+        gamePhase='countdown';
+        document.getElementById('game-tap-btn').disabled=true;
+        document.getElementById('game-instruction').textContent="お手本をきいてね";
+        
+        let c=3;
+        document.getElementById('game-message').textContent=c;
+        const ci=setInterval(()=>{
+            c--;
+            if(c>0){document.getElementById('game-message').textContent=c;playOneShot('hihat');}
+            else{clearInterval(ci);document.getElementById('game-message').textContent="Listen!";playOneShot('clap');runDemoPhase();}
+        },500);
+    }
+
+    function runDemoPhase(){
+        gamePhase='demo';
+        Tone.Transport.stop(); Tone.Transport.cancel();
+        Tone.Transport.bpm.value=100;
+        
+        let s=0;
+        Tone.Transport.scheduleRepeat((t)=>{
+            if(s>=GAME_STEPS){Tone.Transport.stop();Tone.Transport.cancel();setTimeout(startInputCountdown,500);return;}
+            Tone.Draw.schedule(()=>{
+                if(s>0)document.getElementById(`g-demo-${s-1}`).classList.remove('cell-cursor');
+                const c=document.getElementById(`g-demo-${s}`);c.classList.add('cell-cursor');
+            },t);
+            if(gameSequence[s]){synths.kick.triggerAttackRelease("C2","8n",t);}else{playOneShot('metro');}
+            s++;
+        },"8n");
+        Tone.Transport.start();
+    }
+
+    function startInputCountdown(){
+        document.getElementById('game-instruction').textContent="あなたの番です...";
+        for(let i=0;i<GAME_STEPS;i++)document.getElementById(`g-demo-${i}`).classList.remove('cell-cursor');
+        
+        let c=3;
+        document.getElementById('game-message').textContent=c;
+        const ci=setInterval(()=>{
+            c--;
+            if(c>0){document.getElementById('game-message').textContent=c;playOneShot('hihat');}
+            else{clearInterval(ci);document.getElementById('game-message').textContent="Go!";playOneShot('clap');runInputPhase();}
+        },500);
+    }
+
+    function runInputPhase(){
+        gamePhase='input'; gameUserPos=0; window.userInputs=Array(GAME_STEPS).fill(0);
+        document.getElementById('game-instruction').textContent="白い枠にあわせて TAP！";
+        document.getElementById('game-tap-btn').disabled=false;
+
+        Tone.Transport.stop(); Tone.Transport.cancel();
+        
+        let s=0;
+        Tone.Transport.scheduleRepeat((t)=>{
+            if(s>=GAME_STEPS){Tone.Transport.stop();Tone.Transport.cancel();setTimeout(evaluateGame,500);return;}
+            gameUserPos=s;
+            Tone.Draw.schedule(()=>{
+                if(s>0)document.getElementById(`g-player-${s-1}`).classList.remove('cell-cursor');
+                const c=document.getElementById(`g-player-${s}`);c.classList.add('cell-cursor');
+            },t);
+            playOneShot('metro');
+            s++;
+        },"8n");
+        Tone.Transport.start();
+    }
+
+    function gameTap(){
+        if(gamePhase!=='input')return;
+        const c=document.getElementById(`g-player-${gameUserPos}`);
+        if(c){
+            // Check logic immediate feedback
+            if(gameSequence[gameUserPos]===1) {
+                c.classList.add('cell-hit-success');
+                playOneShot('clap');
+            } else {
+                c.classList.add('cell-hit-fail');
+                playOneShot('snare');
+            }
+            window.userInputs[gameUserPos]=1;
+        }
+    }
+
+    function evaluateGame(){
+        gamePhase='judge'; document.getElementById('game-tap-btn').disabled=true;
+        let hits=0,misses=0,targets=0;
+        for(let i=0;i<GAME_STEPS;i++){
+            if(gameSequence[i]){targets++; if(window.userInputs[i])hits++;}
+            else{if(window.userInputs[i])misses++;}
+        }
+        let score = targets>0 ? (hits/targets)*100 : 0;
+        score -= (misses*10); if(score<0)score=0;
+        showResult(score);
+    }
+
+    function showResult(s,all=false){
+        const m=document.getElementById('game-result'), t=document.getElementById('result-title'), d=document.getElementById('result-desc'), i=document.getElementById('result-icon'), b=m.querySelector('button');
+        m.classList.remove('hidden');
+        if(all){i.textContent="military_tech";i.className="material-symbols-rounded text-8xl text-purple-400 mb-4 animate-bounce-sm";t.textContent="All Clear!";d.textContent="全クリおめでとう！";b.textContent="メニューへ";b.onclick=exitGame;return;}
+        if(s>=80){i.textContent="emoji_events";i.className="material-symbols-rounded text-8xl text-yellow-400 mb-4 animate-bounce-sm";t.textContent="Excellent!";d.textContent=`Score: ${Math.round(s)}点`;b.textContent="つぎへ";b.onclick=()=>{m.classList.add('hidden');startLevel(gameLevel);}}
+        else{i.textContent="sentiment_dissatisfied";i.className="material-symbols-rounded text-8xl text-slate-400 mb-4";t.textContent="Try Again...";d.textContent=`Score: ${Math.round(s)}点`;b.textContent="もういちど";b.onclick=()=>{m.classList.add('hidden');startLevel(gameLevel-1);}}
+    }
+
+    function exitGame(){gameActive=false;Tone.Transport.stop();document.getElementById('game-play').classList.add('hidden');document.getElementById('game-result').classList.add('hidden');document.getElementById('game-menu').classList.remove('hidden');}
+
+    initGrid();
+</script>
+
+</body></html>

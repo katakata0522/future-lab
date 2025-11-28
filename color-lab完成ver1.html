@@ -1,0 +1,723 @@
+<html lang="ja"><head>
+
+<script class="injected-ffc2e83d85">
+(function(){'use strict';function q(b){var c=0;return function(){return c<b.length?{done:!1,value:b[c++]}:{done:!0}}}function t(b){var c=typeof Symbol!="undefined"&&Symbol.iterator&&b[Symbol.iterator];if(c)return c.call(b);if(typeof b.length=="number")return{next:q(b)};throw Error(String(b)+" is not an iterable or ArrayLike");}var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,c,g){if(b==Array.prototype||b==Object.prototype)return b;b[c]=g.value;return b};
+function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<b.length;++c){var g=b[c];if(g&&g.Math==Math)return g}throw Error("Cannot find global object");}var w=v(this);function x(b,c){if(c)a:{var g=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var l=b[h];if(!(l in g))break a;g=g[l]}b=b[b.length-1];h=g[b];c=c(h);c!=h&&c!=null&&u(g,b,{configurable:!0,writable:!0,value:c})}}
+function y(){this.j=!1;this.g=null;this.u=void 0;this.h=1;this.v=this.l=0;this.i=null}function z(b){if(b.j)throw new TypeError("Generator is already running");b.j=!0}y.prototype.o=function(b){this.u=b};function A(b,c){b.i={I:c,J:!0};b.h=b.l||b.v}y.prototype.return=function(b){this.i={return:b};this.h=this.v};function B(b){this.g=new y;this.h=b}function E(b,c){z(b.g);var g=b.g.g;if(g)return F(b,"return"in g?g["return"]:function(h){return{value:h,done:!0}},c,b.g.return);b.g.return(c);return G(b)}
+function F(b,c,g,h){try{var l=c.call(b.g.g,g);if(!(l instanceof Object))throw new TypeError("Iterator result "+l+" is not an object");if(!l.done)return b.g.j=!1,l;var m=l.value}catch(f){return b.g.g=null,A(b.g,f),G(b)}b.g.g=null;h.call(b.g,m);return G(b)}function G(b){for(;b.g.h;)try{var c=b.h(b.g);if(c)return b.g.j=!1,{value:c.value,done:!1}}catch(g){b.g.u=void 0,A(b.g,g)}b.g.j=!1;if(b.g.i){c=b.g.i;b.g.i=null;if(c.J)throw c.I;return{value:c.return,done:!0}}return{value:void 0,done:!0}}
+function H(b){this.next=function(c){z(b.g);b.g.g?c=F(b,b.g.g.next,c,b.g.o):(b.g.o(c),c=G(b));return c};this.throw=function(c){z(b.g);b.g.g?c=F(b,b.g.g["throw"],c,b.g.o):(A(b.g,c),c=G(b));return c};this.return=function(c){return E(b,c)};this[Symbol.iterator]=function(){return this}}function I(b){function c(h){return b.next(h)}function g(h){return b.throw(h)}return new Promise(function(h,l){function m(f){f.done?h(f.value):Promise.resolve(f.value).then(c,g).then(m,l)}m(b.next())})}
+x("Symbol",function(b){function c(m){if(this instanceof c)throw new TypeError("Symbol is not a constructor");return new g(h+(m||"")+"_"+l++,m)}function g(m,f){this.g=m;u(this,"description",{configurable:!0,writable:!0,value:f})}if(b)return b;g.prototype.toString=function(){return this.g};var h="jscomp_symbol_"+(Math.random()*1E9>>>0)+"_",l=0;return c});
+x("Symbol.iterator",function(b){if(b)return b;b=Symbol("Symbol.iterator");u(Array.prototype,b,{configurable:!0,writable:!0,value:function(){return J(q(this))}});return b});function J(b){b={next:b};b[Symbol.iterator]=function(){return this};return b}
+x("Promise",function(b){function c(f){this.h=0;this.i=void 0;this.g=[];this.u=!1;var a=this.j();try{f(a.resolve,a.reject)}catch(d){a.reject(d)}}function g(){this.g=null}function h(f){return f instanceof c?f:new c(function(a){a(f)})}if(b)return b;g.prototype.h=function(f){if(this.g==null){this.g=[];var a=this;this.i(function(){a.l()})}this.g.push(f)};var l=w.setTimeout;g.prototype.i=function(f){l(f,0)};g.prototype.l=function(){for(;this.g&&this.g.length;){var f=this.g;this.g=[];for(var a=0;a<f.length;++a){var d=
+f[a];f[a]=null;try{d()}catch(e){this.j(e)}}}this.g=null};g.prototype.j=function(f){this.i(function(){throw f;})};c.prototype.j=function(){function f(e){return function(k){d||(d=!0,e.call(a,k))}}var a=this,d=!1;return{resolve:f(this.D),reject:f(this.l)}};c.prototype.D=function(f){if(f===this)this.l(new TypeError("A Promise cannot resolve to itself"));else if(f instanceof c)this.G(f);else{a:switch(typeof f){case "object":var a=f!=null;break a;case "function":a=!0;break a;default:a=!1}a?this.C(f):this.o(f)}};
+c.prototype.C=function(f){var a=void 0;try{a=f.then}catch(d){this.l(d);return}typeof a=="function"?this.H(a,f):this.o(f)};c.prototype.l=function(f){this.v(2,f)};c.prototype.o=function(f){this.v(1,f)};c.prototype.v=function(f,a){if(this.h!=0)throw Error("Cannot settle("+f+", "+a+"): Promise already settled in state"+this.h);this.h=f;this.i=a;this.h===2&&this.F();this.K()};c.prototype.F=function(){var f=this;l(function(){if(f.B()){var a=w.console;typeof a!=="undefined"&&a.error(f.i)}},1)};c.prototype.B=
+function(){if(this.u)return!1;var f=w.CustomEvent,a=w.Event,d=w.dispatchEvent;if(typeof d==="undefined")return!0;typeof f==="function"?f=new f("unhandledrejection",{cancelable:!0}):typeof a==="function"?f=new a("unhandledrejection",{cancelable:!0}):(f=w.document.createEvent("CustomEvent"),f.initCustomEvent("unhandledrejection",!1,!0,f));f.promise=this;f.reason=this.i;return d(f)};c.prototype.K=function(){if(this.g!=null){for(var f=0;f<this.g.length;++f)m.h(this.g[f]);this.g=null}};var m=new g;c.prototype.G=
+function(f){var a=this.j();f.A(a.resolve,a.reject)};c.prototype.H=function(f,a){var d=this.j();try{f.call(a,d.resolve,d.reject)}catch(e){d.reject(e)}};c.prototype.then=function(f,a){function d(n,r){return typeof n=="function"?function(C){try{e(n(C))}catch(D){k(D)}}:r}var e,k,p=new c(function(n,r){e=n;k=r});this.A(d(f,e),d(a,k));return p};c.prototype.catch=function(f){return this.then(void 0,f)};c.prototype.A=function(f,a){function d(){switch(e.h){case 1:f(e.i);break;case 2:a(e.i);break;default:throw Error("Unexpected state: "+
+e.h);}}var e=this;this.g==null?m.h(d):this.g.push(d);this.u=!0};c.resolve=h;c.reject=function(f){return new c(function(a,d){d(f)})};c.race=function(f){return new c(function(a,d){for(var e=t(f),k=e.next();!k.done;k=e.next())h(k.value).A(a,d)})};c.all=function(f){var a=t(f),d=a.next();return d.done?h([]):new c(function(e,k){function p(C){return function(D){n[C]=D;r--;r==0&&e(n)}}var n=[],r=0;do n.push(void 0),r++,h(d.value).A(p(n.length-1),k),d=a.next();while(!d.done)})};return c});
+function K(b,c){return Object.prototype.hasOwnProperty.call(b,c)}x("Object.is",function(b){return b?b:function(c,g){return c===g?c!==0||1/c===1/g:c!==c&&g!==g}});x("Array.prototype.includes",function(b){return b?b:function(c,g){var h=this;h instanceof String&&(h=String(h));var l=h.length;g=g||0;for(g<0&&(g=Math.max(g+l,0));g<l;g++){var m=h[g];if(m===c||Object.is(m,c))return!0}return!1}});
+x("String.prototype.includes",function(b){return b?b:function(c,g){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(c instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(c,g||0)!==-1}});
+x("WeakMap",function(b){function c(d){this.g=(a+=Math.random()+1).toString();if(d){d=t(d);for(var e;!(e=d.next()).done;)e=e.value,this.set(e[0],e[1])}}function g(){}function h(d){var e=typeof d;return e==="object"&&d!==null||e==="function"}function l(d){if(!K(d,f)){var e=new g;u(d,f,{value:e})}}function m(d){var e=Object[d];e&&(Object[d]=function(k){if(k instanceof g)return k;Object.isExtensible(k)&&l(k);return e(k)})}if(function(){if(!b||!Object.seal)return!1;try{var d=Object.seal({}),e=Object.seal({}),
+k=new b([[d,2],[e,3]]);if(k.get(d)!=2||k.get(e)!=3)return!1;k.delete(d);k.set(e,4);return!k.has(d)&&k.get(e)==4}catch(p){return!1}}())return b;var f="$jscomp_hidden_"+Math.random();m("freeze");m("preventExtensions");m("seal");var a=0;c.prototype.set=function(d,e){if(!h(d))throw Error("Invalid WeakMap key");l(d);if(!K(d,f))throw Error("WeakMap key fail: "+d);d[f][this.g]=e;return this};c.prototype.get=function(d){return h(d)&&K(d,f)?d[f][this.g]:void 0};c.prototype.has=function(d){return h(d)&&K(d,
+f)&&K(d[f],this.g)};c.prototype.delete=function(d){return h(d)&&K(d,f)&&K(d[f],this.g)?delete d[f][this.g]:!1};return c});
+x("Map",function(b){function c(){var a={};return a.m=a.next=a.head=a}function g(a,d){var e=a[1];return J(function(){if(e){for(;e.head!=a[1];)e=e.m;for(;e.next!=e.head;)return e=e.next,{done:!1,value:d(e)};e=null}return{done:!0,value:void 0}})}function h(a,d){var e=d&&typeof d;e=="object"||e=="function"?m.has(d)?e=m.get(d):(e=""+ ++f,m.set(d,e)):e="p_"+d;var k=a[0][e];if(k&&K(a[0],e))for(a=0;a<k.length;a++){var p=k[a];if(d!==d&&p.key!==p.key||d===p.key)return{id:e,list:k,index:a,entry:p}}return{id:e,
+list:k,index:-1,entry:void 0}}function l(a){this[0]={};this[1]=c();this.size=0;if(a){a=t(a);for(var d;!(d=a.next()).done;)d=d.value,this.set(d[0],d[1])}}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var a=Object.seal({x:4}),d=new b(t([[a,"s"]]));if(d.get(a)!="s"||d.size!=1||d.get({x:4})||d.set({x:4},"t")!=d||d.size!=2)return!1;var e=d.entries(),k=e.next();if(k.done||k.value[0]!=a||k.value[1]!="s")return!1;k=e.next();return k.done||k.value[0].x!=
+4||k.value[1]!="t"||!e.next().done?!1:!0}catch(p){return!1}}())return b;var m=new WeakMap;l.prototype.set=function(a,d){a=a===0?0:a;var e=h(this,a);e.list||(e.list=this[0][e.id]=[]);e.entry?e.entry.value=d:(e.entry={next:this[1],m:this[1].m,head:this[1],key:a,value:d},e.list.push(e.entry),this[1].m.next=e.entry,this[1].m=e.entry,this.size++);return this};l.prototype.delete=function(a){a=h(this,a);return a.entry&&a.list?(a.list.splice(a.index,1),a.list.length||delete this[0][a.id],a.entry.m.next=a.entry.next,
+a.entry.next.m=a.entry.m,a.entry.head=null,this.size--,!0):!1};l.prototype.clear=function(){this[0]={};this[1]=this[1].m=c();this.size=0};l.prototype.has=function(a){return!!h(this,a).entry};l.prototype.get=function(a){return(a=h(this,a).entry)&&a.value};l.prototype.entries=function(){return g(this,function(a){return[a.key,a.value]})};l.prototype.keys=function(){return g(this,function(a){return a.key})};l.prototype.values=function(){return g(this,function(a){return a.value})};l.prototype.forEach=
+function(a,d){for(var e=this.entries(),k;!(k=e.next()).done;)k=k.value,a.call(d,k[1],k[0],this)};l.prototype[Symbol.iterator]=l.prototype.entries;var f=0;return l});
+x("Set",function(b){function c(g){this.g=new Map;if(g){g=t(g);for(var h;!(h=g.next()).done;)this.add(h.value)}this.size=this.g.size}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var g=Object.seal({x:4}),h=new b(t([g]));if(!h.has(g)||h.size!=1||h.add(g)!=h||h.size!=1||h.add({x:4})!=h||h.size!=2)return!1;var l=h.entries(),m=l.next();if(m.done||m.value[0]!=g||m.value[1]!=g)return!1;m=l.next();return m.done||m.value[0]==g||m.value[0].x!=4||
+m.value[1]!=m.value[0]?!1:l.next().done}catch(f){return!1}}())return b;c.prototype.add=function(g){g=g===0?0:g;this.g.set(g,g);this.size=this.g.size;return this};c.prototype.delete=function(g){g=this.g.delete(g);this.size=this.g.size;return g};c.prototype.clear=function(){this.g.clear();this.size=0};c.prototype.has=function(g){return this.g.has(g)};c.prototype.entries=function(){return this.g.entries()};c.prototype.values=function(){return this.g.values()};c.prototype.keys=c.prototype.values;c.prototype[Symbol.iterator]=
+c.prototype.values;c.prototype.forEach=function(g,h){var l=this;this.g.forEach(function(m){return g.call(h,m,m,l)})};return c});(function(){function b(){return m?Promise.resolve(m):f?f:f=fetch("https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json").then(function(a){if(!a.ok)throw Error("HTTP error! status: "+a.status+" fetching https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json");return a.json()}).then(function(a){if(!Array.isArray(a))throw new TypeError("Fetched icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json is not an array.");
+return m=a}).catch(function(a){console.error("IconChecker: Failed to load valid icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json.",a);f=null;throw a;})}function c(a){var d,e,k,p;return I(new H(new B(function(n){switch(n.h){case 1:d=(a.textContent||"").trim();if(!d||a.classList.contains("js-replaced-missing-icon")&&d==="radio_button_unchecked")return n.return();e=window.getComputedStyle(a);if(e.display==="none"||e.visibility==="hidden")return n.return();
+n.l=2;var r=b();n.h=4;return{value:r};case 4:k=n.u;n.h=3;n.l=0;break;case 2:return n.l=0,n.i=null,console.warn('IconChecker: Skipping check for icon "'+d+'" as valid names could not be loaded.'),n.return();case 3:(p=k.includes(d))?a.classList.contains("js-replaced-missing-icon")&&a.classList.remove("js-replaced-missing-icon"):d==="radio_button_unchecked"&&a.classList.contains("js-replaced-missing-icon")||(a.textContent="radio_button_unchecked",a.classList.add("js-replaced-missing-icon")),n.h=0}})))}
+function g(a){a=a===void 0?document.body:a;a.querySelectorAll(l).forEach(function(d){c(d)})}function h(){b().catch(function(){});document.fonts.ready.then(function(){requestAnimationFrame(function(){g(document.body);(new MutationObserver(function(a){var d=new Set;a=t(a);for(var e=a.next();!e.done;e=a.next())if(e=e.value,e.type==="childList")e.addedNodes.forEach(function(p){p.nodeType===Node.ELEMENT_NODE&&(p.matches(l)&&d.add(p),p.querySelectorAll(l).forEach(function(n){d.add(n)}))});else if(e.type===
+"attributes"&&e.attributeName==="class"){var k=e.target;e.target.nodeType===Node.ELEMENT_NODE&&k.matches(l)&&d.add(k)}else e.type==="characterData"&&e.target.parentNode&&(e=e.target.parentNode,e.nodeType===Node.ELEMENT_NODE&&e.matches(l)&&d.add(e));d.size>0&&setTimeout(function(){d.forEach(function(p){c(p)})},500)})).observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"],characterData:!0})})}).catch(function(a){console.error("IconChecker: Font loading error. Scanning icons anyway.",
+a);requestAnimationFrame(function(){g(document.body)})})}var l=["material-icons","material-symbols-outlined","material-symbols-rounded","material-symbols-sharp"].map(function(a){return"."+a}).join(","),m=null,f=null;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){h()}):h()})();}).call(this);
+
+</script>
+
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>わくわく！いろのじっけんしつDX</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts (丸文字フォント) -->
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,700,1,0" rel="stylesheet">
+<style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #FFFBEB; /* 薄い黄色 */
+            background-image: radial-gradient(#FDE68A 2px, transparent 2px);
+            background-size: 24px 24px;
+        }
+
+        /* ポップなスライダー */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 16px;
+            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            margin-top: -10px;
+            border: 4px solid white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+            transition: transform 0.1s;
+        }
+        input[type=range]::-webkit-slider-thumb:active {
+            transform: scale(1.2);
+        }
+
+        /* 色別のスタイル */
+        #slider-r::-webkit-slider-runnable-track { background: #FECACA; }
+        #slider-r::-webkit-slider-thumb { background: #EF4444; }
+        
+        #slider-g::-webkit-slider-runnable-track { background: #BBF7D0; }
+        #slider-g::-webkit-slider-thumb { background: #22C55E; }
+        
+        #slider-b::-webkit-slider-runnable-track { background: #BFDBFE; }
+        #slider-b::-webkit-slider-thumb { background: #3B82F6; }
+
+        /* ゲーム用スライダー */
+        .game-slider::-webkit-slider-runnable-track { background: #E2E8F0; }
+        .game-slider::-webkit-slider-thumb { background: #64748B; }
+
+        /* カードのスタイル */
+        .pop-card {
+            background: white;
+            border-radius: 24px;
+            border: 4px solid #F3F4F6;
+            box-shadow: 0 8px 0 #E5E7EB;
+            transition: transform 0.2s;
+        }
+
+        /* ぷるぷるアニメーション */
+        @keyframes jelly {
+            0%, 100% { transform: scale(1, 1); }
+            25% { transform: scale(0.9, 1.1); }
+            50% { transform: scale(1.1, 0.9); }
+            75% { transform: scale(0.95, 1.05); }
+        }
+        .animate-jelly {
+            animation: jelly 0.5s;
+        }
+
+        /* Blob Animation */
+        @keyframes blob {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 50% 50% 50%; }
+        }
+
+        .text-shadow-sm {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.-bottom-4{bottom:-1rem}.-right-4{right:-1rem}.bottom-6{bottom:1.5rem}.left-1\/2{left:50%}.left-10{left:2.5rem}.right-4{right:1rem}.top-10{top:2.5rem}.top-24{top:6rem}.top-4{top:1rem}.z-10{z-index:10}.z-20{z-index:20}.z-50{z-index:50}.order-1{order:1}.order-2{order:2}.order-3{order:3}.mx-auto{margin-left:auto;margin-right:auto}.mb-0\.5{margin-bottom:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-1{margin-left:0.25rem}.ml-2{margin-left:0.5rem}.mt-4{margin-top:1rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-24{height:6rem}.h-32{height:8rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-8{height:2rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-16{width:4rem}.w-32{width:8rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-4{--tw-translate-y:1rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-45{--tw-rotate:-45deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-12{--tw-rotate:12deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-\[-5deg\]{--tw-rotate:-5deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border-2{border-width:2px}.border-4{border-width:4px}.border-b-4{border-bottom-width:4px}.border-dashed{border-style:dashed}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-green-400{--tw-border-opacity:1;border-color:rgb(74 222 128 / var(--tw-border-opacity, 1))}.border-purple-400{--tw-border-opacity:1;border-color:rgb(192 132 252 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.border-yellow-200{--tw-border-opacity:1;border-color:rgb(254 240 138 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-orange-400{--tw-bg-opacity:1;background-color:rgb(251 146 60 / var(--tw-bg-opacity, 1))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity, 1))}.bg-pink-300{--tw-bg-opacity:1;background-color:rgb(249 168 212 / var(--tw-bg-opacity, 1))}.bg-purple-100{--tw-bg-opacity:1;background-color:rgb(243 232 255 / var(--tw-bg-opacity, 1))}.bg-purple-600{--tw-bg-opacity:1;background-color:rgb(147 51 234 / var(--tw-bg-opacity, 1))}.bg-purple-700{--tw-bg-opacity:1;background-color:rgb(126 34 206 / var(--tw-bg-opacity, 1))}.bg-red-100{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.bg-red-500{--tw-bg-opacity:1;background-color:rgb(239 68 68 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-teal-600{--tw-bg-opacity:1;background-color:rgb(13 148 136 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-yellow-400{--tw-bg-opacity:1;background-color:rgb(250 204 21 / var(--tw-bg-opacity, 1))}.bg-yellow-50{--tw-bg-opacity:1;background-color:rgb(254 252 232 / var(--tw-bg-opacity, 1))}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-24{padding-bottom:6rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-8xl{font-size:6rem;line-height:1}.text-9xl{font-size:8rem;line-height:1}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.leading-none{line-height:1}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-green-100{--tw-text-opacity:1;color:rgb(220 252 231 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-indigo-500{--tw-text-opacity:1;color:rgb(99 102 241 / var(--tw-text-opacity, 1))}.text-purple-100{--tw-text-opacity:1;color:rgb(243 232 255 / var(--tw-text-opacity, 1))}.text-purple-600{--tw-text-opacity:1;color:rgb(147 51 234 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-400{--tw-text-opacity:1;color:rgb(250 204 21 / var(--tw-text-opacity, 1))}.text-yellow-800{--tw-text-opacity:1;color:rgb(133 77 14 / var(--tw-text-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.opacity-50{opacity:0.5}.opacity-70{opacity:0.7}.opacity-80{opacity:0.8}.shadow-\[0_2px_0_\#15803d\]{--tw-shadow:0 2px 0 #15803d;--tw-shadow-colored:0 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_2px_0_rgba\(180\2c 83\2c 9\2c 0\.3\)\]{--tw-shadow:0 2px 0 rgba(180,83,9,0.3);--tw-shadow-colored:0 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_4px_0_\#1e40af\]{--tw-shadow:0 4px 0 #1e40af;--tw-shadow-colored:0 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_4px_0_rgba\(217\2c 119\2c 6\2c 0\.5\)\]{--tw-shadow:0 4px 0 rgba(217,119,6,0.5);--tw-shadow-colored:0 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.drop-shadow-xl{--tw-drop-shadow:drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-100{transition-duration:100ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.selection\:bg-yellow-200 *::selection{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.selection\:bg-yellow-200::selection{--tw-bg-opacity:1;background-color:rgb(254 240 138 / var(--tw-bg-opacity, 1))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-yellow-300:hover{--tw-border-opacity:1;border-color:rgb(253 224 71 / var(--tw-border-opacity, 1))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.hover\:bg-green-50:hover{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-50:hover{--tw-bg-opacity:1;background-color:rgb(250 245 255 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/20:hover{background-color:rgb(255 255 255 / 0.2)}.hover\:bg-yellow-50:hover{--tw-bg-opacity:1;background-color:rgb(254 252 232 / var(--tw-bg-opacity, 1))}.hover\:text-slate-600:hover{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.active\:translate-y-0\.5:active{--tw-translate-y:0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:translate-y-1:active{--tw-translate-y:0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:shadow-none:active{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.group:hover .group-hover\:text-yellow-600{--tw-text-opacity:1;color:rgb(202 138 4 / var(--tw-text-opacity, 1))}@media (min-width: 768px){.md\:right-10{right:2.5rem}.md\:inline{display:inline}.md\:h-40{height:10rem}.md\:h-80{height:20rem}.md\:w-1\/3{width:33.333333%}.md\:w-40{width:10rem}.md\:w-5\/12{width:41.666667%}.md\:w-7\/12{width:58.333333%}.md\:w-80{width:20rem}.md\:flex-row{flex-direction:row}.md\:gap-2{gap:0.5rem}.md\:gap-3{gap:0.75rem}.md\:gap-8{gap:2rem}.md\:p-6{padding:1.5rem}.md\:px-4{padding-left:1rem;padding-right:1rem}.md\:py-2{padding-top:0.5rem;padding-bottom:0.5rem}.md\:pb-6{padding-bottom:1.5rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}</style></head>
+<body class="text-slate-700 min-h-screen flex flex-col overflow-hidden selection:bg-yellow-200">
+<!-- Header -->
+<header class="bg-white border-b-4 border-yellow-200 px-4 py-3 flex justify-between items-center z-20 flex-shrink-0 shadow-sm">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="bg-yellow-400 text-white p-2 rounded-2xl shadow-[0_4px_0_rgba(217,119,6,0.5)] transform rotate-[-5deg]">
+<span class="material-symbols-rounded text-2xl md:text-3xl block">palette</span>
+</div>
+<div>
+<h1 class="text-lg md:text-2xl font-black tracking-wider text-slate-800 text-shadow-sm">いろのじっけんしつ DX</h1>
+</div>
+</div>
+<div class="flex gap-2">
+<!-- Mode Switcher -->
+<div class="flex bg-slate-100 p-1 rounded-2xl border-2 border-slate-200">
+<button class="px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold transition-all bg-yellow-400 text-white shadow-[0_2px_0_rgba(180,83,9,0.3)] flex items-center gap-1 md:gap-2" id="tab-lab" onclick="switchTab('lab')">
+<span class="material-symbols-rounded text-sm md:text-base">science</span>
+<span>つくる</span>
+</button>
+<button class="px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 md:gap-2" id="tab-game" onclick="switchTab('game')">
+<span class="material-symbols-rounded text-sm md:text-base">sports_esports</span>
+<span>あそぶ</span>
+</button>
+</div>
+<!-- DOWNLOAD BUTTON -->
+<button class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 md:px-4 md:py-2 rounded-2xl font-bold flex items-center gap-2 shadow-lg transition-transform hover:scale-105 active:scale-95 ml-1" onclick="downloadSource()">
+<span class="material-symbols-rounded">save</span>
+<span class="hidden md:inline">保存する</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 relative overflow-hidden">
+<!-- ==================== MODE 1: LAB (つくる) ==================== -->
+<div class="absolute inset-0 flex flex-col md:flex-row p-4 md:p-6 gap-6 overflow-y-auto pb-24 md:pb-6" id="view-lab">
+<!-- Left: Controls -->
+<div class="w-full md:w-5/12 flex flex-col gap-6">
+<!-- Color Mixers -->
+<div class="pop-card p-6 flex-shrink-0">
+<div class="flex items-center gap-2 mb-6">
+<span class="text-2xl">🎨</span>
+<h2 class="text-xl font-bold text-slate-700">いろを まぜてみよう！</h2>
+</div>
+<!-- Red -->
+<div class="mb-6">
+<div class="flex justify-between items-end mb-2">
+<label class="font-bold text-red-500 text-lg flex items-center gap-2">
+<span class="material-symbols-rounded">local_fire_department</span>
+                                あか (Red)
+                            </label>
+<span class="font-mono font-bold text-xl bg-red-100 text-red-600 px-3 py-1 rounded-lg" id="txt-r">0</span>
+</div>
+<input id="slider-r" max="255" min="0" type="range" value="128">
+</div>
+<!-- Green -->
+<div class="mb-6">
+<div class="flex justify-between items-end mb-2">
+<label class="font-bold text-green-500 text-lg flex items-center gap-2">
+<span class="material-symbols-rounded">grass</span>
+                                みどり (Green)
+                            </label>
+<span class="font-mono font-bold text-xl bg-green-100 text-green-600 px-3 py-1 rounded-lg" id="txt-g">0</span>
+</div>
+<input id="slider-g" max="255" min="0" type="range" value="128">
+</div>
+<!-- Blue -->
+<div class="mb-2">
+<div class="flex justify-between items-end mb-2">
+<label class="font-bold text-blue-500 text-lg flex items-center gap-2">
+<span class="material-symbols-rounded">water_drop</span>
+                                あお (Blue)
+                            </label>
+<span class="font-mono font-bold text-xl bg-blue-100 text-blue-600 px-3 py-1 rounded-lg" id="txt-b">0</span>
+</div>
+<input id="slider-b" max="255" min="0" type="range" value="128">
+</div>
+</div>
+<!-- Recipes -->
+<div class="pop-card p-5 flex-1 bg-white/80">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-2xl">📖</span>
+<h2 class="text-lg font-bold text-slate-700">いろのレシピ</h2>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(255,255,255, 'まっしろ')">
+<div class="w-8 h-8 rounded-full bg-white border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">しろ</span>
+</button>
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(0,0,0, 'まっくろ')">
+<div class="w-8 h-8 rounded-full bg-black border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">くろ</span>
+</button>
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(255,165,0, 'オレンジ')">
+<div class="w-8 h-8 rounded-full bg-orange-400 border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">オレンジ</span>
+</button>
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(255,255,0, 'きいろ')">
+<div class="w-8 h-8 rounded-full bg-yellow-400 border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">きいろ</span>
+</button>
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(128,0,128, 'むらさき')">
+<div class="w-8 h-8 rounded-full bg-purple-600 border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">むらさき</span>
+</button>
+<button class="p-3 rounded-xl border-2 border-slate-100 hover:border-yellow-300 hover:bg-yellow-50 transition-all text-left flex items-center gap-3 group bg-white shadow-sm" onclick="setRGB(255,192,203, 'ピンク')">
+<div class="w-8 h-8 rounded-full bg-pink-300 border-2 border-slate-200 shadow-sm"></div>
+<span class="font-bold text-slate-600 group-hover:text-yellow-600">ピンク</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right: Character Preview -->
+<div class="w-full md:w-7/12 flex flex-col">
+<div class="pop-card flex-1 p-8 flex flex-col items-center justify-center relative bg-white border-dashed border-4 border-slate-200 overflow-hidden">
+<!-- Background Pattern inside card -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- Character -->
+<div class="relative w-64 h-64 md:w-80 md:h-80 transition-colors duration-200 ease-out flex items-center justify-center filter drop-shadow-xl animate-jelly" id="blob-character" style="background-color: rgb(0, 0, 0); border-radius: 40% 60% 70% 30% / 40% 50% 60%; animation: 3s ease 0s infinite alternate none running blob; color: rgb(255, 255, 255);">
+<!-- Face (SVG) -->
+<svg class="relative z-10 opacity-80" height="120" viewBox="0 0 100 100" width="120">
+<!-- Eyes -->
+<circle class="face-part" cx="30" cy="40" fill="currentColor" r="10"></circle>
+<circle class="face-part" cx="70" cy="40" fill="currentColor" r="10"></circle>
+<!-- Shine in eyes -->
+<circle cx="34" cy="36" fill="white" r="3"></circle>
+<circle cx="74" cy="36" fill="white" r="3"></circle>
+<!-- Mouth -->
+<path class="face-part" d="M 30 65 Q 50 80 70 65" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-width="6"></path>
+</svg>
+<!-- Shine effect on blob -->
+<div class="absolute top-10 left-10 w-16 h-8 bg-white opacity-20 rounded-full transform -rotate-45"></div>
+</div>
+<!-- Chat Bubble -->
+<div class="absolute top-4 right-4 md:right-10 bg-white px-4 py-2 rounded-2xl shadow-md border-2 border-slate-100 transform rotate-3 animate-bounce">
+<p class="font-bold text-slate-600 text-sm">ぼくは <span class="text-indigo-500" id="color-name-display">まっくろ</span>！</p>
+</div>
+<!-- Code Box (Friendly) -->
+<div class="absolute bottom-6 w-full max-w-md px-4">
+<div class="bg-slate-800 rounded-2xl p-4 text-white shadow-lg flex items-center justify-between gap-4">
+<div>
+<p class="text-xs text-slate-400 font-bold mb-0.5">カラーコード</p>
+<p class="text-[10px] text-slate-500 mb-1 opacity-70">いろを あらわす ことばだよ</p>
+<div class="font-mono text-xl font-bold tracking-wider" id="hex-code">#000000</div>
+</div>
+<button class="bg-white/10 hover:bg-white/20 active:scale-95 transition rounded-xl p-3 flex flex-col items-center gap-1" onclick="copyColor()">
+<span class="material-symbols-rounded text-xl">content_copy</span>
+<span class="text-[10px] font-bold">コピー</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== MODE 2: GAME (あそぶ) ==================== -->
+<div class="hidden absolute inset-0 flex flex-col p-4 md:p-6 overflow-y-auto pb-24 md:pb-6 bg-blue-50" id="view-game">
+<!-- GAME: Course Selection Screen -->
+<div class="max-w-4xl mx-auto w-full h-full flex flex-col items-center justify-center gap-8 animate-jelly" id="game-menu">
+<div class="text-center">
+<h2 class="text-3xl md:text-5xl font-black text-slate-800 mb-4 text-shadow-sm">コースをえらんでね！</h2>
+<p class="text-slate-500 font-bold text-lg">ぜんもんせいかい できるかな？</p>
+</div>
+<div class="flex flex-col md:flex-row gap-6 w-full max-w-2xl px-4">
+<!-- Normal Course -->
+<button class="flex-1 bg-white hover:bg-green-50 border-4 border-green-400 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all group text-left relative overflow-hidden" onclick="startGame('normal')">
+<div class="relative z-10">
+<span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-black tracking-widest mb-2 inline-block">かんたん</span>
+<h3 class="text-2xl font-black text-green-600 mb-2">ふつう コース</h3>
+<p class="text-slate-500 text-sm font-bold">きほんの いろが おおいよ。<br>まずは ここから！</p>
+<div class="mt-4 flex gap-1">
+<div class="w-6 h-6 rounded-full bg-red-500 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-blue-500 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-yellow-400 border-2 border-white"></div>
+</div>
+</div>
+<span class="material-symbols-rounded absolute -right-4 -bottom-4 text-9xl text-green-100 opacity-50 transform rotate-12">sentiment_satisfied</span>
+</button>
+<!-- Challenge Course -->
+<button class="flex-1 bg-white hover:bg-purple-50 border-4 border-purple-400 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:scale-105 transition-all group text-left relative overflow-hidden" onclick="startGame('challenge')">
+<div class="relative z-10">
+<span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-black tracking-widest mb-2 inline-block">むずかしい</span>
+<h3 class="text-2xl font-black text-purple-600 mb-2">チャレンジ コース</h3>
+<p class="text-slate-500 text-sm font-bold">フクザツな いろが でるよ。<br>きみは クリアできる？</p>
+<div class="mt-4 flex gap-1">
+<div class="w-6 h-6 rounded-full bg-orange-500 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-purple-700 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-teal-600 border-2 border-white"></div>
+</div>
+</div>
+<span class="material-symbols-rounded absolute -right-4 -bottom-4 text-9xl text-purple-100 opacity-50 transform rotate-12">military_tech</span>
+</button>
+</div>
+</div>
+<!-- GAME: Main Screen -->
+<div class="hidden max-w-4xl mx-auto w-full h-full flex flex-col" id="game-main">
+<!-- Game Header -->
+<div class="flex justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm">
+<div class="flex items-center gap-3">
+<button class="bg-slate-100 hover:bg-slate-200 p-2 rounded-xl text-slate-500 transition" onclick="exitGame()">
+<span class="material-symbols-rounded">arrow_back</span>
+</button>
+<div>
+<span class="text-xs font-black px-2 py-0.5 rounded-full mb-1 inline-block" id="game-mode-badge">モード</span>
+<h2 class="text-xl font-black text-slate-700 leading-none">もんだい <span class="text-2xl text-blue-500" id="level-display">1</span> / 10</h2>
+</div>
+</div>
+<!-- Stars/Score placeholder -->
+<div class="flex gap-1" id="score-stars">
+<!-- JS will populate stars -->
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-center justify-center flex-1">
+<!-- Target -->
+<div class="bg-white p-6 rounded-3xl shadow-lg border-4 border-white flex flex-col items-center w-full md:w-1/3 order-1">
+<span class="text-xs font-black text-slate-400 mb-2 tracking-widest">おてほん</span>
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-inner border-4 border-slate-100 mb-4 transition-colors duration-300" id="game-target" style="background-color: #ff0000;"></div>
+<div class="bg-yellow-50 text-yellow-800 px-4 py-2 rounded-xl text-sm font-bold w-full text-center">
+<span class="block text-xs opacity-70 mb-1">ヒント</span>
+<span id="game-hint">あか色を まぜてみよう</span>
+</div>
+</div>
+<!-- VS -->
+<div class="text-4xl font-black text-slate-300 transform rotate-12 order-2">VS</div>
+<!-- Player -->
+<div class="bg-white p-6 rounded-3xl shadow-lg border-4 border-blue-200 flex flex-col items-center w-full md:w-1/3 relative overflow-hidden order-3">
+<span class="text-xs font-black text-blue-400 mb-2 tracking-widest">あなたのいろ</span>
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-md border-4 border-white mb-6 transition-colors duration-100" id="game-player" style="background-color: #808080;"></div>
+<!-- Simple Sliders -->
+<div class="w-full space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-rounded text-red-500">circle</span>
+<input class="game-slider" id="game-r" max="255" min="0" type="range" value="128">
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-rounded text-green-500">circle</span>
+<input class="game-slider" id="game-g" max="255" min="0" type="range" value="128">
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-rounded text-blue-500">circle</span>
+<input class="game-slider" id="game-b" max="255" min="0" type="range" value="128">
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Action -->
+<div class="mt-4 text-center h-24 flex flex-col items-center justify-center relative">
+<button class="bg-blue-500 hover:bg-blue-600 text-white font-black py-3 px-12 rounded-full text-xl shadow-[0_4px_0_#1e40af] active:shadow-none active:translate-y-1 transition-all transform hover:scale-105" id="check-btn" onclick="checkAnswer()">
+                        できた！
+                    </button>
+<!-- Result Modal (Inline) -->
+<div class="hidden flex flex-col items-center animate-jelly absolute inset-0 bg-blue-50 z-10 justify-center" id="result-modal">
+<h3 class="text-2xl font-black text-slate-800 mb-1" id="result-title">すごい！</h3>
+<p class="text-lg font-bold text-slate-600 mb-2" id="result-score">98てん</p>
+<button class="text-white bg-green-500 px-6 py-2 rounded-full font-bold shadow-[0_2px_0_#15803d] active:translate-y-0.5 active:shadow-none transition" onclick="nextLevel()">つぎへ</button>
+</div>
+</div>
+</div>
+<!-- GAME: Completion Screen -->
+<div class="hidden max-w-4xl mx-auto w-full h-full flex flex-col items-center justify-center text-center animate-jelly" id="game-complete">
+<span class="material-symbols-rounded text-8xl text-yellow-400 mb-4 animate-bounce">emoji_events</span>
+<h2 class="text-4xl font-black text-slate-800 mb-2">コース クリア！</h2>
+<p class="text-xl font-bold text-slate-500 mb-8">おめでとう！さいごまで できたね！</p>
+<div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-slate-100 mb-8">
+<p class="text-sm font-bold text-slate-400 mb-1">あなたの スコア</p>
+<p class="text-5xl font-black text-blue-500" id="final-score">850<span class="text-xl text-slate-400 ml-2">/ 1000</span></p>
+</div>
+<button class="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:bg-slate-700 transition" onclick="exitGame()">
+                    メニューに もどる
+                </button>
+</div>
+</div>
+</main>
+<!-- Toast Notification -->
+<div class="fixed top-24 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-xl flex items-center gap-2 pointer-events-none opacity-0 transition-all duration-300 translate-y-4 z-50" id="toast">
+<span class="material-symbols-rounded text-green-400">check_circle</span>
+<span class="font-bold">コピーしたよ！</span>
+</div>
+<script>
+        /* ==================== DOWNLOAD FUNCTION ==================== */
+        function downloadSource() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'color-lab-dx.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        /* ==================== SHARED UTILS ==================== */
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+
+        function getTextColor(r, g, b) {
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            return brightness > 128 ? '#1e293b' : '#ffffff'; 
+        }
+
+        /* ==================== TAB SWITCHING ==================== */
+        function switchTab(mode) {
+            const labBtn = document.getElementById('tab-lab');
+            const gameBtn = document.getElementById('tab-game');
+            const labView = document.getElementById('view-lab');
+            const gameView = document.getElementById('view-game');
+
+            if(mode === 'lab') {
+                labBtn.className = "px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold transition-all bg-yellow-400 text-white shadow-[0_2px_0_rgba(180,83,9,0.3)] flex items-center gap-1 md:gap-2";
+                gameBtn.className = "px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 md:gap-2";
+                labView.classList.remove('hidden');
+                gameView.classList.add('hidden');
+            } else {
+                gameBtn.className = "px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold transition-all bg-blue-500 text-white shadow-[0_2px_0_#1e40af] flex items-center gap-1 md:gap-2";
+                labBtn.className = "px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-base font-bold text-slate-400 hover:text-slate-600 transition-all flex items-center gap-1 md:gap-2";
+                gameView.classList.remove('hidden');
+                labView.classList.add('hidden');
+                
+                // Return to menu if game is not active
+                if(gameState.state === 'menu') {
+                    showGameScreen('menu');
+                }
+            }
+        }
+
+        /* ==================== LAB MODE LOGIC (修正版) ==================== */
+        
+        // グローバル変数を追加して、updateLabの挙動を制御
+        let isUsingRecipe = false;
+
+        function updateLab() {
+            // もしレシピボタンが押された直後なら、名前の自動判定をスキップする（setRGBで設定された名前を維持）
+            // ただし、スライダーを動かしてここに来た場合は isUsingRecipe フラグをオフにする必要がある
+            // ここでは「スライダー操作時」に呼ばれることを前提にロジックを組む
+            
+            const r = parseInt(document.getElementById('slider-r').value);
+            const g = parseInt(document.getElementById('slider-g').value);
+            const b = parseInt(document.getElementById('slider-b').value);
+
+            document.getElementById('txt-r').textContent = r;
+            document.getElementById('txt-g').textContent = g;
+            document.getElementById('txt-b').textContent = b;
+
+            const color = `rgb(${r}, ${g}, ${b})`;
+            const hex = rgbToHex(r, g, b);
+            
+            const blob = document.getElementById('blob-character');
+            blob.style.backgroundColor = color;
+            blob.style.color = getTextColor(r,g,b);
+
+            document.getElementById('hex-code').textContent = hex;
+
+            // もし setRGB からの呼び出し（フラグがtrue）でなければ、自動判定ロジックを走らせる
+            if (!isUsingRecipe) {
+                // 自動判定ロジック（厳格化：赤青緑白黒以外はすべてカスタムカラー）
+                let name = "カスタムカラー";
+                
+                // 厳密な判定閾値 (Pureな色に非常に近い場合のみ名前を出す)
+                const threshold = 10; 
+                
+                // 白 (White)
+                if (r > 255 - threshold && g > 255 - threshold && b > 255 - threshold) {
+                    name = "まっしろ";
+                }
+                // 黒 (Black)
+                else if (r < threshold && g < threshold && b < threshold) {
+                    name = "まっくろ";
+                }
+                // 赤 (Red) - 緑青がほぼ0、赤が強い
+                else if (r > 200 && g < threshold && b < threshold) {
+                    name = "あか";
+                }
+                // 緑 (Green) - 赤青がほぼ0、緑が強い
+                else if (g > 200 && r < threshold && b < threshold) {
+                    name = "みどり";
+                }
+                // 青 (Blue) - 赤緑がほぼ0、青が強い
+                else if (b > 200 && r < threshold && g < threshold) {
+                    name = "あお";
+                }
+                // それ以外はすべてカスタムカラー
+                else {
+                    name = "カスタムカラー";
+                }
+
+                document.getElementById('color-name-display').textContent = name;
+            }
+            
+            // 処理が終わったらフラグを戻す（スライダー操作時は常にfalseで処理される）
+            isUsingRecipe = false;
+        }
+
+        // レシピボタン用の関数（名前を強制指定）
+        function setRGB(r, g, b, forcedName) {
+            // フラグを立てて、updateLab内での自動判定を無効化（または後書きする）
+            isUsingRecipe = true;
+            
+            document.getElementById('slider-r').value = r;
+            document.getElementById('slider-g').value = g;
+            document.getElementById('slider-b').value = b;
+            
+            // まず数値や色を更新
+            updateLab(); 
+            
+            // updateLabが実行された後に、名前を強制的に上書きする
+            // （updateLab内で isUsingRecipe=true のため自動判定はスキップしたかったが、
+            //  コードの簡潔さのため updateLab のあとに上書きするほうが確実）
+            document.getElementById('color-name-display').textContent = forcedName;
+            
+            // アニメーション
+            const char = document.getElementById('blob-character');
+            char.classList.remove('animate-jelly');
+            void char.offsetWidth;
+            char.classList.add('animate-jelly');
+            
+            // 次のスライダー操作のためにフラグを戻す必要はない（sliderのinputイベントは isUsingRecipe=false で入ってくるため）
+            // ただし、念のためここでリセットしておく
+            isUsingRecipe = false;
+        }
+
+        function copyColor() {
+            const hex = document.getElementById('hex-code').textContent;
+            navigator.clipboard.writeText(hex).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-y-4');
+                }, 2000);
+            });
+        }
+
+        ['slider-r', 'slider-g', 'slider-b'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                // スライダー操作時はフラグをfalseにして自動判定を有効にする
+                isUsingRecipe = false;
+                updateLab();
+            });
+        });
+
+        /* ==================== GAME MODE LOGIC (DX) ==================== */
+        
+        const LEVELS_NORMAL = [
+            { t:[255, 0, 0], h:"「あか」を まっくすに してみよう！", n:"あか" },
+            { t:[0, 255, 0], h:"「みどり」を まっくすに！", n:"みどり" },
+            { t:[0, 0, 255], h:"「あお」を まっくすに！", n:"あお" },
+            { t:[255, 255, 255], h:"ぜんぶ まっくすで ひかりかがやく！", n:"しろ" },
+            { t:[0, 0, 0], h:"ぜんぶ ゼロに すると...？", n:"くろ" },
+            { t:[255, 255, 0], h:"「あか」と「みどり」を まぜるよ", n:"きいろ" },
+            { t:[0, 255, 255], h:"「みどり」と「あお」を まぜるよ", n:"みずいろ" },
+            { t:[255, 0, 255], h:"「あか」と「あお」を まぜるよ", n:"ピンク" },
+            { t:[128, 128, 128], h:"ぜんぶ まんなか くらいだよ", n:"グレー" },
+            { t:[255, 128, 128], h:"「あか」はまっくす。ほかははんぶん。", n:"うすいあか" },
+        ];
+
+        const LEVELS_CHALLENGE = [
+            { t:[255, 165, 0], h:"あかをたくさん、みどりをすこし", n:"オレンジ" },
+            { t:[128, 0, 128], h:"あかとあおを はんぶんずつ", n:"むらさき" },
+            { t:[0, 0, 128], h:"あおだけ はんぶんのつよさ", n:"こんいろ" },
+            { t:[165, 42, 42], h:"あかをすこし、みどりはもっとすこし", n:"ちゃいろ" },
+            { t:[255, 215, 0], h:"きいろに すこしあかみがあるかな？", n:"ゴールド" },
+            { t:[0, 128, 0], h:"みどりだけ はんぶんのつよさ", n:"ふかいみどり" },
+            { t:[255, 105, 180], h:"あかをつよく、みどりをすこし、あおもつよく", n:"ホットピンク" },
+            { t:[128, 128, 0], h:"あかとみどりを はんぶんずつ", n:"オリーブ" },
+            { t:[64, 224, 208], h:"みどりとあおを つよく、あかはすこし", n:"ターコイズ" },
+            { t:[75, 0, 130], h:"あかはすこし、あおをはんぶんくらい", n:"インディゴ" },
+        ];
+
+        let gameState = {
+            state: 'menu', // menu, playing, complete
+            mode: 'normal',
+            currentLevelIndex: 0,
+            score: 0,
+            levels: []
+        };
+
+        function showGameScreen(id) {
+            ['game-menu', 'game-main', 'game-complete'].forEach(elId => {
+                document.getElementById(elId).classList.add('hidden');
+            });
+            document.getElementById(`game-${id}`).classList.remove('hidden');
+        }
+
+        function startGame(mode) {
+            gameState.state = 'playing';
+            gameState.mode = mode;
+            gameState.currentLevelIndex = 0;
+            gameState.score = 0;
+            gameState.levels = mode === 'normal' ? LEVELS_NORMAL : LEVELS_CHALLENGE;
+
+            const badge = document.getElementById('game-mode-badge');
+            if(mode === 'normal') {
+                badge.className = "text-xs font-black px-2 py-0.5 rounded-full mb-1 inline-block bg-green-100 text-green-600";
+                badge.textContent = "ふつう コース";
+            } else {
+                badge.className = "text-xs font-black px-2 py-0.5 rounded-full mb-1 inline-block bg-purple-100 text-purple-600";
+                badge.textContent = "チャレンジ コース";
+            }
+
+            document.getElementById('score-stars').innerHTML = '';
+            
+            showGameScreen('main');
+            loadLevel(0);
+        }
+
+        function exitGame() {
+            gameState.state = 'menu';
+            showGameScreen('menu');
+        }
+
+        function loadLevel(idx) {
+            const levelData = gameState.levels[idx];
+            document.getElementById('level-display').textContent = idx + 1;
+            
+            const targetColor = `rgb(${levelData.t[0]}, ${levelData.t[1]}, ${levelData.t[2]})`;
+            document.getElementById('game-target').style.backgroundColor = targetColor;
+            document.getElementById('game-hint').textContent = levelData.h;
+
+            document.getElementById('game-r').value = 128;
+            document.getElementById('game-g').value = 128;
+            document.getElementById('game-b').value = 128;
+            updateGamePreview();
+
+            document.getElementById('check-btn').classList.remove('hidden');
+            document.getElementById('result-modal').classList.add('hidden');
+        }
+
+        function updateGamePreview() {
+            const r = document.getElementById('game-r').value;
+            const g = document.getElementById('game-g').value;
+            const b = document.getElementById('game-b').value;
+            document.getElementById('game-player').style.backgroundColor = `rgb(${r},${g},${b})`;
+        }
+
+        function checkAnswer() {
+            const r = parseInt(document.getElementById('game-r').value);
+            const g = parseInt(document.getElementById('game-g').value);
+            const b = parseInt(document.getElementById('game-b').value);
+            
+            const target = gameState.levels[gameState.currentLevelIndex].t;
+            
+            const dist = Math.sqrt(
+                Math.pow(r - target[0], 2) +
+                Math.pow(g - target[1], 2) +
+                Math.pow(b - target[2], 2)
+            );
+            const maxDist = Math.sqrt(255*255*3);
+            const score = Math.max(0, Math.floor(100 - (dist/maxDist * 100)));
+            
+            gameState.score += score;
+
+            document.getElementById('check-btn').classList.add('hidden');
+            const modal = document.getElementById('result-modal');
+            modal.classList.remove('hidden');
+            
+            const title = document.getElementById('result-title');
+            if(score >= 95) {
+                title.textContent = "てんさい！";
+                title.className = "text-2xl font-black text-yellow-500 mb-1";
+            } else if(score >= 80) {
+                title.textContent = "すごい！";
+                title.className = "text-2xl font-black text-green-500 mb-1";
+            } else {
+                title.textContent = "おしい！";
+                title.className = "text-2xl font-black text-slate-500 mb-1";
+            }
+            document.getElementById('result-score').textContent = score + "てん";
+            
+            const star = document.createElement('span');
+            star.className = "material-symbols-rounded text-sm " + (score >= 80 ? "text-yellow-400" : "text-slate-200");
+            star.textContent = "star";
+            document.getElementById('score-stars').appendChild(star);
+        }
+
+        function nextLevel() {
+            gameState.currentLevelIndex++;
+            if(gameState.currentLevelIndex >= gameState.levels.length) {
+                showGameScreen('complete');
+                document.getElementById('final-score').innerHTML = gameState.score + `<span class="text-xl text-slate-400 ml-2">/ 1000</span>`;
+            } else {
+                loadLevel(gameState.currentLevelIndex);
+            }
+        }
+
+        ['game-r', 'game-g', 'game-b'].forEach(id => {
+            document.getElementById(id).addEventListener('input', updateGamePreview);
+        });
+
+        /* ==================== INIT ==================== */
+        // 初期状態はグレー（カスタムカラー）
+        document.getElementById('color-name-display').textContent = "カスタムカラー";
+        updateLab();
+
+    </script>
+
+</body></html>
