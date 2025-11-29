@@ -1,0 +1,415 @@
+<html lang="ja"><head>
+
+<script class="injected-ffc2e83d85">
+(function(){'use strict';function q(b){var c=0;return function(){return c<b.length?{done:!1,value:b[c++]}:{done:!0}}}function t(b){var c=typeof Symbol!="undefined"&&Symbol.iterator&&b[Symbol.iterator];if(c)return c.call(b);if(typeof b.length=="number")return{next:q(b)};throw Error(String(b)+" is not an iterable or ArrayLike");}var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,c,g){if(b==Array.prototype||b==Object.prototype)return b;b[c]=g.value;return b};
+function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var c=0;c<b.length;++c){var g=b[c];if(g&&g.Math==Math)return g}throw Error("Cannot find global object");}var w=v(this);function x(b,c){if(c)a:{var g=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var l=b[h];if(!(l in g))break a;g=g[l]}b=b[b.length-1];h=g[b];c=c(h);c!=h&&c!=null&&u(g,b,{configurable:!0,writable:!0,value:c})}}
+function y(){this.j=!1;this.g=null;this.u=void 0;this.h=1;this.v=this.l=0;this.i=null}function z(b){if(b.j)throw new TypeError("Generator is already running");b.j=!0}y.prototype.o=function(b){this.u=b};function A(b,c){b.i={I:c,J:!0};b.h=b.l||b.v}y.prototype.return=function(b){this.i={return:b};this.h=this.v};function B(b){this.g=new y;this.h=b}function E(b,c){z(b.g);var g=b.g.g;if(g)return F(b,"return"in g?g["return"]:function(h){return{value:h,done:!0}},c,b.g.return);b.g.return(c);return G(b)}
+function F(b,c,g,h){try{var l=c.call(b.g.g,g);if(!(l instanceof Object))throw new TypeError("Iterator result "+l+" is not an object");if(!l.done)return b.g.j=!1,l;var m=l.value}catch(f){return b.g.g=null,A(b.g,f),G(b)}b.g.g=null;h.call(b.g,m);return G(b)}function G(b){for(;b.g.h;)try{var c=b.h(b.g);if(c)return b.g.j=!1,{value:c.value,done:!1}}catch(g){b.g.u=void 0,A(b.g,g)}b.g.j=!1;if(b.g.i){c=b.g.i;b.g.i=null;if(c.J)throw c.I;return{value:c.return,done:!0}}return{value:void 0,done:!0}}
+function H(b){this.next=function(c){z(b.g);b.g.g?c=F(b,b.g.g.next,c,b.g.o):(b.g.o(c),c=G(b));return c};this.throw=function(c){z(b.g);b.g.g?c=F(b,b.g.g["throw"],c,b.g.o):(A(b.g,c),c=G(b));return c};this.return=function(c){return E(b,c)};this[Symbol.iterator]=function(){return this}}function I(b){function c(h){return b.next(h)}function g(h){return b.throw(h)}return new Promise(function(h,l){function m(f){f.done?h(f.value):Promise.resolve(f.value).then(c,g).then(m,l)}m(b.next())})}
+x("Symbol",function(b){function c(m){if(this instanceof c)throw new TypeError("Symbol is not a constructor");return new g(h+(m||"")+"_"+l++,m)}function g(m,f){this.g=m;u(this,"description",{configurable:!0,writable:!0,value:f})}if(b)return b;g.prototype.toString=function(){return this.g};var h="jscomp_symbol_"+(Math.random()*1E9>>>0)+"_",l=0;return c});
+x("Symbol.iterator",function(b){if(b)return b;b=Symbol("Symbol.iterator");u(Array.prototype,b,{configurable:!0,writable:!0,value:function(){return J(q(this))}});return b});function J(b){b={next:b};b[Symbol.iterator]=function(){return this};return b}
+x("Promise",function(b){function c(f){this.h=0;this.i=void 0;this.g=[];this.u=!1;var a=this.j();try{f(a.resolve,a.reject)}catch(d){a.reject(d)}}function g(){this.g=null}function h(f){return f instanceof c?f:new c(function(a){a(f)})}if(b)return b;g.prototype.h=function(f){if(this.g==null){this.g=[];var a=this;this.i(function(){a.l()})}this.g.push(f)};var l=w.setTimeout;g.prototype.i=function(f){l(f,0)};g.prototype.l=function(){for(;this.g&&this.g.length;){var f=this.g;this.g=[];for(var a=0;a<f.length;++a){var d=
+f[a];f[a]=null;try{d()}catch(e){this.j(e)}}}this.g=null};g.prototype.j=function(f){this.i(function(){throw f;})};c.prototype.j=function(){function f(e){return function(k){d||(d=!0,e.call(a,k))}}var a=this,d=!1;return{resolve:f(this.D),reject:f(this.l)}};c.prototype.D=function(f){if(f===this)this.l(new TypeError("A Promise cannot resolve to itself"));else if(f instanceof c)this.G(f);else{a:switch(typeof f){case "object":var a=f!=null;break a;case "function":a=!0;break a;default:a=!1}a?this.C(f):this.o(f)}};
+c.prototype.C=function(f){var a=void 0;try{a=f.then}catch(d){this.l(d);return}typeof a=="function"?this.H(a,f):this.o(f)};c.prototype.l=function(f){this.v(2,f)};c.prototype.o=function(f){this.v(1,f)};c.prototype.v=function(f,a){if(this.h!=0)throw Error("Cannot settle("+f+", "+a+"): Promise already settled in state"+this.h);this.h=f;this.i=a;this.h===2&&this.F();this.K()};c.prototype.F=function(){var f=this;l(function(){if(f.B()){var a=w.console;typeof a!=="undefined"&&a.error(f.i)}},1)};c.prototype.B=
+function(){if(this.u)return!1;var f=w.CustomEvent,a=w.Event,d=w.dispatchEvent;if(typeof d==="undefined")return!0;typeof f==="function"?f=new f("unhandledrejection",{cancelable:!0}):typeof a==="function"?f=new a("unhandledrejection",{cancelable:!0}):(f=w.document.createEvent("CustomEvent"),f.initCustomEvent("unhandledrejection",!1,!0,f));f.promise=this;f.reason=this.i;return d(f)};c.prototype.K=function(){if(this.g!=null){for(var f=0;f<this.g.length;++f)m.h(this.g[f]);this.g=null}};var m=new g;c.prototype.G=
+function(f){var a=this.j();f.A(a.resolve,a.reject)};c.prototype.H=function(f,a){var d=this.j();try{f.call(a,d.resolve,d.reject)}catch(e){d.reject(e)}};c.prototype.then=function(f,a){function d(n,r){return typeof n=="function"?function(C){try{e(n(C))}catch(D){k(D)}}:r}var e,k,p=new c(function(n,r){e=n;k=r});this.A(d(f,e),d(a,k));return p};c.prototype.catch=function(f){return this.then(void 0,f)};c.prototype.A=function(f,a){function d(){switch(e.h){case 1:f(e.i);break;case 2:a(e.i);break;default:throw Error("Unexpected state: "+
+e.h);}}var e=this;this.g==null?m.h(d):this.g.push(d);this.u=!0};c.resolve=h;c.reject=function(f){return new c(function(a,d){d(f)})};c.race=function(f){return new c(function(a,d){for(var e=t(f),k=e.next();!k.done;k=e.next())h(k.value).A(a,d)})};c.all=function(f){var a=t(f),d=a.next();return d.done?h([]):new c(function(e,k){function p(C){return function(D){n[C]=D;r--;r==0&&e(n)}}var n=[],r=0;do n.push(void 0),r++,h(d.value).A(p(n.length-1),k),d=a.next();while(!d.done)})};return c});
+function K(b,c){return Object.prototype.hasOwnProperty.call(b,c)}x("Object.is",function(b){return b?b:function(c,g){return c===g?c!==0||1/c===1/g:c!==c&&g!==g}});x("Array.prototype.includes",function(b){return b?b:function(c,g){var h=this;h instanceof String&&(h=String(h));var l=h.length;g=g||0;for(g<0&&(g=Math.max(g+l,0));g<l;g++){var m=h[g];if(m===c||Object.is(m,c))return!0}return!1}});
+x("String.prototype.includes",function(b){return b?b:function(c,g){if(this==null)throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined");if(c instanceof RegExp)throw new TypeError("First argument to String.prototype.includes must not be a regular expression");return this.indexOf(c,g||0)!==-1}});
+x("WeakMap",function(b){function c(d){this.g=(a+=Math.random()+1).toString();if(d){d=t(d);for(var e;!(e=d.next()).done;)e=e.value,this.set(e[0],e[1])}}function g(){}function h(d){var e=typeof d;return e==="object"&&d!==null||e==="function"}function l(d){if(!K(d,f)){var e=new g;u(d,f,{value:e})}}function m(d){var e=Object[d];e&&(Object[d]=function(k){if(k instanceof g)return k;Object.isExtensible(k)&&l(k);return e(k)})}if(function(){if(!b||!Object.seal)return!1;try{var d=Object.seal({}),e=Object.seal({}),
+k=new b([[d,2],[e,3]]);if(k.get(d)!=2||k.get(e)!=3)return!1;k.delete(d);k.set(e,4);return!k.has(d)&&k.get(e)==4}catch(p){return!1}}())return b;var f="$jscomp_hidden_"+Math.random();m("freeze");m("preventExtensions");m("seal");var a=0;c.prototype.set=function(d,e){if(!h(d))throw Error("Invalid WeakMap key");l(d);if(!K(d,f))throw Error("WeakMap key fail: "+d);d[f][this.g]=e;return this};c.prototype.get=function(d){return h(d)&&K(d,f)?d[f][this.g]:void 0};c.prototype.has=function(d){return h(d)&&K(d,
+f)&&K(d[f],this.g)};c.prototype.delete=function(d){return h(d)&&K(d,f)&&K(d[f],this.g)?delete d[f][this.g]:!1};return c});
+x("Map",function(b){function c(){var a={};return a.m=a.next=a.head=a}function g(a,d){var e=a[1];return J(function(){if(e){for(;e.head!=a[1];)e=e.m;for(;e.next!=e.head;)return e=e.next,{done:!1,value:d(e)};e=null}return{done:!0,value:void 0}})}function h(a,d){var e=d&&typeof d;e=="object"||e=="function"?m.has(d)?e=m.get(d):(e=""+ ++f,m.set(d,e)):e="p_"+d;var k=a[0][e];if(k&&K(a[0],e))for(a=0;a<k.length;a++){var p=k[a];if(d!==d&&p.key!==p.key||d===p.key)return{id:e,list:k,index:a,entry:p}}return{id:e,
+list:k,index:-1,entry:void 0}}function l(a){this[0]={};this[1]=c();this.size=0;if(a){a=t(a);for(var d;!(d=a.next()).done;)d=d.value,this.set(d[0],d[1])}}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var a=Object.seal({x:4}),d=new b(t([[a,"s"]]));if(d.get(a)!="s"||d.size!=1||d.get({x:4})||d.set({x:4},"t")!=d||d.size!=2)return!1;var e=d.entries(),k=e.next();if(k.done||k.value[0]!=a||k.value[1]!="s")return!1;k=e.next();return k.done||k.value[0].x!=
+4||k.value[1]!="t"||!e.next().done?!1:!0}catch(p){return!1}}())return b;var m=new WeakMap;l.prototype.set=function(a,d){a=a===0?0:a;var e=h(this,a);e.list||(e.list=this[0][e.id]=[]);e.entry?e.entry.value=d:(e.entry={next:this[1],m:this[1].m,head:this[1],key:a,value:d},e.list.push(e.entry),this[1].m.next=e.entry,this[1].m=e.entry,this.size++);return this};l.prototype.delete=function(a){a=h(this,a);return a.entry&&a.list?(a.list.splice(a.index,1),a.list.length||delete this[0][a.id],a.entry.m.next=a.entry.next,
+a.entry.next.m=a.entry.m,a.entry.head=null,this.size--,!0):!1};l.prototype.clear=function(){this[0]={};this[1]=this[1].m=c();this.size=0};l.prototype.has=function(a){return!!h(this,a).entry};l.prototype.get=function(a){return(a=h(this,a).entry)&&a.value};l.prototype.entries=function(){return g(this,function(a){return[a.key,a.value]})};l.prototype.keys=function(){return g(this,function(a){return a.key})};l.prototype.values=function(){return g(this,function(a){return a.value})};l.prototype.forEach=
+function(a,d){for(var e=this.entries(),k;!(k=e.next()).done;)k=k.value,a.call(d,k[1],k[0],this)};l.prototype[Symbol.iterator]=l.prototype.entries;var f=0;return l});
+x("Set",function(b){function c(g){this.g=new Map;if(g){g=t(g);for(var h;!(h=g.next()).done;)this.add(h.value)}this.size=this.g.size}if(function(){if(!b||typeof b!="function"||!b.prototype.entries||typeof Object.seal!="function")return!1;try{var g=Object.seal({x:4}),h=new b(t([g]));if(!h.has(g)||h.size!=1||h.add(g)!=h||h.size!=1||h.add({x:4})!=h||h.size!=2)return!1;var l=h.entries(),m=l.next();if(m.done||m.value[0]!=g||m.value[1]!=g)return!1;m=l.next();return m.done||m.value[0]==g||m.value[0].x!=4||
+m.value[1]!=m.value[0]?!1:l.next().done}catch(f){return!1}}())return b;c.prototype.add=function(g){g=g===0?0:g;this.g.set(g,g);this.size=this.g.size;return this};c.prototype.delete=function(g){g=this.g.delete(g);this.size=this.g.size;return g};c.prototype.clear=function(){this.g.clear();this.size=0};c.prototype.has=function(g){return this.g.has(g)};c.prototype.entries=function(){return this.g.entries()};c.prototype.values=function(){return this.g.values()};c.prototype.keys=c.prototype.values;c.prototype[Symbol.iterator]=
+c.prototype.values;c.prototype.forEach=function(g,h){var l=this;this.g.forEach(function(m){return g.call(h,m,m,l)})};return c});(function(){function b(){return m?Promise.resolve(m):f?f:f=fetch("https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json").then(function(a){if(!a.ok)throw Error("HTTP error! status: "+a.status+" fetching https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json");return a.json()}).then(function(a){if(!Array.isArray(a))throw new TypeError("Fetched icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json is not an array.");
+return m=a}).catch(function(a){console.error("IconChecker: Failed to load valid icon names from https://www.gstatic.com/bard-maui/resources/material-design-icon-names.804824289.json.",a);f=null;throw a;})}function c(a){var d,e,k,p;return I(new H(new B(function(n){switch(n.h){case 1:d=(a.textContent||"").trim();if(!d||a.classList.contains("js-replaced-missing-icon")&&d==="radio_button_unchecked")return n.return();e=window.getComputedStyle(a);if(e.display==="none"||e.visibility==="hidden")return n.return();
+n.l=2;var r=b();n.h=4;return{value:r};case 4:k=n.u;n.h=3;n.l=0;break;case 2:return n.l=0,n.i=null,console.warn('IconChecker: Skipping check for icon "'+d+'" as valid names could not be loaded.'),n.return();case 3:(p=k.includes(d))?a.classList.contains("js-replaced-missing-icon")&&a.classList.remove("js-replaced-missing-icon"):d==="radio_button_unchecked"&&a.classList.contains("js-replaced-missing-icon")||(a.textContent="radio_button_unchecked",a.classList.add("js-replaced-missing-icon")),n.h=0}})))}
+function g(a){a=a===void 0?document.body:a;a.querySelectorAll(l).forEach(function(d){c(d)})}function h(){b().catch(function(){});document.fonts.ready.then(function(){requestAnimationFrame(function(){g(document.body);(new MutationObserver(function(a){var d=new Set;a=t(a);for(var e=a.next();!e.done;e=a.next())if(e=e.value,e.type==="childList")e.addedNodes.forEach(function(p){p.nodeType===Node.ELEMENT_NODE&&(p.matches(l)&&d.add(p),p.querySelectorAll(l).forEach(function(n){d.add(n)}))});else if(e.type===
+"attributes"&&e.attributeName==="class"){var k=e.target;e.target.nodeType===Node.ELEMENT_NODE&&k.matches(l)&&d.add(k)}else e.type==="characterData"&&e.target.parentNode&&(e=e.target.parentNode,e.nodeType===Node.ELEMENT_NODE&&e.matches(l)&&d.add(e));d.size>0&&setTimeout(function(){d.forEach(function(p){c(p)})},500)})).observe(document.body,{childList:!0,subtree:!0,attributes:!0,attributeFilter:["class"],characterData:!0})})}).catch(function(a){console.error("IconChecker: Font loading error. Scanning icons anyway.",
+a);requestAnimationFrame(function(){g(document.body)})})}var l=["material-icons","material-symbols-outlined","material-symbols-rounded","material-symbols-sharp"].map(function(a){return"."+a}).join(","),m=null,f=null;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",function(){h()}):h()})();}).call(this);
+
+</script>
+
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Parent's Cafe | なんでも用紙ジェネレーター</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,400,0,0" rel="stylesheet">
+<style>
+    :root {
+        --paper-w: 210mm;
+        --paper-h: 297mm;
+    }
+    body {
+        font-family: 'Zen Maru Gothic', sans-serif;
+        background-color: #F5F5F0; /* Stone 50 */
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E6E6DC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        color: #57534E; /* Stone 600 */
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* マロンくん (大人向け控えめバージョン) */
+    .maron-sm-wrapper { width: 32px; height: 28px; position: relative; display: inline-block; vertical-align: middle; }
+    .maron-body {
+        width: 100%; height: 100%;
+        background-color: #A16207;
+        border-radius: 50% 50% 45% 45%;
+        position: relative;
+    }
+    .maron-face {
+        width: 80%; height: 70%;
+        background-color: #FEF3C7;
+        border-radius: 50% 50% 45% 45%;
+        position: absolute; bottom: 5%; left: 10%;
+    }
+    .maron-ear { width: 24%; height: 28%; background-color: #A16207; border-radius: 50%; position: absolute; top: -10%; }
+    .maron-ear.l { left: 5%; } .maron-ear.r { right: 5%; }
+    .maron-eye { width: 8%; height: 12%; background-color: #451A03; border-radius: 50%; position: absolute; top: 38%; }
+    .maron-eye.l { left: 32%; } .maron-eye.r { right: 32%; }
+    .maron-mouth {
+        width: 16%; height: 8%; border-bottom: 2px solid #451A03; border-radius: 50%;
+        position: absolute; top: 50%; left: 42%;
+    }
+
+    /* 用紙プレビューエリア */
+    .paper-preview-container {
+        background-color: #E7E5E4; /* Stone 200 */
+        border-radius: 1rem;
+        padding: 2rem;
+        overflow: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+    }
+    .paper-preview {
+        width: var(--paper-w);
+        height: var(--paper-h);
+        background: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        margin: 0 auto;
+        padding: 20mm;
+        box-sizing: border-box;
+        transform-origin: top center;
+    }
+
+    /* 用紙パターンCSS */
+    .pattern-grid-5mm {
+        background-image: 
+            linear-gradient(#CBD5E1 1px, transparent 1px),
+            linear-gradient(90deg, #CBD5E1 1px, transparent 1px);
+        background-size: 5mm 5mm;
+        border: 1px solid #CBD5E1;
+        width: 100%; height: 100%;
+    }
+    
+    .pattern-grid-10mm {
+        background-image: 
+            linear-gradient(#94A3B8 1px, transparent 1px),
+            linear-gradient(90deg, #94A3B8 1px, transparent 1px);
+        background-size: 10mm 10mm;
+        border: 1px solid #94A3B8;
+        width: 100%; height: 100%;
+        position: relative;
+    }
+    /* 5mm補助線 */
+    .pattern-grid-10mm::after {
+        content: ''; position: absolute; inset: 0;
+        background-image: 
+            linear-gradient(rgba(203, 213, 225, 0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(203, 213, 225, 0.5) 1px, transparent 1px);
+        background-size: 5mm 5mm;
+        pointer-events: none;
+    }
+
+    .pattern-kanji {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5列 */
+        grid-auto-rows: 1fr;
+        gap: 2mm;
+        width: 100%; height: 100%;
+        border: 2px solid #94A3B8;
+        padding: 2mm;
+    }
+    .kanji-box {
+        border: 1px solid #94A3B8;
+        position: relative;
+        aspect-ratio: 1;
+    }
+    .kanji-box::after {
+        content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background-image: linear-gradient(to right, transparent 49%, #E2E8F0 50%, transparent 51%),
+                          linear-gradient(to bottom, transparent 49%, #E2E8F0 50%, transparent 51%);
+    }
+    
+    .pattern-english {
+        width: 100%; height: 100%;
+        /* 4線: 1ブロック14mm程度? 上中下 */
+        background-image: repeating-linear-gradient(
+            to bottom,
+            #334155 0px, #334155 1px, /* Top line */
+            transparent 1px, transparent 4mm,
+            #94A3B8 4mm, #94A3B8 4.5mm, /* Middle dashed line approx (solid for print safety) */
+            transparent 4.5mm, transparent 8mm,
+            #EF4444 8mm, #EF4444 9mm, /* Base line (Red) */
+            transparent 9mm, transparent 14mm
+        );
+    }
+    
+    .pattern-music {
+        width: 100%; height: 100%;
+        background: repeating-linear-gradient(
+            to bottom,
+            #000 0, #000 1px, transparent 1px, transparent 2mm,
+            #000 2mm, #000 calc(2mm + 1px), transparent calc(2mm + 1px), transparent 4mm,
+            #000 4mm, #000 calc(4mm + 1px), transparent calc(4mm + 1px), transparent 6mm,
+            #000 6mm, #000 calc(6mm + 1px), transparent calc(6mm + 1px), transparent 8mm,
+            #000 8mm, #000 calc(8mm + 1px), transparent calc(8mm + 1px), transparent 18mm /* Space */
+        );
+    }
+    
+    .pattern-genkou {
+        /* 原稿用紙 20x20 */
+        display: flex; flex-direction: row-reverse; /* 縦書き想定 */
+        width: 100%; height: 100%;
+        border: 2px solid #22C55E; /* Greenish */
+        padding: 4mm; gap: 2mm;
+    }
+    .genkou-col {
+        flex: 1; display: flex; flex-direction: column; gap: 1px;
+        border-left: 1px dotted #22C55E;
+        border-right: 1px dotted #22C55E;
+    }
+    .genkou-cell {
+        flex: 1; border-bottom: 1px solid #22C55E; border-top: 1px solid #22C55E;
+        aspect-ratio: 1;
+    }
+
+    /* 印刷設定 */
+    @media print {
+        @page { margin: 0; size: A4; }
+        body { background: none; display: block; height: auto; }
+        body * { visibility: hidden; }
+        .printable-area, .printable-area * { visibility: visible; }
+        .printable-area {
+            position: fixed; left: 0; top: 0; width: 210mm; height: 297mm;
+            margin: 0; padding: 20mm;
+            transform: scale(1) !important;
+            background: white;
+            box-shadow: none;
+            overflow: hidden;
+        }
+        .no-print { display: none !important; }
+    }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.z-20{z-index:20}.z-50{z-index:50}.mx-2{margin-left:0.5rem;margin-right:0.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-4{margin-bottom:1rem}.mt-2{margin-top:0.5rem}.mt-auto{margin-top:auto}.flex{display:flex}.hidden{display:none}.h-16{height:4rem}.h-full{height:100%}.h-screen{height:100vh}.w-full{width:100%}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-stone-100{--tw-border-opacity:1;border-color:rgb(245 245 244 / var(--tw-border-opacity, 1))}.border-stone-200{--tw-border-opacity:1;border-color:rgb(231 229 228 / var(--tw-border-opacity, 1))}.bg-stone-200{--tw-bg-opacity:1;background-color:rgb(231 229 228 / var(--tw-bg-opacity, 1))}.bg-stone-50{--tw-bg-opacity:1;background-color:rgb(250 250 249 / var(--tw-bg-opacity, 1))}.bg-stone-700{--tw-bg-opacity:1;background-color:rgb(68 64 60 / var(--tw-bg-opacity, 1))}.bg-teal-50{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity, 1))}.bg-teal-600{--tw-bg-opacity:1;background-color:rgb(13 148 136 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/50{background-color:rgb(255 255 255 / 0.5)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-stone-400{--tw-text-opacity:1;color:rgb(168 162 158 / var(--tw-text-opacity, 1))}.text-stone-500{--tw-text-opacity:1;color:rgb(120 113 108 / var(--tw-text-opacity, 1))}.text-stone-600{--tw-text-opacity:1;color:rgb(87 83 78 / var(--tw-text-opacity, 1))}.text-stone-700{--tw-text-opacity:1;color:rgb(68 64 60 / var(--tw-text-opacity, 1))}.text-teal-600{--tw-text-opacity:1;color:rgb(13 148 136 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.ease-out{transition-timing-function:cubic-bezier(0, 0, 0.2, 1)}.hover\:border-teal-200:hover{--tw-border-opacity:1;border-color:rgb(153 246 228 / var(--tw-border-opacity, 1))}.hover\:bg-stone-800:hover{--tw-bg-opacity:1;background-color:rgb(41 37 36 / var(--tw-bg-opacity, 1))}.hover\:bg-teal-50:hover{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity, 1))}.hover\:bg-teal-700:hover{--tw-bg-opacity:1;background-color:rgb(15 118 110 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/80:hover{background-color:rgb(255 255 255 / 0.8)}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-teal-500{--tw-text-opacity:1;color:rgb(20 184 166 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:inline{display:inline}}@media (min-width: 768px){.md\:flex{display:flex}.md\:w-80{width:20rem}.md\:flex-row{flex-direction:row}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}.md\:shadow-none{--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}}</style></head>
+<body class="flex flex-col h-screen overflow-hidden">
+<!-- ヘッダー -->
+<header class="bg-white/90 backdrop-blur-md border-b border-stone-200 flex-shrink-0 z-50">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-teal-50 p-2 rounded-lg">
+<span class="material-symbols-rounded text-teal-600 text-2xl">description</span>
+</div>
+<h1 class="text-lg md:text-xl font-bold tracking-tight text-stone-700">
+                Parent's Cafe <span class="text-stone-400 mx-2">|</span> なんでも用紙ジェネレーター
+            </h1>
+</div>
+<div class="flex items-center gap-4">
+<!-- マスコット -->
+<div class="hidden md:flex items-center gap-2 bg-stone-50 px-3 py-1 rounded-full border border-stone-100">
+<span class="text-xs font-bold text-stone-500">お困りですか？</span>
+<div class="maron-sm-wrapper">
+<div class="maron-body">
+<div class="maron-ear l"></div><div class="maron-ear r"></div>
+<div class="maron-face">
+<div class="maron-eye l"></div><div class="maron-eye r"></div>
+<div class="maron-mouth"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- ダウンロードボタン -->
+<button class="bg-stone-700 hover:bg-stone-800 text-white text-xs font-bold px-4 py-2 rounded-lg flex items-center gap-2 transition shadow-sm" onclick="downloadSource()">
+<span class="material-symbols-rounded text-sm">download</span>
+<span class="hidden sm:inline">ツールを保存</span>
+</button>
+</div>
+</div>
+</header>
+<!-- メインコンテンツ -->
+<main class="flex-1 flex overflow-hidden">
+<div class="flex flex-col md:flex-row w-full h-full">
+<!-- 左サイドバー：コントロールパネル -->
+<aside class="w-full md:w-80 bg-white border-r border-stone-200 flex flex-col z-20 shadow-xl md:shadow-none overflow-y-auto">
+<div class="p-6">
+<h2 class="text-sm font-bold text-stone-400 uppercase tracking-wider mb-4">Paper Type</h2>
+<div class="space-y-3">
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('kanji')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">edit_square</span>
+<div>
+<div class="text-sm">漢字練習帳</div>
+<div class="text-[10px] text-stone-400 font-normal">84字 (マス目入り)</div>
+</div>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('grid5')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">grid_on</span>
+<div>
+<div class="text-sm">5mm 方眼紙</div>
+<div class="text-[10px] text-stone-400 font-normal">算数・グラフ用</div>
+</div>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('grid10')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">grid_4x4</span>
+<div>
+<div class="text-sm">10mm 方眼紙</div>
+<div class="text-[10px] text-stone-400 font-normal">実線＋補助線</div>
+</div>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('english')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">abc</span>
+<div>
+<div class="text-sm">英語ノート</div>
+<div class="text-[10px] text-stone-400 font-normal">4線 (赤ライン入)</div>
+</div>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('music')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">music_note</span>
+<div>
+<div class="text-sm">五線譜</div>
+<div class="text-[10px] text-stone-400 font-normal">音楽用 (12段)</div>
+</div>
+</button>
+<button class="w-full text-left px-4 py-3 rounded-xl bg-stone-50 hover:bg-teal-50 text-stone-600 font-bold border border-stone-200 hover:border-teal-200 transition flex items-center gap-3 group" onclick="setPaper('genkou')">
+<span class="material-symbols-rounded text-stone-400 group-hover:text-teal-500 transition">article</span>
+<div>
+<div class="text-sm">原稿用紙</div>
+<div class="text-[10px] text-stone-400 font-normal">400字 (横書き)</div>
+</div>
+</button>
+</div>
+</div>
+<div class="mt-auto p-6 border-t border-stone-100 bg-stone-50">
+<button class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 transform active:scale-95" onclick="printPaper()">
+<span class="material-symbols-rounded">print</span> 印刷する (A4)
+            </button>
+<p class="text-center text-[10px] text-stone-400 mt-2">
+                ※印刷設定で「背景の画像を印刷」を有効にしてください
+            </p>
+</div>
+</aside>
+<!-- 右メインエリア：プレビュー -->
+<div class="flex-1 bg-stone-200 relative overflow-hidden flex flex-col">
+<!-- ツールバー -->
+<div class="bg-white/50 backdrop-blur border-b border-stone-200 px-6 py-2 flex justify-between items-center text-xs font-bold text-stone-500">
+<span>PREVIEW: A4 (210mm x 297mm)</span>
+<div class="flex gap-2">
+<button class="hover:bg-white/80 p-1 rounded transition" onclick="zoomPreview(0.1)" title="拡大">
+<span class="material-symbols-rounded">add</span>
+</button>
+<button class="hover:bg-white/80 p-1 rounded transition" onclick="zoomPreview(-0.1)" title="縮小">
+<span class="material-symbols-rounded">remove</span>
+</button>
+</div>
+</div>
+<!-- プレビュー表示 -->
+<div class="flex-1 paper-preview-container" id="preview-container">
+<div class="printable-area paper-preview transition-transform duration-200 ease-out" id="print-target" style="transform: scale(1.00625);"><div class="pattern-kanji"><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div><div class="kanji-box"></div></div></div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    // --- Download Feature ---
+    function downloadSource() {
+        const htmlContent = document.documentElement.outerHTML;
+        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'paper-generator.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    // --- Paper Generator Logic ---
+    let currentScale = 0.75;
+
+    function zoomPreview(delta) {
+        currentScale = Math.max(0.2, Math.min(1.5, currentScale + delta));
+        document.getElementById('print-target').style.transform = `scale(${currentScale})`;
+    }
+
+    // レスポンシブ対応：画面幅に応じて初期スケール調整
+    function adjustScale() {
+        const containerW = document.getElementById('preview-container').clientWidth;
+        // A4 width approx 800px at scale 1. 
+        // 余裕を持って表示するため
+        if (containerW < 850) {
+            currentScale = (containerW - 40) / 800; // padding分引く
+            document.getElementById('print-target').style.transform = `scale(${currentScale})`;
+        }
+    }
+
+    function setPaper(type) {
+        const preview = document.getElementById('print-target');
+        preview.innerHTML = '';
+        
+        let content = '';
+        if (type === 'grid5') {
+            content = '<div class="pattern-grid-5mm"></div>';
+        } else if (type === 'grid10') {
+            content = '<div class="pattern-grid-10mm"></div>';
+        } else if (type === 'kanji') {
+            let gridHtml = '<div class="pattern-kanji">';
+            // A4縦で程よい数 (7x10くらい?) 実装はCSS Grid
+            // 枠のサイズにもよるが、余白20mm除くと W=170mm H=257mm
+            // マス20mmとすると 8列 x 12行くらい入る
+            // CSS Gridで5列指定しているので、それに合わせる
+            for(let i=0; i<60; i++) { // 適当な数埋める
+                gridHtml += '<div class="kanji-box"></div>';
+            }
+            gridHtml += '</div>';
+            content = gridHtml;
+        } else if (type === 'english') {
+            content = '<div class="pattern-english"></div>';
+        } else if (type === 'music') {
+            content = '<div class="pattern-music"></div>';
+        } else if (type === 'genkou') {
+            let genkouHtml = '<div class="pattern-genkou">';
+            // 20列
+            for(let c=0; c<20; c++){
+                genkouHtml += '<div class="genkou-col">';
+                for(let r=0; r<20; r++){
+                    genkouHtml += '<div class="genkou-cell"></div>';
+                }
+                genkouHtml += '</div>';
+            }
+            genkouHtml += '</div>';
+            content = genkouHtml;
+        }
+        preview.innerHTML = content;
+    }
+
+    function printPaper() {
+        window.print();
+    }
+
+    // Init
+    window.onload = () => {
+        setPaper('kanji'); // Default Paper
+        setTimeout(adjustScale, 100); // Layout fix
+        window.addEventListener('resize', adjustScale);
+    };
+</script>
+
+</body></html>

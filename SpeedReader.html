@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawaii Speed Reader - Full School Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&amp;family=Zen+Maru+Gothic:wght@500;700&amp;family=Shippori+Mincho:wght@500;700&amp;family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                        mono: ['"Zen Maru Gothic"', 'sans-serif'],
+                        serif: ['"Shippori Mincho"', 'serif'],
+                    },
+                    colors: {
+                        reader: {
+                            bg: '#f0fdfa',
+                            primary: '#0d9488',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f0fdfa; color: #334155; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(13, 148, 136, 0.1);
+        }
+
+        .orp-char { color: #f43f5e; font-weight: 800; }
+
+        /* Custom Scrollbar for tabs */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Range Slider Styling */
+        input[type=range] { -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 28px; width: 28px; border-radius: 50%;
+            background: #0d9488; margin-top: -12px; box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            cursor: pointer; transition: transform 0.1s; border: 2px solid white;
+        }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.1); }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 6px; background: #ccfbf1; border-radius: 3px;
+        }
+
+        .tab-active {
+            background-color: #0d9488; color: white;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
+        
+        .cat-tab-active {
+            background-color: #e0f2fe; color: #0284c7; border-color: #7dd3fc;
+        }
+
+        .lib-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #2dd4bf;
+        }
+    </style></head>
+<body class="min-h-screen flex flex-col items-center py-4 px-3 md:py-8 md:px-6">
+
+    <!-- Header -->
+    <header class="w-full max-w-4xl flex justify-between items-center mb-6">
+        <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-reader-primary shadow-soft rotate-3 transition-transform hover:rotate-6">
+                <span class="material-symbols-rounded text-3xl">menu_book</span>
+            </div>
+            <div>
+                <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-teal-900 leading-tight">Speed Reader</h1>
+                <p class="text-[10px] md:text-xs text-teal-600 font-bold opacity-70">瞬読トレーニング</p>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <!-- Parent Button -->
+            <button onclick="document.getElementById('parents-modal').showModal()" class="bg-white hover:bg-teal-50 text-slate-600 hover:text-teal-700 px-3 py-2 rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1 border border-transparent hover:border-teal-100">
+                <span class="material-symbols-rounded text-lg text-teal-500">sentiment_satisfied</span>
+                <span class="hidden sm:inline">保護者の方へ</span>
+            </button>
+            <!-- Download Button -->
+            <button onclick="downloadApp()" class="bg-teal-600 hover:bg-teal-500 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-1">
+                <span class="material-symbols-rounded text-lg">download</span>
+                <span class="hidden sm:inline">保存</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-4xl space-y-5">
+        
+        <!-- 1. Reader Display -->
+        <div class="relative w-full aspect-[16/9] md:aspect-[21/9] bg-slate-900 rounded-[2rem] shadow-2xl flex flex-col items-center justify-center overflow-hidden ring-8 ring-teal-100/50 group">
+            
+            <!-- Focus Guides -->
+            <div class="absolute inset-0 opacity-20 pointer-events-none group-hover:opacity-10 transition-opacity">
+                <div class="absolute top-0 bottom-0 left-1/2 w-px bg-teal-500 transform -translate-x-1/2"></div>
+                <div class="absolute left-0 right-0 top-1/2 h-px bg-teal-500 transform -translate-y-1/2"></div>
+            </div>
+
+            <!-- The Text (Big & Responsive) -->
+            <div id="reader-display" class="relative z-10 text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-slate-100 px-8 text-center leading-normal transition-opacity duration-100 select-none">一人ぼ<span class="orp-char">っ</span>ちの</div>
+
+            <!-- Info Badges (Top Left) -->
+            <div class="absolute top-4 left-4 md:top-6 md:left-6 flex gap-2">
+                <span id="wpm-badge" class="px-3 py-1.5 rounded-lg bg-slate-800 text-teal-300 text-sm md:text-lg font-bold border border-slate-700 font-mono shadow-lg">WPM: 250</span>
+                <span id="chunk-badge" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-sm md:text-lg font-bold border border-slate-700 font-mono shadow-lg">2単語</span>
+            </div>
+
+            <!-- Source Title Badge (Top Right) -->
+            <div id="source-badge" class="absolute top-4 right-4 md:top-6 md:right-6 px-4 py-1.5 rounded-lg bg-slate-800/90 text-white text-sm md:text-base font-bold border border-slate-700 font-serif transition-opacity duration-500 shadow-lg">ごん狐</div>
+
+            <!-- Progress Bar -->
+            <div class="absolute bottom-0 left-0 w-full h-3 bg-slate-800">
+                <div id="progress-bar" class="h-full bg-teal-500 shadow-[0_0_15px_#14b8a6] transition-all duration-100" style="width: 78.5714%;"></div>
+            </div>
+        </div>
+
+        <!-- 2. Main Controls -->
+        <div class="grid grid-cols-3 gap-3 md:gap-4 px-1">
+            <button onclick="resetReader()" class="bg-white text-slate-500 hover:text-teal-600 hover:bg-teal-50 border-2 border-white hover:border-teal-100 rounded-2xl py-3 md:py-5 font-bold shadow-sm flex items-center justify-center gap-2 transition-all group">
+                <span class="material-symbols-rounded text-2xl group-hover:-rotate-180 transition-transform duration-500">restart_alt</span>
+                <span class="hidden sm:inline text-lg">はじめから</span>
+            </button>
+            <button id="main-play-btn" onclick="toggleReader()" class="text-white rounded-2xl py-3 md:py-5 font-black shadow-lg shadow-teal-200/50 flex items-center justify-center gap-2 transform active:scale-95 transition-all text-xl md:text-2xl border-4 hover:border-teal-400 bg-teal-600 hover:bg-teal-500 border-teal-500/50"><span class="material-symbols-rounded text-4xl">play_arrow</span> START</button>
+            <button onclick="stepBack()" class="bg-white text-slate-500 hover:text-teal-600 hover:bg-teal-50 border-2 border-white hover:border-teal-100 rounded-2xl py-3 md:py-5 font-bold shadow-sm flex items-center justify-center gap-2 transition-all">
+                <span class="material-symbols-rounded text-2xl">replay_10</span>
+                <span class="hidden sm:inline text-lg">戻る</span>
+            </button>
+        </div>
+
+        <!-- 3. Tabbed Panel -->
+        <div class="glass-panel p-4 md:p-6 rounded-3xl w-full">
+            
+            <!-- Main Tabs -->
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-2 no-scrollbar border-b border-slate-100">
+                <button onclick="switchMainTab('library')" id="tab-library" class="tab-btn px-6 py-3 rounded-xl text-base font-bold transition-all whitespace-nowrap flex items-center gap-2 shrink-0 tab-active">
+                    <span class="material-symbols-rounded text-xl">local_library</span> ライブラリ
+                </button>
+                <button onclick="switchMainTab('input')" id="tab-input" class="tab-btn hover:bg-teal-50 px-6 py-3 rounded-xl text-base font-bold transition-all whitespace-nowrap flex items-center gap-2 shrink-0 bg-white text-slate-600">
+                    <span class="material-symbols-rounded text-xl">edit_note</span> 自由入力
+                </button>
+                <button onclick="switchMainTab('settings')" id="tab-settings" class="tab-btn hover:bg-teal-50 px-6 py-3 rounded-xl text-base font-bold transition-all whitespace-nowrap flex items-center gap-2 shrink-0 bg-white text-slate-600">
+                    <span class="material-symbols-rounded text-xl">tune</span> 設定
+                </button>
+            </div>
+
+            <!-- === LIBRARY TAB CONTENT === -->
+            <div id="content-library" class="tab-content animate-fade-in block">
+                
+                <!-- Category Tabs (Sub-navigation) -->
+                <div class="flex gap-2 mb-6 overflow-x-auto pb-2 no-scrollbar">
+                    <button onclick="switchLibCategory('low-elem')" id="cat-btn-low-elem" class="cat-btn px-4 py-2 rounded-full border font-bold text-sm whitespace-nowrap shadow-sm border-slate-200 text-slate-500 bg-white">
+                        🐣 小学校 低学年
+                    </button>
+                    <button onclick="switchLibCategory('high-elem')" id="cat-btn-high-elem" class="cat-btn px-4 py-2 rounded-full border font-bold text-sm whitespace-nowrap hover:bg-slate-50 border-slate-200 text-slate-500 bg-white">
+                        🎒 小学校 高学年
+                    </button>
+                    <button onclick="switchLibCategory('junior')" id="cat-btn-junior" class="cat-btn px-4 py-2 rounded-full border font-bold text-sm whitespace-nowrap hover:bg-slate-50 ring-2 ring-offset-1 border-teal-200 bg-teal-50 text-teal-700 ring-teal-300">
+                        🏫 中学生
+                    </button>
+                    <button onclick="switchLibCategory('high')" id="cat-btn-high" class="cat-btn px-4 py-2 rounded-full border font-bold text-sm whitespace-nowrap hover:bg-slate-50 border-slate-200 text-slate-500 bg-white">
+                        🎓 高校・一般
+                    </button>
+                </div>
+
+                <!-- Sub-Content: Low Elementary -->
+                <div id="lib-cat-low-elem" class="lib-cat-content animate-slide-up hidden">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="loadLibrary('momotaro', 150)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-pink-200 transition-all text-left">
+                            <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">昔話</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-mono">ももたろう</h3>
+                            <p class="text-sm text-slate-400 font-mono">むかしむかし、あるところに おじいさんと おばあさんが すんでいました。</p>
+                        </button>
+                        <button onclick="loadLibrary('omusubi', 150)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-pink-200 transition-all text-left">
+                            <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">昔話</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-mono">おむすび ころりん</h3>
+                            <p class="text-sm text-slate-400 font-mono">むかし、ある山里に 正直者の おじいさんが すんでいました。</p>
+                        </button>
+                        <button onclick="loadLibrary('kasajizo', 150)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-pink-200 transition-all text-left">
+                            <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">昔話</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-mono">かさじぞう</h3>
+                            <p class="text-sm text-slate-400 font-mono">ある年の くれの ことです。 おじいさんと おばあさんは、 お正月をむかえる おもちも ありません。</p>
+                        </button>
+                        <button onclick="loadLibrary('urashima', 150)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-pink-200 transition-all text-left">
+                            <span class="bg-pink-100 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">昔話</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-mono">うらしま たろう</h3>
+                            <p class="text-sm text-slate-400 font-mono">むかしむかし、 丹後の国に 浦島太郎という りょうしが すんでいました。</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sub-Content: High Elementary -->
+                <div id="lib-cat-high-elem" class="lib-cat-content animate-slide-up hidden">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="loadLibrary('gongitsune', 250)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-orange-200 transition-all text-left">
+                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">新美南吉</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">ごん狐</h3>
+                            <p class="text-sm text-slate-400 font-serif">これは、私が小さいときに、村の茂平というおじいさんからきいたお話です。</p>
+                        </button>
+                        <button onclick="loadLibrary('kenji', 250)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-orange-200 transition-all text-left">
+                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">宮沢賢治</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">雨ニモマケズ</h3>
+                            <p class="text-sm text-slate-400 font-serif">雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ...</p>
+                        </button>
+                        <button onclick="loadLibrary('chumon', 250)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-orange-200 transition-all text-left">
+                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">宮沢賢治</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">注文の多い料理店</h3>
+                            <p class="text-sm text-slate-400 font-serif">二人の若い紳士が、すっかりイギリスの兵隊のかたちをして、鉄砲をかついで...</p>
+                        </button>
+                        <button onclick="loadLibrary('yodaka', 250)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-orange-200 transition-all text-left">
+                            <span class="bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">宮沢賢治</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">よだかの星</h3>
+                            <p class="text-sm text-slate-400 font-serif">よだかは、実にみにくい鳥です。顔は、ところどころ、味噌をつけたように...</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sub-Content: Junior High -->
+                <div id="lib-cat-junior" class="lib-cat-content animate-slide-up block">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="loadLibrary('melos', 350)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-teal-200 transition-all text-left">
+                            <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">太宰治</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">走れメロス</h3>
+                            <p class="text-sm text-slate-400 font-serif">メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。</p>
+                        </button>
+                        <button onclick="loadLibrary('spider', 350)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-teal-200 transition-all text-left">
+                            <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">芥川龍之介</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">蜘蛛の糸</h3>
+                            <p class="text-sm text-slate-400 font-serif">ある日の事でございます。御釈迦様は極楽の蓮池のふちを、独りでぶらぶら...</p>
+                        </button>
+                        <button onclick="loadLibrary('trocco', 350)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-teal-200 transition-all text-left">
+                            <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">芥川龍之介</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">トロッコ</h3>
+                            <p class="text-sm text-slate-400 font-serif">小田原・熱海間に、軽便鉄道敷設の工事が始まったのは、良平の八つの年だった。</p>
+                        </button>
+                        <button onclick="loadLibrary('takasebune', 350)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-teal-200 transition-all text-left">
+                            <span class="bg-teal-100 text-teal-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">森鴎外</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">高瀬舟</h3>
+                            <p class="text-sm text-slate-400 font-serif">高瀬舟は京都の高瀬川を上下する小舟である。</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sub-Content: High School / General -->
+                <div id="lib-cat-high" class="lib-cat-content animate-slide-up hidden">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <button onclick="loadLibrary('sangetsuki', 400)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-indigo-200 transition-all text-left">
+                            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">中島敦</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">山月記</h3>
+                            <p class="text-sm text-slate-400 font-serif">隴西の李徴は博学才穎、天宝の末年、若くして名を虎榜に連ね...</p>
+                        </button>
+                        <button onclick="loadLibrary('rashomon', 400)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-indigo-200 transition-all text-left">
+                            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">芥川龍之介</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">羅生門</h3>
+                            <p class="text-sm text-slate-400 font-serif">ある日の暮方の事である。一人の下人が、羅生門の下で雨やみを待っていた。</p>
+                        </button>
+                        <button onclick="loadLibrary('kokoro', 400)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-indigo-200 transition-all text-left">
+                            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">夏目漱石</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">こころ</h3>
+                            <p class="text-sm text-slate-400 font-serif">私はその人を常に先生と呼んでいた。だからここでもただ先生と書くだけで...</p>
+                        </button>
+                        <button onclick="loadLibrary('souseki', 400)" class="lib-card bg-white p-4 rounded-xl border-2 border-transparent hover:border-indigo-200 transition-all text-left">
+                            <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded-full mb-2 inline-block">夏目漱石</span>
+                            <h3 class="font-bold text-xl text-slate-800 mb-1 font-serif">吾輩は猫である</h3>
+                            <p class="text-sm text-slate-400 font-serif">吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。</p>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- === INPUT TAB CONTENT === -->
+            <div id="content-input" class="tab-content animate-fade-in hidden">
+                <textarea id="custom-text" class="w-full h-48 p-4 rounded-xl bg-white border-2 border-slate-100 focus:border-teal-400 outline-none text-slate-700 resize-none font-medium mb-4 shadow-inner-soft font-serif text-lg leading-relaxed" placeholder="ここに読みたい文章を貼り付けてください...
+
+教科書の文章や、青空文庫のテキストなど、好きな文章でトレーニングできます。"></textarea>
+                <div class="flex justify-between items-center">
+                    <button onclick="document.getElementById('custom-text').value=''" class="text-sm text-slate-400 hover:text-red-400 font-bold px-2 flex items-center gap-1">
+                        <span class="material-symbols-rounded text-lg">delete</span> クリア
+                    </button>
+                    <button onclick="prepareReader('custom')" class="bg-teal-600 hover:bg-teal-500 text-white px-8 py-3 rounded-xl font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-lg">
+                        <span class="material-symbols-rounded text-2xl">check</span> 読み込み
+                    </button>
+                </div>
+            </div>
+
+            <!-- === SETTINGS TAB CONTENT === -->
+            <div id="content-settings" class="tab-content animate-fade-in hidden">
+                <div class="space-y-8 py-2">
+                    <!-- WPM Slider -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <div class="flex justify-between items-end mb-4">
+                            <label class="text-lg font-bold text-slate-700 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-teal-500 text-2xl">speed</span> 
+                                表示速度 (WPM)
+                            </label>
+                            <span class="text-3xl font-black text-teal-600 tabular-nums" id="wpm-display">250</span>
+                        </div>
+                        <!-- Adjusted Range: 50 to 1000 -->
+                        <input type="range" id="wpm-slider" min="50" max="1000" step="10" value="400" oninput="updateSettings()" class="w-full mb-2">
+                        <div class="flex justify-between text-xs text-slate-400 font-bold px-1">
+                            <span>50 (初心者)</span>
+                            <span>400 (平均)</span>
+                            <span>1000 (超上級)</span>
+                        </div>
+                    </div>
+
+                    <!-- Chunk Size -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <label class="text-lg font-bold text-slate-700 flex items-center gap-2 mb-4">
+                            <span class="material-symbols-rounded text-teal-500 text-2xl">short_text</span> 
+                            いちどに表示する量
+                        </label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="setChunkSize(1, this)" class="chunk-btn bg-teal-600 text-white border-2 border-teal-600 py-3 rounded-xl font-bold transition-all text-lg shadow-md">1単語</button>
+                            <button onclick="setChunkSize(2, this)" class="chunk-btn bg-white text-slate-600 border-2 border-slate-200 py-3 rounded-xl font-bold hover:border-teal-300 transition-all text-lg">2単語</button>
+                            <button onclick="setChunkSize(3, this)" class="chunk-btn bg-white text-slate-600 border-2 border-slate-200 py-3 rounded-xl font-bold hover:border-teal-300 transition-all text-lg">3単語</button>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-3 flex items-start gap-2">
+                            <span class="material-symbols-rounded text-teal-500 text-lg">info</span>
+                            低学年のお子様や、難しい漢字が多い文章は「1単語」がおすすめです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Parent/Guardian Modal -->
+    <dialog id="parents-modal" class="p-0 rounded-2xl shadow-2xl backdrop:bg-slate-900/60 open:animate-fade-in w-full max-w-lg m-auto overflow-hidden">
+        <div class="bg-white p-6 md:p-8" onclick="event.stopPropagation()">
+            <!-- Header -->
+            <div class="flex justify-between items-start mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center">
+                        <span class="material-symbols-rounded text-3xl">sentiment_satisfied</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-slate-800">保護者の方へ</h3>
+                        <p class="text-xs text-slate-400 font-bold">Thank you for visiting</p>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('parents-modal').close()" class="text-slate-300 hover:text-slate-600 transition-colors p-2 -mr-2 -mt-2">
+                    <span class="material-symbols-rounded text-2xl">close</span>
+                </button>
+            </div>
+            
+            <!-- Content -->
+            <div class="space-y-6 text-sm text-slate-600 leading-relaxed overflow-y-auto max-h-[60vh] pr-2">
+                <!-- Message -->
+                <div class="bg-teal-50 p-5 rounded-2xl border border-teal-100">
+                    <p class="font-bold text-teal-800 text-base mb-2">ご利用ありがとうございます</p>
+                    <p class="text-teal-900/80">
+                        この度は、お子様の学習ツールとして本サイトを選んでいただき、本当にありがとうございます。
+                        このアプリはお子様が「読むこと」を楽しめるように設計されています。
+                    </p>
+                </div>
+                <!-- Educational Benefits -->
+                <div>
+                    <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-3 text-base">
+                        <span class="material-symbols-rounded text-teal-500 text-xl">psychology</span>
+                        このアプリの教育的効果
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3">
+                            <span class="material-symbols-rounded text-teal-500 text-lg shrink-0 mt-0.5">timer</span>
+                            <div>
+                                <strong class="block text-slate-800">読む速度の向上（処理能力）</strong>
+                                <span class="text-slate-500 text-xs">目を動かす時間を減らすことで、脳が文字情報を処理する純粋なスピードを鍛えます。</span>
+                            </div>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="material-symbols-rounded text-teal-500 text-lg shrink-0 mt-0.5">center_focus_strong</span>
+                            <div>
+                                <strong class="block text-slate-800">集中力のトレーニング</strong>
+                                <span class="text-slate-500 text-xs">次々と現れる文字を追う行為は、ゲームのような感覚で深い集中状態（ゾーン）に入りやすくします。</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Copyright Info -->
+                <div class="border-t border-slate-100 pt-4">
+                    <h4 class="font-bold text-slate-800 flex items-center gap-2 mb-2">
+                        <span class="material-symbols-rounded text-slate-400 text-lg">copyright</span>
+                        著作権について
+                    </h4>
+                    <p class="text-xs">
+                        アプリ内に収録している作品（ごん狐、ももたろう等）は、著作権保護期間が満了した<span class="font-bold text-teal-600">パブリックドメイン作品</span>です。青空文庫等で公開されているテキストを使用しています。
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-slate-100">
+                <button onclick="document.getElementById('parents-modal').close()" class="w-full bg-teal-600 text-white font-bold py-3 rounded-xl hover:bg-teal-500 transition-colors shadow-md text-base">
+                    閉じる
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // --- Setup Modal Backdrop Click ---
+        const dialog = document.getElementById('parents-modal');
+        dialog.addEventListener('click', (event) => {
+            if (event.target === dialog) {
+                dialog.close();
+            }
+        });
+
+        // --- State ---
+        let contentWords = ["Ready?"];
+        let currentIndex = 0;
+        let isPlaying = false;
+        let timer = null;
+        let wpm = 400;
+        let chunkSize = 1;
+        let currentTitle = "";
+
+        // --- Library Data (Expanded) ---
+        const libraries = {
+            // == 小学校 低学年 ==
+            'momotaro': { title: 'ももたろう', text: `むかしむかし、 あるところに おじいさんと おばあさんが すんでいました。 おじいさんは 山へ しばかりに、 おばあさんは 川へ せんたくに いきました。 おばあさんが 川で せんたくを していると、 ドンブラコ、 ドンブラコと、 大きな ももが ながれてきました。 「おや、 なんて 大きな ももだろう。 家に もってかえって、 おじいさんと たべよう」 おばあさんは ももを ひろいあげて、 家に かえりました。` },
+            'omusubi': { title: 'おむすび ころりん', text: `むかし、ある山里に 正直者の おじいさんが すんでいました。 おじいさんが 山へ 木を きりに いった ときのこと、 おひるに なったので、 おべんとうの おむすびを たべようと しました。 すると、おむすびが 手から すべりおちて、 コロコロと ころがって いきました。 おむすびは どんどん ころがって、 地面の 穴の 中へ おちてしまいました。 すると、 穴の中から かわいい 歌が きこえてきました。 おむすび コロリン スットン トン。` },
+            'kasajizo': { title: 'かさじぞう', text: `ある年の くれの ことです。 おじいさんと おばあさんは、 お正月をむかえる おもちも ありません。 「しかたがない。 すげがさを つくって 売りに いこう」 おじいさんは 一生懸命 かさを つくりました。 つくった かさは 五つ。 「これで おもちが かえると いいが」 おじいさんは 五つの かさを もって、 まちへ 出かけました。 ところが 雪が ふってきて、 だれも かさを かってくれません。` },
+            'urashima': { title: 'うらしま たろう', text: `むかしむかし、 丹後の国に 浦島太郎という りょうしが すんでいました。 ある日、 太郎が 浜辺を 歩いていると、 子供たちが 一ぴきの 亀を いじめていました。 「かわいそうに。 にがして おやり」 太郎は 子供たちに お金をやって 亀を 助けてやりました。 すると 二、三日 たった ころ、 太郎が 海で 釣りを していると、 あのときの 亀が やってきて いいました。 「太郎さん、 竜宮城へ つれていって あげましょう」` },
+
+            // == 小学校 高学年 ==
+            'gongitsune': { title: 'ごん狐', text: `これは、私が小さいときに、村の茂平というおじいさんからきいたお話です。むかしは、私たちの村のちかくの、中山というところに小さなお城があって、中山さまというおとのさまが、おられたそうです。その中山から、少しはなれた山の中に、「ごん狐」という狐がいました。ごんは、一人ぼっちの小狐で、しだの一ぱいしげった森の中に穴をほって住んでいました。` },
+            'kenji': { title: '雨ニモマケズ', text: `雨ニモマケズ 風ニモマケズ 雪ニモ夏ノ暑サニモマケヌ 丈夫ナカラダヲモチ 慾ハナク 決シテ瞋ラズ イツモシヅカニワラッテヰル 一日ニ玄米四合ト 味噌ト少シノ野菜ヲタベ アラユルコトヲ ジブンヲカンジョウニ入レズニ ヨクミキキシワカリ ソシテワスレズ` },
+            'chumon': { title: '注文の多い料理店', text: `二人の若い紳士が、すっかりイギリスの兵隊のかたちをして、ぴかぴかする鉄砲をかついで、白熊のような犬を二疋つれて、だいぶ山奥の、木の葉のかさかさしたとこを歩いておりました。「ぜんたい、ここらの山はけしからんね。鳥も獣も一疋も居やがらん。なんでも構わないから、早くタンタアーンと、やって見たいもんだなあ。」` },
+            'yodaka': { title: 'よだかの星', text: `よだかは、実にみにくい鳥です。顔は、ところどころ、味噌をつけたようにまだらで、くちばしは、ひらたくて、耳までさけています。足は、まるでよぼよぼで、一間とも歩けません。ほかの鳥は、もう、よだかの顔を見ただけでも、いやになってしまうという工合でした。たとえば、ひばりも、あまり美しい鳥ではありませんが、よだかよりは、ずっと上だと思っていました。` },
+
+            // == 中学生 ==
+            'melos': { title: '走れメロス', text: `メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。` },
+            'spider': { title: '蜘蛛の糸', text: `ある日の事でございます。御釈迦様は極楽の蓮池のふちを、独りでぶらぶら御歩きになっていらっしゃいました。池の中に咲いている蓮の花は、みんな玉のようにまっ白で、そのまん中にある金色の蕊からは、何とも云えない好い匂が、絶間なくあたりへ溢れて居ります。極楽は丁度朝なのでございましょう。やがて御釈迦様はその池のふちに御佇みになって、水の面を蔽っている蓮の葉の間から、ふと下の容子を御覧になりました。` },
+            'trocco': { title: 'トロッコ', text: `小田原・熱海間に、軽便鉄道敷設の工事が始まったのは、良平の八つの年だった。良平は毎日村外れへ、その工事を見物に行つた。工事を――と云つても、唯トロツコで土を運搬する面白さに見とれてゐたのである。トロツコの上には土工が二人、土を積んだ後ろに佇んでゐる。トロツコは山を下るのだから、人手を借りずに走つて来る。` },
+            'takasebune': { title: '高瀬舟', text: `高瀬舟は京都の高瀬川を上下する小舟である。徳川時代に京都の罪人が遠島を申し渡されると、本人の親類が牢屋敷へ呼び出されて、そこで暇乞いをすることを許された。それから罪人は高瀬舟に乗せられて、大阪へ回されることであった。それを護送するのは、京都町奉行の配下にいる同心で、この同心は罪人の親類の中で、おも立った一人を大阪まで同船させることを許す慣例であった。` },
+
+            // == 高校・一般 ==
+            'sangetsuki': { title: '山月記', text: `隴西の李徴は博学才穎、天宝の末年、若くして名を虎榜に連ね、補せられて江南尉となったが、性、狷介、自ら恃むところ頗る厚く、賤吏に甘んずるを潔しとしなかった。いくばくもなく官を退いた後は、故山、略陽に帰臥し、人と交を絶って、ひたすら詩作に耽った。下吏となって長く膝を俗悪な大官の前に屈するよりは、詩家としての名を死後百年に遺そうとしたのである。` },
+            'rashomon': { title: '羅生門', text: `ある日の暮方の事である。一人の下人が、羅生門の下で雨やみを待っていた。広い門の下には、この男のほかに誰もいない。ただ、所々丹塗の剥げた、大きな円柱に、蟋蟀が一匹とまっている。羅生門が、朱雀大路にある以上は、この男のほかにも、雨やみをする市女笠や揉烏帽子が、もう二三人はありそうなものである。それが、この男のほかには誰もいない。` },
+            'kokoro': { title: 'こころ', text: `私はその人を常に先生と呼んでいた。だからここでもただ先生と書くだけで本名は打ち明けない。これは世間を憚かる遠慮というよりも、その方が私にとって自然だからである。私はその人の記憶を呼び起すごとに、すぐ「先生」といいたくなる。筆を執っても心持は同じ事である。よそよそしい頭文字などはとても使う気にならない。私が先生と知り合いになったのは鎌倉である。` },
+            'souseki': { title: '吾輩は猫である', text: `吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕えて煮て食うという話である。` }
+        };
+
+        // --- Core Logic ---
+        function processText(text, size = 1) {
+            if (!text) return ["No Content"];
+            const isJapanese = text.match(/[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff66-\uff9f]/);
+            let segments = [];
+            if (isJapanese && Intl.Segmenter) {
+                const segmenter = new Intl.Segmenter('ja', { granularity: 'word' });
+                segments = [...segmenter.segment(text)].map(s => s.segment).filter(s => s.trim().length > 0 || s === "。" || s === "、"); 
+            } else {
+                segments = text.trim().split(/\s+/);
+            }
+            let chunks = [];
+            for (let i = 0; i < segments.length; i += size) {
+                chunks.push(segments.slice(i, i + size).join(''));
+            }
+            return chunks;
+        }
+
+        function renderWord(word) {
+            const display = document.getElementById('reader-display');
+            if (!word) return;
+            const len = word.length;
+            const mid = Math.floor(len / 2);
+            if (len <= 1) {
+                display.innerHTML = `<span class="orp-char">${word}</span>`;
+            } else {
+                display.innerHTML = `${word.slice(0, mid)}<span class="orp-char">${word.charAt(mid)}</span>${word.slice(mid + 1)}`;
+            }
+        }
+
+        function toggleReader() { isPlaying ? pauseReader() : startReader(); }
+
+        function startReader() {
+            if (contentWords.length === 0) return;
+            if (currentIndex >= contentWords.length) currentIndex = 0;
+            clearInterval(timer);
+            isPlaying = true;
+            updatePlayButtonUI(true);
+            const interval = 60000 / wpm; // 60s * 1000ms / WPM
+            renderWord(contentWords[currentIndex]);
+            updateProgress();
+            timer = setInterval(() => {
+                currentIndex++;
+                if (currentIndex >= contentWords.length) {
+                    pauseReader();
+                    currentIndex = 0;
+                    updateProgress();
+                    return;
+                }
+                renderWord(contentWords[currentIndex]);
+                updateProgress();
+            }, interval);
+        }
+
+        function pauseReader() { clearInterval(timer); timer = null; isPlaying = false; updatePlayButtonUI(false); }
+        function resetReader() { pauseReader(); currentIndex = 0; updateProgress(); renderWord(contentWords[0]); }
+        function stepBack() { pauseReader(); currentIndex = Math.max(0, currentIndex - 10); updateProgress(); renderWord(contentWords[currentIndex]); }
+        function updateProgress() { document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / contentWords.length) * 100}%`; }
+
+        function updatePlayButtonUI(playing) {
+            const btn = document.getElementById('main-play-btn');
+            if (playing) {
+                btn.innerHTML = '<span class="material-symbols-rounded text-4xl">pause</span> PAUSE';
+                btn.classList.add('bg-slate-700', 'border-slate-600');
+                btn.classList.remove('bg-teal-600', 'hover:bg-teal-500', 'border-teal-500/50');
+            } else {
+                btn.innerHTML = '<span class="material-symbols-rounded text-4xl">play_arrow</span> START';
+                btn.classList.remove('bg-slate-700', 'border-slate-600');
+                btn.classList.add('bg-teal-600', 'hover:bg-teal-500', 'border-teal-500/50');
+            }
+        }
+
+        function prepareReader(source, key = null) {
+            let text = "";
+            let title = "";
+            if (source === 'custom') {
+                text = document.getElementById('custom-text').value;
+                title = "自由入力";
+            } else if (source === 'library') {
+                const lib = libraries[key];
+                text = lib.text;
+                title = lib.title;
+            }
+            if (!text) { alert("テキストを入力または選択してください"); return; }
+            contentWords = processText(text, chunkSize);
+            currentIndex = 0;
+            currentTitle = title;
+            resetReader();
+            const badge = document.getElementById('source-badge');
+            badge.innerText = title;
+            badge.classList.remove('opacity-0');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadLibrary(key, recommendedSpeed) {
+            prepareReader('library', key);
+            if (recommendedSpeed) {
+                wpm = recommendedSpeed;
+                document.getElementById('wpm-slider').value = wpm;
+                document.getElementById('wpm-display').innerText = wpm;
+                document.getElementById('wpm-badge').innerText = `WPM: ${wpm}`;
+            }
+        }
+
+        function updateSettings() {
+            wpm = parseInt(document.getElementById('wpm-slider').value);
+            document.getElementById('wpm-display').innerText = wpm;
+            document.getElementById('wpm-badge').innerText = `WPM: ${wpm}`;
+            if (isPlaying) { clearInterval(timer); startReader(); }
+        }
+
+        function setChunkSize(size, clickedButton) {
+            chunkSize = size;
+            document.getElementById('chunk-badge').innerText = `${size}単語`;
+            document.querySelectorAll('.chunk-btn').forEach(b => {
+                b.classList.remove('bg-teal-600', 'text-white', 'border-teal-600');
+                b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+            });
+            if (clickedButton) {
+                clickedButton.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+                clickedButton.classList.add('bg-teal-600', 'text-white', 'border-teal-600');
+            }
+            if (currentTitle === "自由入力" && document.getElementById('custom-text').value) {
+                prepareReader('custom');
+            } else if (currentTitle && currentTitle !== "自由入力") {
+                 for (const [key, val] of Object.entries(libraries)) {
+                     if (val.title === currentTitle) { prepareReader('library', key); break; }
+                 }
+            }
+        }
+
+        // --- Tab Logic ---
+        function switchMainTab(tabId) {
+            ['input', 'library', 'settings'].forEach(id => {
+                const content = document.getElementById(`content-${id}`);
+                const btn = document.getElementById(`tab-${id}`);
+                if (id === tabId) {
+                    content.classList.remove('hidden');
+                    content.classList.add('block');
+                    btn.classList.add('tab-active');
+                    btn.classList.remove('bg-white', 'text-slate-600');
+                } else {
+                    content.classList.add('hidden');
+                    content.classList.remove('block');
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('bg-white', 'text-slate-600');
+                }
+            });
+        }
+
+        function switchLibCategory(catId) {
+            const base = ['border-slate-200', 'text-slate-500', 'bg-white'];
+            const activeCommon = ['cat-tab-active', 'ring-2', 'ring-offset-1'];
+            const palette = {
+                'low-elem': ['border-pink-200', 'bg-pink-50', 'text-pink-700', 'ring-pink-300'],
+                'high-elem': ['border-orange-200', 'bg-orange-50', 'text-orange-700', 'ring-orange-300'],
+                'junior': ['border-teal-200', 'bg-teal-50', 'text-teal-700', 'ring-teal-300'],
+                'high': ['border-indigo-200', 'bg-indigo-50', 'text-indigo-700', 'ring-indigo-300']
+            };
+
+            ['low-elem', 'high-elem', 'junior', 'high'].forEach(id => {
+                const content = document.getElementById(`lib-cat-${id}`);
+                const btn = document.getElementById(`cat-btn-${id}`);
+                const isActive = id === catId;
+
+                content.classList.toggle('hidden', !isActive);
+                content.classList.toggle('block', isActive);
+
+                // reset
+                btn.classList.remove('cat-tab-active', 'ring-2', 'ring-offset-1', ...activeCommon, ...palette['low-elem'], ...palette['high-elem'], ...palette['junior'], ...palette['high']);
+                btn.classList.add(...base);
+
+                if (isActive) {
+                    btn.classList.remove(...base);
+                    btn.classList.add(...activeCommon, ...(palette[id] || []));
+                }
+            });
+        }
+
+        function downloadApp() {
+            const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'KawaiiSpeedReader_Full.html';
+            a.click();
+        }
+    </script>
+
+</body></html>
+

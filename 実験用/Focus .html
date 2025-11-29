@@ -1,0 +1,752 @@
+<html lang="ja"><head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>(4:56) Focus Studio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&amp;family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        kawaii: {
+                            bg: '#fff0f5', 
+                            primary: '#ff9eb5', 
+                            primaryDark: '#ff7b9c',
+                            secondary: '#ffd1d1',
+                            accent: '#cdf0ea', 
+                            text: '#5e4b52', 
+                            dark: '#4a3b40',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slight': 'bounceSlight 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #ff9eb5; border-radius: 10px; }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px 0 rgba(255, 158, 181, 0.15);
+        }
+        
+        .timer-btn-active {
+            background-color: #ff9eb5;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 158, 181, 0.4);
+            transform: scale(1.05);
+            border-color: transparent;
+        }
+
+        .break-btn-active {
+            background-color: #cdf0ea;
+            color: #115e59; 
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+            transform: scale(1.05);
+            border-color: transparent;
+        }
+        
+        .preset-btn-active {
+            background-color: white;
+            border-color: #ff9eb5;
+            color: #ff7b9c;
+            box-shadow: 0 0 0 2px #ffc1d0;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .task-input-header {
+            background: rgba(255,255,255,0.6);
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+        .task-input-header:focus {
+            background: white;
+            border-color: #ff9eb5;
+            box-shadow: 0 0 0 3px rgba(255, 158, 181, 0.2);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:"M PLUS Rounded 1c", sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.inset-y-0{top:0px;bottom:0px}.bottom-0{bottom:0px}.bottom-16{bottom:4rem}.bottom-\[-10\%\]{bottom:-10%}.left-0{left:0px}.left-1\/2{left:50%}.left-3{left:0.75rem}.left-\[-10\%\]{left:-10%}.right-0{right:0px}.right-4{right:1rem}.right-\[-10\%\]{right:-10%}.top-0{top:0px}.top-1\/2{top:50%}.top-4{top:1rem}.top-\[-10\%\]{top:-10%}.z-0{z-index:0}.z-10{z-index:10}.z-20{z-index:20}.z-40{z-index:40}.z-50{z-index:50}.order-1{order:1}.order-2{order:2}.mx-auto{margin-left:auto;margin-right:auto}.mb-2{margin-bottom:0.5rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-2{margin-left:0.5rem}.mr-1{margin-right:0.25rem}.mt-6{margin-top:1.5rem}.mb-3{margin-bottom:0.75rem}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-1{height:0.25rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-2{height:0.5rem}.h-24{height:6rem}.h-3{height:0.75rem}.h-32{height:8rem}.h-48{height:12rem}.h-8{height:2rem}.h-80{height:20rem}.h-\[500px\]{height:500px}.h-full{height:100%}.h-px{height:1px}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-24{width:6rem}.w-3{width:0.75rem}.w-8{width:2rem}.w-80{width:20rem}.w-\[500px\]{width:500px}.w-full{width:100%}.w-px{width:1px}.max-w-2xl{max-width:42rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-full{--tw-translate-x:100%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes float{0%, 100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.animate-float{animation:float 6s ease-in-out infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.resize-none{resize:none}.appearance-none{-webkit-appearance:none;appearance:none}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.overflow-x-hidden{overflow-x:hidden}.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-amber-100{--tw-border-opacity:1;border-color:rgb(254 243 199 / var(--tw-border-opacity, 1))}.border-kawaii-text\/10{border-color:rgb(94 75 82 / 0.1)}.border-red-100{--tw-border-opacity:1;border-color:rgb(254 226 226 / var(--tw-border-opacity, 1))}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-teal-100{--tw-border-opacity:1;border-color:rgb(204 251 241 / var(--tw-border-opacity, 1))}.border-transparent{border-color:transparent}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.bg-amber-200{--tw-bg-opacity:1;background-color:rgb(253 230 138 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-black\/20{background-color:rgb(0 0 0 / 0.2)}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-green-400{--tw-bg-opacity:1;background-color:rgb(74 222 128 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-kawaii-accent\/40{background-color:rgb(205 240 234 / 0.4)}.bg-kawaii-bg{--tw-bg-opacity:1;background-color:rgb(255 240 245 / var(--tw-bg-opacity, 1))}.bg-kawaii-dark\/40{background-color:rgb(74 59 64 / 0.4)}.bg-kawaii-primary{--tw-bg-opacity:1;background-color:rgb(255 158 181 / var(--tw-bg-opacity, 1))}.bg-pink-200{--tw-bg-opacity:1;background-color:rgb(251 207 232 / var(--tw-bg-opacity, 1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-teal-50{--tw-bg-opacity:1;background-color:rgb(240 253 250 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/50{background-color:rgb(255 255 255 / 0.5)}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-orange-100{--tw-bg-opacity:1;background-color:rgb(255 237 213 / var(--tw-bg-opacity, 1))}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.from-kawaii-primary{--tw-gradient-from:#ff9eb5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(255 158 181 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-kawaii-primaryDark{--tw-gradient-to:#ff7b9c var(--tw-gradient-to-position)}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pl-10{padding-left:2.5rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.align-middle{vertical-align:middle}.font-sans{font-family:"M PLUS Rounded 1c", sans-serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-6xl{font-size:3.75rem;line-height:1}.text-7xl{font-size:4.5rem;line-height:1}.text-\[10px\]{font-size:10px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-normal{font-weight:400}.uppercase{text-transform:uppercase}.tabular-nums{--tw-numeric-spacing:tabular-nums;font-variant-numeric:var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction)}.leading-none{line-height:1}.tracking-tight{letter-spacing:-0.025em}.tracking-tighter{letter-spacing:-0.05em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-kawaii-dark{--tw-text-opacity:1;color:rgb(74 59 64 / var(--tw-text-opacity, 1))}.text-kawaii-primary{--tw-text-opacity:1;color:rgb(255 158 181 / var(--tw-text-opacity, 1))}.text-kawaii-primaryDark{--tw-text-opacity:1;color:rgb(255 123 156 / var(--tw-text-opacity, 1))}.text-kawaii-secondary{--tw-text-opacity:1;color:rgb(255 209 209 / var(--tw-text-opacity, 1))}.text-kawaii-text{--tw-text-opacity:1;color:rgb(94 75 82 / var(--tw-text-opacity, 1))}.text-kawaii-text\/60{color:rgb(94 75 82 / 0.6)}.text-orange-400{--tw-text-opacity:1;color:rgb(251 146 60 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-teal-500{--tw-text-opacity:1;color:rgb(20 184 166 / var(--tw-text-opacity, 1))}.text-teal-600{--tw-text-opacity:1;color:rgb(13 148 136 / var(--tw-text-opacity, 1))}.text-teal-800{--tw-text-opacity:1;color:rgb(17 94 89 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-500{--tw-text-opacity:1;color:rgb(234 179 8 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-pink-600{--tw-text-opacity:1;color:rgb(219 39 119 / var(--tw-text-opacity, 1))}.text-teal-400{--tw-text-opacity:1;color:rgb(45 212 191 / var(--tw-text-opacity, 1))}.placeholder-kawaii-text\/40::placeholder{color:rgb(94 75 82 / 0.4)}.accent-amber-500{accent-color:#f59e0b}.accent-green-500{accent-color:#22c55e}.accent-kawaii-primary{accent-color:#ff9eb5}.opacity-0{opacity:0}.opacity-30{opacity:0.3}.opacity-40{opacity:0.4}.opacity-50{opacity:0.5}.opacity-80{opacity:0.8}.opacity-20{opacity:0.2}.mix-blend-multiply{mix-blend-mode:multiply}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.outline-none{outline:2px solid transparent;outline-offset:2px}.ring-4{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-slate-100{--tw-ring-opacity:1;--tw-ring-color:rgb(241 245 249 / var(--tw-ring-opacity, 1))}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.drop-shadow-2xl{--tw-drop-shadow:drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-kawaii-primary\/50:hover{border-color:rgb(255 158 181 / 0.5)}.hover\:border-amber-100:hover{--tw-border-opacity:1;border-color:rgb(254 243 199 / var(--tw-border-opacity, 1))}.hover\:border-blue-100:hover{--tw-border-opacity:1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.hover\:border-kawaii-primary:hover{--tw-border-opacity:1;border-color:rgb(255 158 181 / var(--tw-border-opacity, 1))}.hover\:border-orange-100:hover{--tw-border-opacity:1;border-color:rgb(255 237 213 / var(--tw-border-opacity, 1))}.hover\:border-pink-100:hover{--tw-border-opacity:1;border-color:rgb(252 231 243 / var(--tw-border-opacity, 1))}.hover\:border-slate-100:hover{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.hover\:bg-green-600:hover{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.hover\:bg-kawaii-accent:hover{--tw-bg-opacity:1;background-color:rgb(205 240 234 / var(--tw-bg-opacity, 1))}.hover\:bg-kawaii-primary:hover{--tw-bg-opacity:1;background-color:rgb(255 158 181 / var(--tw-bg-opacity, 1))}.hover\:bg-red-50:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-200:hover{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:text-kawaii-primary:hover{--tw-text-opacity:1;color:rgb(255 158 181 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-green-300:focus{--tw-border-opacity:1;border-color:rgb(134 239 172 / var(--tw-border-opacity, 1))}.focus\:bg-white:focus{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounceSlight{0%, 100%{transform:translateY(0)}50%{transform:translateY(-5px)}}.group:hover .group-hover\:animate-bounce-slight{animation:bounceSlight 2s infinite}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 640px){.sm\:w-96{width:24rem}.sm\:flex-row{flex-direction:row}}@media (min-width: 768px){.md\:order-1{order:1}.md\:order-2{order:2}.md\:h-96{height:24rem}.md\:w-96{width:24rem}.md\:w-auto{width:auto}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:gap-16{gap:4rem}.md\:p-8{padding:2rem}.md\:px-12{padding-left:3rem;padding-right:3rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-8xl{font-size:6rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}}@media (min-width: 1024px){.lg\:h-\[480px\]{height:480px}.lg\:w-\[480px\]{width:480px}.lg\:text-9xl{font-size:8rem;line-height:1}}</style></head>
+<body class="bg-kawaii-bg text-kawaii-text min-h-screen relative overflow-x-hidden flex flex-col font-sans">
+<!-- Background Decoration -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style="animation-delay: 2s"></div>
+</div>
+<!-- Header -->
+<header class="relative z-20 px-4 py-4 md:px-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-kawaii-primary shadow-md rotate-3 border-2 border-white flex-shrink-0">
+<span class="material-symbols-rounded text-3xl">timer</span>
+</div>
+<div>
+<h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-kawaii-dark">Focus Studio</h1>
+</div>
+</div>
+<!-- Top Right Controls & Memo -->
+<div class="flex flex-col items-end gap-2 w-full md:w-auto">
+<div class="flex items-center gap-2">
+<div class="flex items-center bg-white/80 backdrop-blur px-3 py-1.5 rounded-full shadow-sm border border-white gap-2">
+<span class="material-symbols-rounded text-yellow-500 text-lg">emoji_events</span>
+<span class="text-xs font-bold text-kawaii-text whitespace-nowrap">本日: <span class="text-lg text-kawaii-primaryDark" id="complete-count">1</span> 回</span>
+</div>
+<button class="bg-white hover:bg-kawaii-primary hover:text-white text-kawaii-primary w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all relative group flex-shrink-0" onclick="toggleSoundDrawer()">
+<span class="material-symbols-rounded text-xl group-hover:animate-bounce-slight">tune</span>
+<span class="absolute top-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white hidden" id="sound-badge"></span>
+</button>
+<button class="bg-white/50 hover:bg-white text-kawaii-text w-10 h-10 rounded-full transition-colors flex items-center justify-center flex-shrink-0" onclick="downloadApp()" title="保存">
+<span class="material-symbols-rounded text-xl">download</span>
+</button>
+</div>
+<!-- ToDo Input -->
+<div class="w-full md:w-96 relative group">
+<input class="task-input-header w-full rounded-xl px-4 py-2 text-sm md:text-base font-bold text-kawaii-dark placeholder-kawaii-text/40 outline-none shadow-sm text-left pl-10" id="task-input" placeholder="✨ 達成したい目標やメモを入力..." type="text">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 opacity-40 group-hover:opacity-100 transition-opacity pointer-events-none">
+<span class="material-symbols-rounded text-kawaii-primary text-xl">edit_note</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-grow flex flex-col md:flex-row items-center justify-center px-4 md:px-12 gap-8 md:gap-16 py-4">
+<!-- Left Panel: Settings -->
+<div class="glass p-6 rounded-[2rem] shadow-xl w-full max-w-sm flex-shrink-0 order-2 md:order-1">
+<!-- 1. Presets -->
+<div class="mb-6">
+<h2 class="text-xs font-bold text-kawaii-text/60 mb-2 uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-rounded text-sm js-replaced-missing-icon">radio_button_unchecked</span>
+                おすすめプリセット
+            </h2>
+<div class="grid grid-cols-3 gap-2">
+<button class="preset-btn bg-white/50 hover:bg-white border-2 border-transparent rounded-xl p-2 text-center transition-all group" onclick="applyPreset(25, 5, this)">
+<div class="text-kawaii-primary font-black text-lg group-hover:scale-110 transition-transform">25<span class="text-[10px] text-kawaii-text font-normal">+5</span></div>
+<div class="text-[10px] text-kawaii-text/60 font-bold">Standard</div>
+</button>
+<button class="preset-btn bg-white/50 hover:bg-white border-2 border-transparent rounded-xl p-2 text-center transition-all group" onclick="applyPreset(50, 10, this)">
+<div class="text-kawaii-primary font-black text-lg group-hover:scale-110 transition-transform">50<span class="text-[10px] text-kawaii-text font-normal">+10</span></div>
+<div class="text-[10px] text-kawaii-text/60 font-bold">Deep</div>
+</button>
+<button class="preset-btn bg-white/50 hover:bg-white border-2 border-transparent rounded-xl p-2 text-center transition-all group" onclick="applyPreset(60, 15, this)">
+<div class="text-kawaii-primary font-black text-lg group-hover:scale-110 transition-transform">60<span class="text-[10px] text-kawaii-text font-normal">+15</span></div>
+<div class="text-[10px] text-kawaii-text/60 font-bold">Long</div>
+</button>
+</div>
+</div>
+<div class="border-t border-kawaii-text/10 mb-6"></div>
+<!-- 2. Manual Focus Settings -->
+<div class="mb-6">
+<div class="flex items-center gap-2 mb-2 text-kawaii-dark font-bold text-sm">
+<span class="material-symbols-rounded text-base text-orange-400">local_fire_department</span>
+<span>集中 (分)</span>
+</div>
+<div class="grid grid-cols-4 gap-2">
+<button class="timer-preset aspect-square rounded-xl font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center timer-btn-active bg-kawaii-primary text-white shadow-lg scale-105" onclick="setTimer(5, 'focus')">5</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(10, 'focus')">10</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(15, 'focus')">15</button>
+<button class="timer-preset aspect-square rounded-xl font-bold shadow-md transform border-2 border-transparent transition-all flex items-center justify-center bg-white text-kawaii-text" onclick="setTimer(25, 'focus')">25</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(30, 'focus')">30</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(45, 'focus')">45</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(50, 'focus')">50</button>
+<button class="timer-preset aspect-square rounded-xl bg-white text-kawaii-text font-bold shadow-sm hover:border-kawaii-primary/50 border-2 border-transparent transition-all flex items-center justify-center" onclick="setTimer(60, 'focus')">60</button>
+</div>
+</div>
+<!-- 3. Manual Break Settings -->
+<div>
+<div class="flex items-center gap-2 mb-2 text-kawaii-dark font-bold text-sm">
+<span class="material-symbols-rounded text-base text-teal-500">coffee</span>
+<span>休憩 (分)</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<button class="timer-preset py-3 rounded-xl bg-kawaii-accent/40 text-teal-800 font-bold hover:bg-kawaii-accent transition-all border border-transparent text-sm break-btn-active" onclick="setTimer(5, 'break', true)">5分</button>
+<button class="timer-preset py-3 rounded-xl bg-kawaii-accent/40 text-teal-800 font-bold hover:bg-kawaii-accent transition-all border border-transparent text-sm" onclick="setTimer(10, 'break', true)">10分</button>
+<button class="timer-preset py-3 rounded-xl bg-kawaii-accent/40 text-teal-800 font-bold hover:bg-kawaii-accent transition-all border border-transparent text-sm" onclick="setTimer(15, 'break', true)">15分</button>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-kawaii-text/10 text-center">
+<button class="text-xs font-bold text-kawaii-text/60 hover:text-kawaii-primary transition-colors flex items-center justify-center gap-2 mx-auto" onclick="document.getElementById('rsvp-modal').classList.remove('hidden')">
+<span class="material-symbols-rounded text-sm">menu_book</span>
+                    瞬読トレーナーを開く
+                </button>
+</div>
+</div>
+<!-- Right Panel: Big Timer -->
+<div class="flex-grow flex flex-col items-center justify-center order-1 md:order-2">
+<!-- Timer Circle -->
+<div class="relative w-80 h-80 md:w-96 md:h-96 lg:w-[480px] lg:h-[480px] animate-float">
+<svg class="w-full h-full drop-shadow-2xl" viewBox="0 0 120 120">
+<circle class="text-white" cx="60" cy="60" fill="white" r="54"></circle>
+<circle class="text-kawaii-secondary opacity-30" cx="60" cy="60" fill="transparent" r="54" stroke="currentColor" stroke-width="4"></circle>
+<circle class="progress-ring__circle text-teal-400" cx="60" cy="60" fill="transparent" id="progress-ring" r="54" stroke="currentColor" stroke-linecap="round" stroke-width="4" style="stroke-dasharray: 339.292, 339.292; stroke-dashoffset: 334.768;"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<div class="text-teal-500 font-bold text-xl md:text-2xl mb-2 tracking-widest uppercase opacity-80" id="timer-label">BREAK</div>
+<!-- Chime Status Message -->
+<div class="text-teal-600 font-bold text-lg animate-pulse mb-2 hidden" id="chime-status">
+<span class="material-symbols-rounded align-middle mr-1">notifications_active</span>
+                        休憩の準備中...
+                    </div>
+<div class="text-7xl md:text-8xl lg:text-9xl font-black text-kawaii-dark tracking-tighter tabular-nums leading-none mb-6" id="timer-display">04:56</div>
+<div class="flex items-center justify-center gap-6">
+<button class="w-14 h-14 bg-slate-100 text-kawaii-text rounded-full flex items-center justify-center shadow-md hover:bg-white hover:text-kawaii-primary transition-all group" onclick="restartTimer()" title="リセット">
+<span class="material-symbols-rounded text-2xl group-hover:rotate-180 transition-transform duration-500">refresh</span>
+</button>
+<button class="w-24 h-24 bg-gradient-to-br from-kawaii-primary to-kawaii-primaryDark text-white rounded-full flex items-center justify-center shadow-lg hover:scale-105 hover:shadow-xl transition-all" id="btn-main-action" onclick="toggleTimer()">
+<span class="material-symbols-rounded text-6xl ml-2" id="icon-timer" style="display: block;">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-16 opacity-50 text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100" id="next-break-display" style="display: none;">次回の休憩: 5分</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sound Drawer -->
+<div class="fixed inset-y-0 right-0 w-80 sm:w-96 bg-white/95 backdrop-blur-xl shadow-2xl transform transition-transform duration-300 z-50 border-l border-white overflow-y-auto translate-x-full" id="sound-drawer">
+<div class="p-6">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-extrabold text-kawaii-dark flex items-center gap-2">
+<span class="material-symbols-rounded text-kawaii-primary">headphones</span>
+                    Sound Mixer
+                </h2>
+<button class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 text-slate-500 transition-colors" onclick="toggleSoundDrawer()">
+<span class="material-symbols-rounded">close</span>
+</button>
+</div>
+<!-- Chime Volume Control -->
+<div class="bg-amber-50 p-4 rounded-2xl mb-6 border border-amber-100">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-amber-200 text-amber-700 rounded-xl">
+<span class="material-symbols-rounded">school</span>
+</div>
+<div>
+<div class="font-bold text-sm text-slate-700">学校のチャイム</div>
+<div class="text-[10px] text-slate-400">休憩開始の合図</div>
+</div>
+</div>
+</div>
+<input class="w-full h-1 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-500" id="chime-vol" max="0" min="-40" oninput="setChimeVolume(this.value)" type="range" value="-15">
+</div>
+<button class="w-full mb-8 py-3 rounded-2xl border-2 border-red-100 text-red-500 hover:bg-red-50 font-bold transition-all flex items-center justify-center gap-2 group" onclick="stopAllSounds()">
+<span class="material-symbols-rounded group-hover:scale-110 transition-transform">stop_circle</span>
+                全サウンド停止
+            </button>
+<div class="space-y-5">
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-amber-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-amber-100 text-amber-600 rounded-xl">
+                            <span class="material-symbols-rounded">waves</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">Brown Noise</div>
+                            <div class="text-[10px] text-slate-400">深い集中・遮音</div>
+                        </div>
+                    </div>
+                    <button id="btn-brown" onclick="toggleSound('brown')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-brown" min="-60" max="-10" value="-20" oninput="setVolume('brown', this.value)" disabled="" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-pink-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-pink-100 text-pink-600 rounded-xl">
+                            <span class="material-symbols-rounded">water_drop</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">Pink Noise</div>
+                            <div class="text-[10px] text-slate-400">リラックス・安らぎ</div>
+                        </div>
+                    </div>
+                    <button id="btn-pink" onclick="toggleSound('pink')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-pink" min="-60" max="-10" value="-20" oninput="setVolume('pink', this.value)" disabled="" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-blue-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-blue-100 text-blue-600 rounded-xl">
+                            <span class="material-symbols-rounded">rainy</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">Rain</div>
+                            <div class="text-[10px] text-slate-400">雨音シミュレーション</div>
+                        </div>
+                    </div>
+                    <button id="btn-rain" onclick="toggleSound('rain')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-rain" min="-60" max="-10" value="-20" oninput="setVolume('rain', this.value)" disabled="" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-orange-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-orange-100 text-orange-600 rounded-xl">
+                            <span class="material-symbols-rounded">storefront</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">Cafe Vibe</div>
+                            <div class="text-[10px] text-slate-400">適度な雑音</div>
+                        </div>
+                    </div>
+                    <button id="btn-cafe" onclick="toggleSound('cafe')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-cafe" min="-60" max="-10" value="-20" oninput="setVolume('cafe', this.value)" disabled="" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-slate-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-slate-100 text-slate-600 rounded-xl">
+                            <span class="material-symbols-rounded">air</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">White Noise</div>
+                            <div class="text-[10px] text-slate-400">デジタル遮断</div>
+                        </div>
+                    </div>
+                    <button id="btn-white" onclick="toggleSound('white')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-white" min="-60" max="-10" value="-20" oninput="setVolume('white', this.value)" disabled="" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        </div>
+</div>
+</div>
+<div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity opacity-0 hidden" id="drawer-overlay" onclick="toggleSoundDrawer()"></div>
+<!-- RSVP Modal -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-kawaii-dark/40 backdrop-blur-sm p-4 transition-all" id="rsvp-modal">
+<div class="bg-white rounded-[2rem] w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 md:p-8 shadow-2xl relative">
+<button class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors" onclick="document.getElementById('rsvp-modal').classList.add('hidden')">
+<span class="material-symbols-rounded">close</span>
+</button>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-rounded text-green-500 text-3xl">speed</span>
+<h2 class="text-2xl font-bold text-kawaii-dark">瞬読トレーナー</h2>
+</div>
+<div class="grid gap-6">
+<div class="h-48 bg-slate-900 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden shadow-inner ring-4 ring-slate-100">
+<div class="absolute top-0 bottom-0 w-px bg-white/10 left-1/2 transform -translate-x-1/2"></div>
+<div class="absolute left-0 right-0 h-px bg-white/10 top-1/2 transform -translate-y-1/2"></div>
+<div class="text-4xl md:text-5xl font-bold text-white tracking-wide text-center px-4" id="rsvp-display" style="font-feature-settings: 'palt'">Ready?</div>
+</div>
+<div class="space-y-4">
+<textarea class="w-full p-4 text-sm border-2 border-slate-100 rounded-xl bg-slate-50 resize-none h-32 focus:border-green-300 focus:bg-white outline-none transition-all" id="rsvp-input" placeholder="ここに読みたい文章を貼り付けてください..."></textarea>
+<div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-50 p-4 rounded-xl">
+<span class="text-sm font-bold text-slate-500 whitespace-nowrap">速度 (WPM): <span class="text-green-600 text-lg" id="wpm-val">400</span></span>
+<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-green-500" id="rsvp-speed" max="1200" min="200" oninput="document.getElementById('wpm-val').innerText = this.value" step="50" type="range" value="400">
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2" onclick="startRSVP()">
+<span class="material-symbols-rounded">play_circle</span> スタート
+                        </button>
+<button class="px-6 py-3 bg-white border-2 border-slate-100 hover:bg-slate-50 rounded-xl text-sm font-bold text-slate-600 transition-all" onclick="fillSampleText()">サンプル</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // --- Timer State ---
+        let timerInterval;
+        let timeLeft = 25 * 60;
+        let totalTime = 25 * 60;
+        let isRunning = false;
+        let completedCount = 0;
+        let currentBreakTime = 5; // Default break time
+        let chimeVolume = -15; // Default Chime Volume
+        let audioReady = false;
+        async function ensureAudio() {
+            if (!audioReady) {
+                await await ensureAudio();
+                audioReady = true;
+            }
+        }
+        
+        // --- UI Elements ---
+        const timerDisplay = document.getElementById('timer-display');
+        const timerLabel = document.getElementById('timer-label');
+        const progressCircle = document.getElementById('progress-ring');
+        const playIcon = document.getElementById('icon-timer');
+        const countDisplay = document.getElementById('complete-count');
+        const nextBreakDisplay = document.getElementById('next-break-display');
+        const chimeStatus = document.getElementById('chime-status');
+        const btnMainAction = document.getElementById('btn-main-action');
+
+        // Circular Progress Setup
+        const radius = progressCircle.r.baseVal.value;
+        const circumference = radius * 2 * Math.PI;
+        progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+        progressCircle.style.strokeDashoffset = 0;
+
+        // Render Sounds
+        const soundsData = [
+            {id: 'brown', name: 'Brown Noise', desc: '深い集中・遮音', icon: 'waves', color: 'amber'},
+            {id: 'pink', name: 'Pink Noise', desc: 'リラックス・安らぎ', icon: 'water_drop', color: 'pink'},
+            {id: 'rain', name: 'Rain', desc: '雨音シミュレーション', icon: 'rainy', color: 'blue'},
+            {id: 'cafe', name: 'Cafe Vibe', desc: '適度な雑音', icon: 'storefront', color: 'orange'},
+            {id: 'white', name: 'White Noise', desc: 'デジタル遮断', icon: 'air', color: 'slate'},
+        ];
+        document.querySelector('#sound-drawer .space-y-5').innerHTML = soundsData.map(s => `
+            <div class="bg-slate-50 p-4 rounded-2xl hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-${s.color}-100">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-${s.color}-100 text-${s.color}-600 rounded-xl">
+                            <span class="material-symbols-rounded">${s.icon}</span>
+                        </div>
+                        <div>
+                            <div class="font-bold text-sm text-slate-700">${s.name}</div>
+                            <div class="text-[10px] text-slate-400">${s.desc}</div>
+                        </div>
+                    </div>
+                    <button id="btn-${s.id}" onclick="toggleSound('${s.id}')" 
+                        class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-kawaii-primary hover:border-kawaii-primary transition-all shadow-sm">
+                        <span class="material-symbols-rounded">play_arrow</span>
+                    </button>
+                </div>
+                <input type="range" id="vol-${s.id}" min="-60" max="-10" value="-20" oninput="setVolume('${s.id}', this.value)" disabled
+                    class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-kawaii-primary">
+            </div>
+        `).join('');
+
+        function setProgress(percent) {
+            const offset = circumference - (percent / 100) * circumference;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+
+        function updateDisplay() {
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            timerDisplay.innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            document.title = isRunning ? `(${m}:${s}) Focus Studio` : 'Focus Studio';
+            const percent = ((totalTime - timeLeft) / totalTime) * 100;
+            setProgress(percent);
+            
+            if(timerLabel.innerText === 'BREAK') {
+                nextBreakDisplay.style.display = 'none';
+            } else {
+                nextBreakDisplay.style.display = 'block';
+                nextBreakDisplay.innerText = `次回の休憩: ${currentBreakTime}分`;
+            }
+        }
+
+        // Apply Preset (Both Focus and Break)
+        function applyPreset(focusMin, breakMin, btnElement) {
+            setTimer(breakMin, 'break', true);
+            setTimer(focusMin, 'focus');
+            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('preset-btn-active'));
+            if(btnElement) btnElement.classList.add('preset-btn-active');
+        }
+
+        function setTimer(minutes, mode, isPreferenceOnly = false) {
+            if (mode === 'break') {
+                currentBreakTime = minutes;
+                updateBreakButtons(minutes);
+                if (timerLabel.innerText === 'BREAK') {
+                    clearInterval(timerInterval);
+                    isRunning = false;
+                    playIcon.innerText = 'play_arrow';
+                    timeLeft = minutes * 60;
+                    totalTime = timeLeft;
+                    updateDisplay();
+                }
+                return;
+            }
+
+            // Focus Mode
+            clearInterval(timerInterval);
+            isRunning = false;
+            playIcon.innerText = 'play_arrow';
+            
+            timeLeft = minutes * 60;
+            totalTime = timeLeft;
+            
+            updateFocusButtons(minutes);
+            document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('preset-btn-active'));
+
+            timerLabel.innerText = 'FOCUS';
+            timerLabel.className = 'text-kawaii-primary font-bold text-xl md:text-2xl mb-2 tracking-widest uppercase opacity-80';
+            progressCircle.classList.remove('text-teal-400');
+            progressCircle.classList.add('text-kawaii-primary');
+            progressCircle.style.strokeDashoffset = 0;
+            
+            // Hide chime status
+            chimeStatus.classList.add('hidden');
+            timerDisplay.classList.remove('opacity-20');
+            playIcon.style.display = 'block';
+            
+            updateDisplay();
+        }
+
+        function updateFocusButtons(minutes) {
+             document.querySelectorAll('.timer-preset').forEach(btn => {
+                if (!btn.innerText.includes('分')) {
+                    btn.classList.remove('timer-btn-active', 'bg-kawaii-primary', 'text-white', 'shadow-lg', 'scale-105');
+                    btn.classList.add('bg-white', 'text-kawaii-text');
+                    if(btn.innerText.trim() == minutes.toString()) {
+                         btn.classList.remove('bg-white', 'text-kawaii-text');
+                         btn.classList.add('timer-btn-active', 'bg-kawaii-primary', 'text-white', 'shadow-lg', 'scale-105');
+                    }
+                }
+            });
+        }
+
+        function updateBreakButtons(minutes) {
+            document.querySelectorAll('.timer-preset').forEach(btn => {
+                if (btn.innerText.includes('分')) {
+                    btn.classList.remove('break-btn-active', 'bg-kawaii-accent', 'scale-105', 'shadow-md');
+                    btn.classList.add('bg-kawaii-accent/40');
+                    if(btn.innerText.replace('分','').trim() == minutes.toString()) {
+                        btn.classList.remove('bg-kawaii-accent/40');
+                        btn.classList.add('break-btn-active', 'bg-kawaii-accent', 'scale-105', 'shadow-md');
+                    }
+                }
+            });
+        }
+
+        async function toggleTimer() {
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                playIcon.innerText = 'play_arrow';
+            } else {
+                await ensureAudio();
+                if (timeLeft <= 0) timeLeft = totalTime;
+                isRunning = true;
+                playIcon.innerText = 'pause';
+                
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateDisplay();
+                    } else {
+                        completeTimer();
+                    }
+                }, 1000);
+            }
+        }
+
+        function restartTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            playIcon.innerText = 'play_arrow';
+            timeLeft = totalTime;
+            chimeStatus.classList.add('hidden');
+            timerDisplay.classList.remove('opacity-20');
+            playIcon.style.display = 'block';
+            updateDisplay();
+        }
+
+        async function completeTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            playIcon.innerText = 'play_arrow';
+            
+            if (timerLabel.innerText === 'FOCUS') {
+                completedCount++;
+                countDisplay.innerText = completedCount;
+                
+                // Play School Chime and transition
+                await playSchoolChimeAndStartBreak();
+                
+            } else {
+                // Break ended
+                await ensureAudio();
+                const synth = new Tone.Synth().toDestination();
+                synth.triggerAttackRelease("G4", "0.5");
+                alert("休憩終了！次の集中タイムを始めましょう💪");
+            }
+        }
+
+        function setChimeVolume(val) {
+            chimeVolume = parseInt(val);
+        }
+
+        // --- School Chime Logic ---
+        async function playSchoolChimeAndStartBreak() {
+            // UI State for "Chime/Buffer Time"
+            chimeStatus.classList.remove('hidden');
+            timerDisplay.classList.add('opacity-20');
+            playIcon.style.display = 'none'; // Hide play button during chime
+            await ensureAudio();
+            
+            // Tone.js Chime (Westminster Quarters approximate)
+            const synth = new Tone.Synth({
+                oscillator: { type: "triangle" },
+                envelope: { attack: 0.05, decay: 0.2, sustain: 0.2, release: 2 }
+            }).toDestination();
+            
+            // Apply volume
+            synth.volume.value = chimeVolume;
+            
+            // Add a little reverb
+            const reverb = new Tone.Reverb({ decay: 3, wet: 0.3 }).toDestination();
+            synth.connect(reverb);
+
+            const now = Tone.now();
+            // Phrase 1: Kin-Kon-Kan-Kon (E-C-D-G)
+            synth.triggerAttackRelease("E5", "0.8", now);
+            synth.triggerAttackRelease("C5", "0.8", now + 1);
+            synth.triggerAttackRelease("D5", "0.8", now + 2);
+            synth.triggerAttackRelease("G4", "1.5", now + 3);
+
+            // Phrase 2: Kon-Kan-Kin-Kon (G-D-E-C) (Pause ~1.5s after first phrase)
+            const phrase2 = now + 6.0;
+            synth.triggerAttackRelease("G4", "0.8", phrase2);
+            synth.triggerAttackRelease("D5", "0.8", phrase2 + 1);
+            synth.triggerAttackRelease("E5", "0.8", phrase2 + 2);
+            synth.triggerAttackRelease("C5", "2.0", phrase2 + 3);
+
+            // Wait until full melody + decay finishes before starting break
+            // Melody ends around 11s. Decay takes it to ~13s.
+            setTimeout(() => {
+                startBreakMode();
+            }, 14000); 
+        }
+
+        function startBreakMode() {
+            // Restore UI
+            chimeStatus.classList.add('hidden');
+            timerDisplay.classList.remove('opacity-20');
+            playIcon.style.display = 'block';
+            
+            // Switch Mode logic
+            timerLabel.innerText = 'BREAK';
+            timerLabel.className = 'text-teal-500 font-bold text-xl md:text-2xl mb-2 tracking-widest uppercase opacity-80';
+            progressCircle.classList.remove('text-kawaii-primary');
+            progressCircle.classList.add('text-teal-400');
+            
+            timeLeft = currentBreakTime * 60;
+            totalTime = timeLeft;
+            updateDisplay();
+            
+            // Auto-start
+            toggleTimer();
+        }
+
+
+        // --- Sound Logic ---
+        const sounds = {};
+        async function toggleSound(type) {
+            await ensureAudio();
+            const btn = document.getElementById(`btn-${type}`);
+            const slider = document.getElementById(`vol-${type}`);
+            if (sounds[type]) {
+                sounds[type].stop(); sounds[type].dispose(); delete sounds[type];
+                btn.innerHTML = '<span class="material-symbols-rounded">play_arrow</span>';
+                btn.classList.remove('bg-kawaii-primary', 'text-white', 'border-transparent');
+                btn.classList.add('bg-white', 'text-slate-400', 'border-slate-200');
+                slider.disabled = true;
+            } else {
+                let node;
+                if (type === 'rain') {
+                    const noise = new Tone.Noise("pink").start();
+                    const filter = new Tone.AutoFilter(1, 400).toDestination().start();
+                    noise.connect(filter);
+                    node = { volume: noise.volume, stop:()=>{noise.stop();filter.stop();}, dispose:()=>{noise.dispose();filter.dispose();} };
+                } else if (type === 'cafe') {
+                    const noise = new Tone.Noise("brown").start();
+                    const filter = new Tone.Filter(800, "lowpass").toDestination();
+                    const lfo = new Tone.LFO(0.5, 400, 1000).start();
+                    lfo.connect(filter.frequency);
+                    noise.connect(filter);
+                    node = { volume: noise.volume, stop:()=>{noise.stop();lfo.stop();}, dispose:()=>{noise.dispose();lfo.dispose();filter.dispose();} };
+                } else {
+                    node = new Tone.Noise(type).toDestination().start();
+                }
+                node.volume.value = parseInt(slider.value);
+                sounds[type] = node;
+                btn.innerHTML = '<span class="material-symbols-rounded">pause</span>';
+                btn.classList.remove('bg-white', 'text-slate-400', 'border-slate-200');
+                btn.classList.add('bg-kawaii-primary', 'text-white', 'border-transparent');
+                slider.disabled = false;
+            }
+            updateSoundBadge();
+        }
+        function setVolume(type, val) { if (sounds[type]) sounds[type].volume.rampTo(parseInt(val), 0.1); }
+        function stopAllSounds() { Object.keys(sounds).forEach(k => toggleSound(k)); }
+        function updateSoundBadge() { document.getElementById('sound-badge').style.display = Object.keys(sounds).length > 0 ? 'block' : 'none'; }
+        function toggleSoundDrawer() {
+            const d = document.getElementById('sound-drawer'), o = document.getElementById('drawer-overlay');
+            if (d.classList.contains('translate-x-full')) { d.classList.remove('translate-x-full'); o.classList.remove('hidden'); setTimeout(()=>o.classList.remove('opacity-0'),10); }
+            else { d.classList.add('translate-x-full'); o.classList.add('opacity-0'); setTimeout(()=>o.classList.add('hidden'),300); }
+        }
+        function downloadApp() {
+            const blob = new Blob([document.documentElement.outerHTML], {type: 'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'KawaiiFocus.html';
+            a.click();
+        }
+
+        // --- RSVP Logic ---
+        let rsvpInterval;
+        function startRSVP() {
+            const text = document.getElementById('rsvp-input').value;
+            if(!text) return;
+            const words = text.split('').reduce((acc, c) => {
+                if(acc.length && acc[acc.length-1].length < 4 && !['、','。'].includes(acc[acc.length-1].slice(-1))) acc[acc.length-1]+=c;
+                else acc.push(c);
+                return acc;
+            }, []);
+            let i = 0;
+            const ms = 60000 / parseInt(document.getElementById('rsvp-speed').value);
+            const display = document.getElementById('rsvp-display');
+            clearInterval(rsvpInterval);
+            rsvpInterval = setInterval(() => {
+                if(i >= words.length) { clearInterval(rsvpInterval); return; }
+                display.innerText = words[i++];
+            }, ms);
+        }
+        function fillSampleText() {
+            document.getElementById('rsvp-input').value = "このツールは、文章を高速で表示することで、眼球移動を抑え、脳の処理速度を向上させるトレーニングツールです。";
+        }
+
+        // Init: Set Default Timer
+        updateDisplay();
+    </script>
+
+</body></html>

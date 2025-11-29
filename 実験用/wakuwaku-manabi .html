@@ -1,0 +1,690 @@
+<html lang="ja"><head>
+
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<title>わくわく！まなびランド DX</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@40,700,1,0" rel="stylesheet">
+<style>
+        :root {
+            --app-bg: #FFF7ED;
+        }
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: var(--app-bg);
+            background-image: radial-gradient(#FED7AA 2px, transparent 2px);
+            background-size: 24px 24px;
+            color: #334155;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            height: 100dvh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden; 
+        }
+
+        /* --- ボタン演出 --- */
+        .btn-push {
+            transition: transform 0.1s, box-shadow 0.1s;
+            position: relative;
+        }
+        .btn-push:active {
+            transform: translateY(2px);
+            box-shadow: none !important;
+        }
+
+        /* --- マスコット (CSS描画) --- */
+        .maron-wrapper { width: 36px; height: 32px; position: relative; flex-shrink: 0; }
+        .maron-body {
+            width: 100%; height: 100%;
+            background-color: #92400E;
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            box-shadow: 0 2px 0 #78350F;
+        }
+        .maron-face {
+            width: 80%; height: 70%;
+            background-color: #FEF3C7;
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            bottom: 5%; left: 10%;
+        }
+        .maron-ear {
+            width: 24%; height: 28%;
+            background-color: #92400E;
+            border-radius: 50%;
+            position: absolute; top: -10%;
+        }
+        .maron-ear.l { left: 5%; }
+        .maron-ear.r { right: 5%; }
+        .maron-eye {
+            width: 10%; height: 15%;
+            background-color: #451A03;
+            border-radius: 50%;
+            position: absolute; top: 35%;
+        }
+        .maron-eye.l { left: 30%; }
+        .maron-eye.r { right: 30%; }
+        .maron-cheek {
+            width: 15%; height: 10%;
+            background-color: #FCA5A5;
+            border-radius: 50%;
+            position: absolute; top: 45%; opacity: 0.6;
+        }
+        .maron-cheek.l { left: 15%; }
+        .maron-cheek.r { right: 15%; }
+        .maron-mouth {
+            width: 20%; height: 10%;
+            border-bottom: 2px solid #451A03;
+            border-radius: 0 0 50% 50%;
+            position: absolute; top: 45%; left: 40%;
+        }
+        .maron-happy .maron-mouth {
+            height: 20%; background-color: #EF4444; border: none; border-radius: 0 0 50px 50px;
+        }
+
+        /* --- 時計 (高精度版) --- */
+        .clock-fixed-wrapper {
+            width: 240px; height: 240px;
+            margin: 0 auto;
+            position: relative;
+            flex-shrink: 0; /* 縮小禁止 */
+        }
+        .clock-face {
+            width: 100%; height: 100%;
+            background: white;
+            border-radius: 50%;
+            border: 8px solid #3B82F6;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .clock-center {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 14px; height: 14px; background: #1E293B; border-radius: 50%; z-index: 30; border: 2px solid #E2E8F0;
+        }
+        .clock-num {
+            position: absolute; width: 30px; height: 30px; text-align: center; line-height: 30px;
+            font-size: 22px; font-weight: 900; color: #475569; margin-top: -15px; margin-left: -15px;
+        }
+        .hand {
+            position: absolute; bottom: 50%; left: 50%; transform-origin: 50% 100%;
+            border-radius: 50px 50px 0 0; z-index: 20; pointer-events: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .hand-hour { width: 10px; height: 60px; background: #EF4444; margin-left: -5px; }
+        .hand-minute { width: 6px; height: 85px; background: #3B82F6; margin-left: -3px; z-index: 25; }
+        .clock-tick { position: absolute; top: 0; left: 50%; width: 2px; height: 100%; pointer-events: none; }
+        .clock-tick::before { content: ''; display: block; margin: 0 auto; width: 3px; height: 8px; background: #CBD5E1; }
+        .clock-tick.major::before { width: 5px; height: 14px; background: #94A3B8; }
+        .clock-touch-layer { position: absolute; inset: -20px; z-index: 50; cursor: pointer; border-radius: 50%; }
+
+        /* --- おかね (穴なし) --- */
+        .coin-btn {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 900;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .coin-btn:active { transform: translateY(3px); box-shadow: none; }
+        .coin-100 { background: #E2E8F0; border: 3px solid #94A3B8; color: #475569; }
+        .coin-50  { background: #E2E8F0; border: 3px solid #94A3B8; color: #475569; }
+        .coin-10  { background: #FFEDD5; border: 3px solid #EA580C; color: #9A3412; }
+        .coin-5   { background: #FEF08A; border: 3px solid #CA8A04; color: #854D0E; }
+        .coin-1   { background: #F8FAFC; border: 2px solid #CBD5E1; color: #64748B; font-size: 18px; }
+
+        /* --- もじさがし --- */
+        .moji-grid {
+            display: grid; gap: 6px; width: 100%; max-width: 360px; margin: 0 auto;
+        }
+        .moji-cell {
+            aspect-ratio: 1; background: white; border: 2px solid #FED7AA; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px; font-weight: 900; color: #4B5563;
+            box-shadow: 0 3px 0 #FDBA74; cursor: pointer;
+        }
+        .moji-cell:active { transform: translateY(3px); box-shadow: none; background: #FFF7ED; }
+
+        /* --- レイアウト調整 (重要) --- */
+        .tab-content { 
+            display: none; 
+            width: 100%;
+            height: 100%; 
+            flex-direction: column; 
+            align-items: center;
+            overflow-y: auto; 
+            padding: 10px 10px 80px 10px; /* フッター分の余白を確保 */
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-content.active { display: flex; animation: fade-in 0.3s; }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- 花丸 (修正版: 画面サイズ追従) --- */
+        .hanamaru-container {
+            position: fixed; 
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; 
+            z-index: 9999; /* 最前面へ */
+            display: none;
+            align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(2px);
+        }
+        .hanamaru-container.show { display: flex; }
+        
+        .hanamaru-svg {
+            /* 画面幅の90% または 380px の小さい方を使う */
+            width: 90vw; 
+            height: 90vw; 
+            max-width: 380px;
+            max-height: 380px;
+            
+            filter: drop-shadow(0 10px 20px rgba(239, 68, 68, 0.4));
+            transform: rotate(-10deg);
+        }
+        .flower-path {
+            stroke-dasharray: 2000; stroke-dashoffset: 2000;
+            animation: draw-flower 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .text-group {
+            transform-origin: center;
+            animation: pop-text 0.5s 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0; transform: scale(0.5);
+        }
+        @keyframes draw-flower { to { stroke-dashoffset: 0; } }
+        @keyframes pop-text { to { opacity: 1; transform: scale(1); } }
+
+        .compact-card {
+            width: 100%; max-width: 480px;
+            background: white; border-radius: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            border: 2px solid #E2E8F0;
+            padding: 10px; margin-bottom: 8px; flex-shrink: 0;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.left-2{left:0.5rem}.right-1{right:0.25rem}.top-1{top:0.25rem}.z-20{z-index:20}.z-30{z-index:30}.mb-0\.5{margin-bottom:0.125rem}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-1{margin-left:0.25rem}.mt-1{margin-top:0.25rem}.mt-auto{margin-top:auto}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-full{height:100%}.min-h-0{min-height:0px}.w-10{width:2.5rem}.w-full{width:100%}.max-w-md{max-width:28rem}.max-w-sm{max-width:24rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.flex-shrink-0{flex-shrink:0}.shrink-0{flex-shrink:0}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.justify-around{justify-content:space-around}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.overflow-hidden{overflow:hidden}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b-2{border-bottom-width:2px}.border-b-4{border-bottom-width:4px}.border-t{border-top-width:1px}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-blue-700{--tw-border-opacity:1;border-color:rgb(29 78 216 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-green-700{--tw-border-opacity:1;border-color:rgb(21 128 61 / var(--tw-border-opacity, 1))}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity, 1))}.border-orange-100{--tw-border-opacity:1;border-color:rgb(255 237 213 / var(--tw-border-opacity, 1))}.border-orange-200{--tw-border-opacity:1;border-color:rgb(254 215 170 / var(--tw-border-opacity, 1))}.border-pink-200{--tw-border-opacity:1;border-color:rgb(251 207 232 / var(--tw-border-opacity, 1))}.border-red-100{--tw-border-opacity:1;border-color:rgb(254 226 226 / var(--tw-border-opacity, 1))}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105 / var(--tw-border-opacity, 1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254 / var(--tw-bg-opacity, 1))}.bg-blue-50\/30{background-color:rgb(239 246 255 / 0.3)}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-orange-100{--tw-bg-opacity:1;background-color:rgb(255 237 213 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.bg-orange-50\/50{background-color:rgb(255 247 237 / 0.5)}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-pink-50\/50{background-color:rgb(253 242 248 / 0.5)}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-200{--tw-bg-opacity:1;background-color:rgb(226 232 240 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/60{background-color:rgb(255 255 255 / 0.6)}.bg-yellow-100{--tw-bg-opacity:1;background-color:rgb(254 249 195 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.p-0\.5{padding:0.125rem}.p-1{padding:0.25rem}.p-2{padding:0.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-8{padding-left:2rem;padding-right:2rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-6xl{font-size:3.75rem;line-height:1}.text-\[10px\]{font-size:10px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-tighter{letter-spacing:-0.05em}.tracking-widest{letter-spacing:0.1em}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216 / var(--tw-text-opacity, 1))}.text-green-400{--tw-text-opacity:1;color:rgb(74 222 128 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity:1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity:1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-orange-600{--tw-text-opacity:1;color:rgb(234 88 12 / var(--tw-text-opacity, 1))}.text-orange-800{--tw-text-opacity:1;color:rgb(154 52 18 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-pink-500{--tw-text-opacity:1;color:rgb(236 72 153 / var(--tw-text-opacity, 1))}.text-pink-700{--tw-text-opacity:1;color:rgb(190 24 93 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-yellow-700{--tw-text-opacity:1;color:rgb(161 98 7 / var(--tw-text-opacity, 1))}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.drop-shadow-sm{--tw-drop-shadow:drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:scale-110:hover{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-indigo-100:hover{--tw-bg-opacity:1;background-color:rgb(224 231 255 / var(--tw-bg-opacity, 1))}.hover\:bg-green-50:hover{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}</style></head>
+<body>
+<!-- ヘッダー -->
+<header class="bg-white border-b-2 border-orange-100 px-3 py-2 flex justify-between items-center shadow-sm h-14 shrink-0 z-20">
+<div class="flex items-center gap-2">
+<h1 class="text-lg font-black text-orange-500 flex items-center gap-1 leading-none">
+<span class="material-symbols-rounded text-xl bg-orange-100 p-1 rounded-full">school</span>
+            まなびランド
+        </h1>
+<div class="bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200 flex items-center gap-2">
+<div class="maron-wrapper">
+<div class="maron-body maron-happy" id="maron-header">
+<div class="maron-ear l"></div><div class="maron-ear r"></div>
+<div class="maron-face">
+<div class="maron-eye l"></div><div class="maron-eye r"></div>
+<div class="maron-cheek l"></div><div class="maron-cheek r"></div>
+<div class="maron-mouth"></div>
+</div>
+</div>
+</div>
+<span class="text-xs font-bold text-orange-800 leading-tight" id="maron-msg">すごい！<br>せいかい！</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center bg-indigo-50 border-2 border-indigo-200 text-indigo-600 px-2 py-1 rounded-lg hover:bg-indigo-100 btn-push" onclick="downloadSource()" title="ほぞん">
+<span class="material-symbols-rounded text-xl">download</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center btn-push border-2 border-green-200 bg-green-50 text-green-600 shadow-sm" id="sound-btn" onclick="toggleMute()">
+<span class="material-symbols-rounded text-2xl">volume_up</span>
+</button>
+</div>
+</header>
+<!-- メインエリア -->
+<main class="flex-1 w-full bg-orange-50/50 relative overflow-hidden min-h-0">
+<!-- 1. おかいもの & おつり -->
+<div class="tab-content" id="tab-money">
+<div class="w-full max-w-md flex justify-between items-center mb-2 px-1 flex-shrink-0">
+<h2 class="text-blue-500 font-black text-lg flex items-center gap-1">
+<span class="material-symbols-rounded">shopping_cart</span> おかいもの
+            </h2>
+<div class="flex bg-white p-0.5 rounded-lg border border-blue-200 text-xs font-bold">
+<button class="px-3 py-1 rounded-md bg-blue-100 text-blue-700 transition" id="mode-pay" onclick="setMoneyMode('pay')">かう</button>
+<button class="px-3 py-1.5 rounded-md text-slate-400 transition" id="mode-change" onclick="setMoneyMode('change')">おつり</button>
+</div>
+</div>
+<!-- 問題カード -->
+<div class="compact-card border-blue-200 bg-blue-50/30 text-center relative overflow-hidden">
+<!-- かうモード -->
+<div id="display-pay">
+<div class="flex items-center justify-center gap-3">
+<span class="text-6xl drop-shadow-sm transition-transform hover:scale-110" id="item-icon">🍰</span>
+<div class="text-left">
+<div class="text-base font-bold text-slate-500 leading-tight" id="item-name">ケーキ</div>
+<div class="text-5xl font-black text-red-500 tracking-tighter leading-none" id="target-price">250<span class="text-lg text-slate-400 ml-1">えん</span></div>
+</div>
+</div>
+</div>
+<!-- おつりモード -->
+<div class="hidden" id="display-change">
+<div class="absolute top-1 right-1 bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded text-[10px] font-bold">Lv.<span id="change-level-disp">1</span></div>
+<div class="flex justify-between items-center bg-white/60 rounded-lg p-2 mb-1">
+<div class="flex items-center gap-2">
+<span class="text-3xl" id="change-item-icon">🍎</span>
+<div class="text-left leading-none">
+<div class="text-[10px] font-bold text-slate-400">ねだん</div>
+<div class="text-lg font-black text-slate-700" id="change-item-price">60</div>
+</div>
+</div>
+<div class="text-right leading-none">
+<div class="text-[10px] font-bold text-slate-400">だしたおかね</div>
+<div class="text-lg font-black text-blue-600" id="change-paid">100</div>
+</div>
+</div>
+<div class="flex items-baseline justify-center gap-2">
+<span class="text-sm font-bold text-slate-500">おつりは？</span>
+<div class="text-4xl font-black text-red-500 bg-white px-4 rounded-lg border border-red-100">? <span class="text-base text-slate-400">えん</span></div>
+</div>
+</div>
+</div>
+<!-- 投入金額 -->
+<div class="bg-slate-800 text-green-400 font-mono text-4xl py-1 px-4 rounded-xl shadow-inner border-b-4 border-slate-600 mb-2 w-full max-w-xs text-center relative flex-shrink-0">
+<span class="absolute top-1 left-2 text-[10px] text-slate-500 font-bold" id="money-label">いれたおかね</span>
+<span id="current-money">0</span>
+<span class="text-base ml-1">えん</span>
+</div>
+<!-- コイン (サイズ調整・穴なし) -->
+<div class="flex flex-wrap justify-center gap-2 mb-4 max-w-sm flex-shrink-0">
+<button class="coin-btn coin-100 btn-push" onclick="addMoney(100)">100</button>
+<button class="coin-btn coin-50 btn-push" onclick="addMoney(50)">50</button>
+<button class="coin-btn coin-10 btn-push" onclick="addMoney(10)">10</button>
+<button class="coin-btn coin-5 btn-push" onclick="addMoney(5)">5</button>
+<button class="coin-btn coin-1 btn-push" onclick="addMoney(1)">1</button>
+</div>
+<!-- 操作 -->
+<div class="flex gap-2 w-full max-w-sm mt-auto flex-shrink-0">
+<button class="bg-orange-100 text-orange-600 font-bold py-3 px-3 rounded-xl btn-push border-b-4 border-orange-200 flex flex-col items-center leading-none text-xs" onclick="undoMoney()">
+<span class="material-symbols-rounded text-xl mb-0.5">undo</span>1つもどす
+            </button>
+<button class="bg-slate-200 text-slate-600 font-bold py-3 px-3 rounded-xl btn-push border-b-4 border-slate-300 flex flex-col items-center leading-none text-xs" onclick="resetMoney()">
+<span class="material-symbols-rounded text-xl mb-0.5">delete</span>ぜんぶけす
+            </button>
+<button class="flex-1 bg-blue-500 text-white font-black py-3 rounded-xl shadow-md btn-push border-b-4 border-blue-700 text-xl tracking-widest" onclick="checkMoney()">
+                    できた！
+                </button>
+</div>
+</div>
+<!-- 2. とけい -->
+<div class="tab-content" id="tab-clock">
+<div class="w-full max-w-md flex justify-between items-center mb-2 px-1 flex-shrink-0">
+<h2 class="text-green-600 font-black text-lg flex items-center gap-1">
+<span class="material-symbols-rounded">schedule</span> とけい
+            </h2>
+<div class="flex bg-white p-0.5 rounded-lg border border-green-200 text-xs font-bold">
+<button class="px-3 py-1 rounded-md bg-green-100 text-green-700 transition" id="btn-read" onclick="setClockMode('read')">よむ</button>
+<button class="px-3 py-1 rounded-md text-slate-400 transition" id="btn-set" onclick="setClockMode('set')">あわせる</button>
+</div>
+</div>
+<div class="mb-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-green-200 flex-shrink-0">
+<p class="text-lg font-black text-green-700" id="clock-question">いま なんじ？</p>
+</div>
+<div class="clock-fixed-wrapper mb-2">
+<div class="clock-face" id="clock-face">
+<div class="clock-center"></div>
+<div class="hand hand-hour" id="hand-hour" style="transform: translateX(-50%) rotate(22.5deg);"></div>
+<div class="hand hand-minute" id="hand-minute" style="transform: translateX(-50%) rotate(270deg);"></div>
+<div class="clock-touch-layer" id="clock-touch" style="display:none;"></div>
+<div class="clock-tick major" style="transform: rotate(0deg);"></div><div class="clock-tick " style="transform: rotate(6deg);"></div><div class="clock-tick " style="transform: rotate(12deg);"></div><div class="clock-tick " style="transform: rotate(18deg);"></div><div class="clock-tick " style="transform: rotate(24deg);"></div><div class="clock-tick major" style="transform: rotate(30deg);"></div><div class="clock-tick " style="transform: rotate(36deg);"></div><div class="clock-tick " style="transform: rotate(42deg);"></div><div class="clock-tick " style="transform: rotate(48deg);"></div><div class="clock-tick " style="transform: rotate(54deg);"></div><div class="clock-tick major" style="transform: rotate(60deg);"></div><div class="clock-tick " style="transform: rotate(66deg);"></div><div class="clock-tick " style="transform: rotate(72deg);"></div><div class="clock-tick " style="transform: rotate(78deg);"></div><div class="clock-tick " style="transform: rotate(84deg);"></div><div class="clock-tick major" style="transform: rotate(90deg);"></div><div class="clock-tick " style="transform: rotate(96deg);"></div><div class="clock-tick " style="transform: rotate(102deg);"></div><div class="clock-tick " style="transform: rotate(108deg);"></div><div class="clock-tick " style="transform: rotate(114deg);"></div><div class="clock-tick major" style="transform: rotate(120deg);"></div><div class="clock-tick " style="transform: rotate(126deg);"></div><div class="clock-tick " style="transform: rotate(132deg);"></div><div class="clock-tick " style="transform: rotate(138deg);"></div><div class="clock-tick " style="transform: rotate(144deg);"></div><div class="clock-tick major" style="transform: rotate(150deg);"></div><div class="clock-tick " style="transform: rotate(156deg);"></div><div class="clock-tick " style="transform: rotate(162deg);"></div><div class="clock-tick " style="transform: rotate(168deg);"></div><div class="clock-tick " style="transform: rotate(174deg);"></div><div class="clock-tick major" style="transform: rotate(180deg);"></div><div class="clock-tick " style="transform: rotate(186deg);"></div><div class="clock-tick " style="transform: rotate(192deg);"></div><div class="clock-tick " style="transform: rotate(198deg);"></div><div class="clock-tick " style="transform: rotate(204deg);"></div><div class="clock-tick major" style="transform: rotate(210deg);"></div><div class="clock-tick " style="transform: rotate(216deg);"></div><div class="clock-tick " style="transform: rotate(222deg);"></div><div class="clock-tick " style="transform: rotate(228deg);"></div><div class="clock-tick " style="transform: rotate(234deg);"></div><div class="clock-tick major" style="transform: rotate(240deg);"></div><div class="clock-tick " style="transform: rotate(246deg);"></div><div class="clock-tick " style="transform: rotate(252deg);"></div><div class="clock-tick " style="transform: rotate(258deg);"></div><div class="clock-tick " style="transform: rotate(264deg);"></div><div class="clock-tick major" style="transform: rotate(270deg);"></div><div class="clock-tick " style="transform: rotate(276deg);"></div><div class="clock-tick " style="transform: rotate(282deg);"></div><div class="clock-tick " style="transform: rotate(288deg);"></div><div class="clock-tick " style="transform: rotate(294deg);"></div><div class="clock-tick major" style="transform: rotate(300deg);"></div><div class="clock-tick " style="transform: rotate(306deg);"></div><div class="clock-tick " style="transform: rotate(312deg);"></div><div class="clock-tick " style="transform: rotate(318deg);"></div><div class="clock-tick " style="transform: rotate(324deg);"></div><div class="clock-tick major" style="transform: rotate(330deg);"></div><div class="clock-tick " style="transform: rotate(336deg);"></div><div class="clock-tick " style="transform: rotate(342deg);"></div><div class="clock-tick " style="transform: rotate(348deg);"></div><div class="clock-tick " style="transform: rotate(354deg);"></div><div class="clock-num" style="left: 167.5px; top: 37.7276px;">1</div><div class="clock-num" style="left: 202.272px; top: 72.5px;">2</div><div class="clock-num" style="left: 215px; top: 120px;">3</div><div class="clock-num" style="left: 202.272px; top: 167.5px;">4</div><div class="clock-num" style="left: 167.5px; top: 202.272px;">5</div><div class="clock-num" style="left: 120px; top: 215px;">6</div><div class="clock-num" style="left: 72.5px; top: 202.272px;">7</div><div class="clock-num" style="left: 37.7276px; top: 167.5px;">8</div><div class="clock-num" style="left: 25px; top: 120px;">9</div><div class="clock-num" style="left: 37.7276px; top: 72.5px;">10</div><div class="clock-num" style="left: 72.5px; top: 37.7276px;">11</div><div class="clock-num" style="left: 120px; top: 25px;">12</div></div>
+</div>
+<div class="w-full max-w-sm mt-auto flex-shrink-0">
+<div class="grid grid-cols-2 gap-2" id="clock-opts" style="display: grid;"><button class="bg-white border-2 border-green-200 text-green-700 font-bold py-3 rounded-xl shadow-sm hover:bg-green-50 active:scale-95 transition btn-push text-lg">7じ 45ふん</button><button class="bg-white border-2 border-green-200 text-green-700 font-bold py-3 rounded-xl shadow-sm hover:bg-green-50 active:scale-95 transition btn-push text-lg">12じ 45ふん</button><button class="bg-white border-2 border-green-200 text-green-700 font-bold py-3 rounded-xl shadow-sm hover:bg-green-50 active:scale-95 transition btn-push text-lg">11じ </button><button class="bg-white border-2 border-green-200 text-green-700 font-bold py-3 rounded-xl shadow-sm hover:bg-green-50 active:scale-95 transition btn-push text-lg">9じ 30ふん</button></div>
+<div class="hidden text-center" id="clock-check-btn" style="display: none;">
+<button class="bg-green-500 text-white font-black py-3 w-full rounded-xl shadow-md btn-push border-b-4 border-green-700 text-xl tracking-widest" onclick="checkClockSet()">できた！</button>
+</div>
+</div>
+</div>
+<!-- 3. もじさがし -->
+<div class="tab-content active" id="tab-moji">
+<div class="w-full max-w-md flex justify-between items-center mb-2 px-1 flex-shrink-0">
+<h2 class="text-pink-500 font-black text-lg flex items-center gap-1">
+<span class="material-symbols-rounded">search</span> もじさがし
+            </h2>
+<div class="flex bg-white p-0.5 rounded-lg border border-pink-200 text-xs font-bold">
+<button class="px-2 py-1 rounded-md transition text-slate-400" id="lvl-easy" onclick="setMojiLevel('easy')">かんたん</button>
+<button class="px-2 py-1 rounded-md transition text-slate-400" id="lvl-normal" onclick="setMojiLevel('normal')">ふつう</button>
+<button class="px-2 py-1 rounded-md transition bg-pink-100 text-pink-700" id="lvl-hard" onclick="setMojiLevel('hard')">むずい</button>
+</div>
+</div>
+<div class="compact-card border-pink-200 bg-pink-50/50 flex justify-between items-center mb-3 py-2 px-4 flex-shrink-0">
+<div class="text-center">
+<p class="text-[10px] text-pink-400 font-bold">さがすもじ</p>
+<div class="text-5xl font-black text-pink-500 leading-none" id="target-char">ち</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] text-slate-400 font-bold">タイム</p>
+<p class="text-3xl font-mono font-black text-slate-700" id="timer">4.7</p>
+</div>
+</div>
+<div class="moji-grid mb-4" id="moji-container" style="grid-template-columns: repeat(5, 1fr);"><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">ち</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div><div class="moji-cell">さ</div></div>
+<button class="bg-slate-100 text-slate-500 font-bold py-2 px-8 rounded-lg btn-push flex items-center gap-2 text-sm mt-auto border-b-2 border-slate-200 flex-shrink-0" onclick="initMojiGame()">
+<span class="material-symbols-rounded text-lg">refresh</span> ちがう もんだい
+            </button>
+</div>
+</main>
+<!-- フッター (固定) -->
+<nav class="bg-white border-t border-slate-200 flex justify-around items-center h-16 shrink-0 z-30" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+<div class="nav-item flex flex-col items-center justify-center w-full h-full" onclick="switchTab('tab-money')">
+<span class="material-symbols-rounded text-3xl">shopping_cart</span>
+<div class="text-[10px] font-bold mt-1">おかいもの</div>
+</div>
+<div class="nav-item flex flex-col items-center justify-center w-full h-full" onclick="switchTab('tab-clock')">
+<span class="material-symbols-rounded text-3xl">schedule</span>
+<div class="text-[10px] font-bold mt-1">とけい</div>
+</div>
+<div class="nav-item flex flex-col items-center justify-center w-full h-full active" onclick="switchTab('tab-moji')">
+<span class="material-symbols-rounded text-3xl">search</span>
+<div class="text-[10px] font-bold mt-1">もじさがし</div>
+</div>
+</nav>
+<style>
+        .nav-item { color: #94A3B8; transition: color 0.2s; cursor: pointer; }
+        .nav-item.active { color: #F97316; background: #FFF7ED; border-top: 3px solid #F97316; }
+    </style>
+<!-- 花丸オーバーレイ (画面サイズ追従版) -->
+<div class="hanamaru-container" id="hanamaru-overlay">
+<svg class="hanamaru-svg" viewBox="0 0 200 200">
+<!-- 二重丸 -->
+<path class="flower-path" d="M100,10 C150,10 190,50 190,100 C190,150 150,190 100,190 C50,190 10,150 10,100 C10,50 50,10 100,10 M100,20 C145,20 180,55 180,100 C180,145 145,180 100,180 C55,180 20,145 20,100 C20,55 55,20 100,20" fill="none" stroke="#EF4444" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
+<!-- 文字 -->
+<g class="text-group">
+<text dominant-baseline="middle" fill="#EF4444" font-family="'Zen Maru Gothic', sans-serif" font-size="60" font-weight="900" paint-order="stroke" stroke="white" stroke-width="8" text-anchor="middle" x="50%" y="55%">せいかい</text>
+</g>
+</svg>
+</div>
+<script>
+    // --- Audio ---
+    let isAudioInit = false;
+    let isMuted = false;
+    let sfxSynth = null;
+    let sfxPoly = null;
+    let sfxTick = null;
+    async function initAudio() {
+        if(!isAudioInit) {
+            await Tone.start();
+            sfxSynth = new Tone.Synth().toDestination();
+            sfxPoly = new Tone.PolySynth().toDestination();
+            sfxTick = new Tone.Synth().toDestination();
+            isAudioInit = true;
+        }
+    }
+    async function playSfx(t) {
+        if(!isAudioInit) await initAudio();
+        if(isMuted) return;
+        if(t === 'ok') sfxPoly.triggerAttackRelease(["C5","E5","G5","C6"], "16n");
+        else if(t === 'ng') { const o = new Tone.Oscillator(100,"sawtooth").toDestination(); o.start().stop("+0.2"); }
+        else if(t === 'coin') sfxSynth.triggerAttackRelease("B5", "32n");
+        else if(t === 'click') sfxSynth.triggerAttackRelease("G4", "32n");
+        else if(t === 'tick') sfxTick.triggerAttackRelease("E6", "64n", undefined, 0.1);
+        else if(t === 'pop') sfxSynth.triggerAttackRelease("C4", "64n");
+    }
+    function toggleMute() {
+        isMuted = !isMuted;
+        updateSoundButton();
+    }
+    function updateSoundButton() {
+        const b = document.getElementById('sound-btn');
+        const i = b.querySelector('span');
+        if(isMuted) {
+            i.textContent = 'volume_off';
+            b.className = "w-10 h-10 rounded-full flex items-center justify-center btn-push border-2 border-slate-200 bg-slate-100 text-slate-400";
+        } else {
+            i.textContent = 'volume_up';
+            b.className = "w-10 h-10 rounded-full flex items-center justify-center btn-push border-2 border-green-200 bg-green-50 text-green-600 shadow-sm";
+            playSfx('click');
+        }
+    }
+    function downloadSource() {
+        playSfx('click');
+        const h = document.documentElement.outerHTML;
+        const b = new Blob([h], { type: 'text/html' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(b);
+        a.download = 'wakuwaku-manabi.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    // --- UI ---
+    function setMaron(m, face='normal') {
+        document.getElementById('maron-msg').innerHTML = m;
+        const b = document.getElementById('maron-header');
+        b.className = 'maron-body';
+        if(face === 'happy') b.classList.add('maron-happy');
+    }
+    function showHanamaru() {
+        playSfx('ok');
+        const ov = document.getElementById('hanamaru-overlay');
+        const svg = ov.querySelector('svg');
+        ov.classList.remove('show');
+        void ov.offsetWidth; 
+        const newSvg = svg.cloneNode(true);
+        ov.replaceChild(newSvg, svg);
+        ov.classList.add('show');
+        setMaron('すごい！<br>せいかい！', 'happy');
+        setTimeout(() => ov.classList.remove('show'), 1500);
+    }
+    function switchTab(id) {
+        playSfx('click');
+        if(mIv) { clearInterval(mIv); mIv = null; }
+        document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
+        document.querySelector(`.nav-item[onclick="switchTab('${id}')"]`).classList.add('active');
+        
+        if(id === 'tab-money') { if(curMoneyTgt === 0) initMoney(); setMaron('おかいもの<br>しよう'); }
+        if(id === 'tab-clock') { if(!clockInit) initClockUI(); setMaron('とけいを<br>よんでね'); }
+        if(id === 'tab-moji') { if(mojiTgt === '') initMoji(); setMaron('ちがうもじ<br>どれ？'); }
+    }
+
+    // --- 1. Money ---
+    const M_ITEMS = [
+        {n:'りんご', i:'🍎', p:[80,100,120,50]}, {n:'バナナ', i:'🍌', p:[50,70,60]},
+        {n:'ノート', i:'📓', p:[110,120]}, {n:'アイス', i:'🍦', p:[130,150,140]},
+        {n:'ケーキ', i:'🍰', p:[250,300,320]}, {n:'ロボ', i:'🤖', p:[400,500]}
+    ];
+    let mMode = 'pay'; let curMoneyTgt = 0; let coinHist = []; let chStreak = 0;
+
+    function setMoneyMode(m) {
+        playSfx('click'); mMode = m;
+        const bP = document.getElementById('mode-pay');
+        const bC = document.getElementById('mode-change');
+        if(m === 'pay') {
+            bP.className = "px-3 py-1 rounded-md bg-blue-100 text-blue-700 transition";
+            bC.className = "px-3 py-1 rounded-md text-slate-400 transition";
+            document.getElementById('display-pay').style.display = 'block';
+            document.getElementById('display-change').style.display = 'none';
+            document.getElementById('money-label').textContent = "いれたおかね";
+        } else {
+            bC.className = "px-3 py-1 rounded-md bg-blue-100 text-blue-700 transition";
+            bP.className = "px-3 py-1 rounded-md text-slate-400 transition";
+            document.getElementById('display-pay').style.display = 'none';
+            document.getElementById('display-change').style.display = 'block';
+            document.getElementById('money-label').textContent = "えらんだおかね";
+            chStreak = 0;
+        }
+        initMoney();
+    }
+    function initMoney() {
+        resetMoney();
+        const it = M_ITEMS[Math.floor(Math.random() * M_ITEMS.length)];
+        
+        if(mMode === 'pay') {
+            const p = it.p[Math.floor(Math.random() * it.p.length)];
+            document.getElementById('item-icon').textContent = it.i;
+            document.getElementById('item-name').textContent = it.n;
+            document.getElementById('target-price').innerHTML = `${p}<span class="text-lg text-slate-400 ml-1">えん</span>`;
+            curMoneyTgt = p;
+            setMaron('これください<br>いくらかな');
+        } else {
+            let p, paid;
+            if(chStreak < 3) {
+                p = Math.floor(Math.random() * 9 + 1) * 10;
+                paid = 100;
+            } else {
+                p = Math.floor(Math.random() * 80 + 10); 
+                paid = 100; 
+                if(p < 50 && Math.random() > 0.5) paid = 50;
+            }
+            const change = paid - p;
+            
+            let lvl = 1; if(chStreak >= 3) lvl = 2;
+            document.getElementById('change-level-disp').textContent = lvl;
+            document.getElementById('change-item-icon').textContent = it.i;
+            document.getElementById('change-item-price').textContent = p;
+            document.getElementById('change-paid').textContent = paid;
+            curMoneyTgt = change;
+            setMaron('おつりは<br>いくら？');
+        }
+    }
+    function addMoney(v) { playSfx('coin'); coinHist.push(v); updMoney(); }
+    function undoMoney() { if(coinHist.length > 0) { playSfx('pop'); coinHist.pop(); updMoney(); } }
+    function resetMoney() { playSfx('click'); coinHist = []; updMoney(); }
+    function updMoney() { 
+        const s = coinHist.reduce((a,b) => a+b, 0);
+        document.getElementById('current-money').textContent = s; 
+    }
+    function checkMoney() {
+        const s = coinHist.reduce((a,b) => a+b, 0);
+        if(s === curMoneyTgt) {
+            showHanamaru();
+            if(mMode === 'change') chStreak++;
+            setTimeout(initMoney, 1500);
+        } else if(s > curMoneyTgt) { playSfx('ng'); setMaron('あれ？<br>おおいよ'); }
+        else { playSfx('ng'); setMaron('あれ？<br>たりない'); }
+    }
+
+    // --- 2. Clock ---
+    let clockInit = false; let cMode = 'read'; let tH=0, tM=0; let cH=0, cM=0;
+    function initClockUI() {
+        const f = document.getElementById('clock-face');
+        for(let i=0; i<60; i++) {
+            const t = document.createElement('div');
+            t.className = `clock-tick ${i%5===0?'major':''}`;
+            t.style.transform = `rotate(${i*6}deg)`; f.appendChild(t);
+        }
+        for(let i=1; i<=12; i++) {
+            const n = document.createElement('div'); n.className = 'clock-num'; n.textContent = i;
+            const deg = i*30 - 90; const rad = deg * (Math.PI/180);
+            const r = 95;
+            n.style.left = (120 + Math.cos(rad)*r) + 'px';
+            n.style.top = (120 + Math.sin(rad)*r) + 'px';
+            f.appendChild(n);
+        }
+        clockInit = true; setClockMode('read');
+    }
+    function setHands(h, m) {
+        const md = m*6; const hd = (h%12)*30 + m*0.5;
+        document.getElementById('hand-minute').style.transform = `translateX(-50%) rotate(${md}deg)`;
+        document.getElementById('hand-hour').style.transform = `translateX(-50%) rotate(${hd}deg)`;
+    }
+    function setClockMode(m) {
+        playSfx('click'); cMode = m;
+        const bR = document.getElementById('btn-read'); const bS = document.getElementById('btn-set');
+        const op = document.getElementById('clock-opts'); const ch = document.getElementById('clock-check-btn');
+        const touch = document.getElementById('clock-touch');
+        if(m === 'read') {
+            bR.className = "px-3 py-1 rounded-md bg-green-100 text-green-700 transition";
+            bS.className = "px-3 py-1 rounded-md text-slate-400 transition";
+            op.style.display = 'grid'; ch.style.display = 'none'; touch.style.display = 'none';
+            initRead();
+        } else {
+            bS.className = "px-3 py-1 rounded-md bg-green-100 text-green-700 transition";
+            bR.className = "px-3 py-1 rounded-md text-slate-400 transition";
+            op.style.display = 'none'; ch.style.display = 'block'; touch.style.display = 'block';
+            initSet();
+        }
+    }
+    function initRead() {
+        tH = Math.floor(Math.random()*12)+1; tM = [0,15,30,45][Math.floor(Math.random()*4)];
+        document.getElementById('clock-question').textContent = "いま なんじ？";
+        setHands(tH, tM);
+        const cor = `${tH}じ ${tM===0?'':tM+'ふん'}`;
+        let l = [cor];
+        while(l.length < 4) {
+            let h = Math.floor(Math.random()*12)+1; let m = [0,15,30,45][Math.floor(Math.random()*4)];
+            let t = `${h}じ ${m===0?'':m+'ふん'}`; if(!l.includes(t)) l.push(t);
+        }
+        l.sort(() => Math.random()-0.5);
+        const c = document.getElementById('clock-opts'); c.innerHTML = '';
+        l.forEach(x => {
+            const b = document.createElement('button');
+            b.className = "bg-white border-2 border-green-200 text-green-700 font-bold py-3 rounded-xl shadow-sm hover:bg-green-50 active:scale-95 transition btn-push text-lg";
+            b.textContent = x;
+            b.onclick = () => {
+                if(x === cor) { showHanamaru(); setTimeout(initRead, 1500); }
+                else { playSfx('ng'); setMaron('ちがうよ<br>よくみて'); }
+            }; c.appendChild(b);
+        });
+    }
+    function initSet() {
+        tH = Math.floor(Math.random()*12)+1; tM = [0,30][Math.floor(Math.random()*2)];
+        document.getElementById('clock-question').textContent = `${tH}じ ${tM===0?'':tM+'ふん'} にして`;
+        cH = Math.floor(Math.random()*12)+1; cM = 0; setHands(cH, cM);
+        const t = document.getElementById('clock-touch');
+        t.onpointerdown = (e) => {
+            e.preventDefault(); t.setPointerCapture(e.pointerId);
+            const rect = t.getBoundingClientRect(); const cx = rect.width/2; const cy = rect.height/2;
+            const move = (ev) => {
+                const x = ev.clientX - rect.left - cx; const y = ev.clientY - rect.top - cy;
+                let d = Math.atan2(y, x)*(180/Math.PI)+90; if(d < 0) d += 360;
+                const snap = Math.round(d/30)*30;
+                cM = (snap/6)%60;
+                if(Math.sqrt(x*x+y*y) < 60) { let h = Math.round(snap/30); if(h === 0) h = 12; cH = h; }
+                setHands(cH, cM); playSfx('tick');
+            };
+            t.onpointermove = move; move(e);
+            t.onpointerup = () => t.onpointermove = null;
+        };
+    }
+    function checkClockSet() {
+        let h = cH === 0 ? 12 : cH;
+        if(h === tH && cM === tM) { showHanamaru(); setTimeout(initSet, 1500); }
+        else { playSfx('ng'); setMaron('あれ？<br>ズレてる'); }
+    }
+
+    // --- 3. Moji ---
+    const M_LIST = [['ぬ','め'],['わ','れ'],['ね','わ'],['る','ろ'],['あ','お'],['は','ほ'],['さ','ち'],['シ','ツ']];
+    let mojiTgt = ''; let mSt = 0; let mIv; let mLvl = 'easy';
+    function setMojiLevel(l) {
+        playSfx('click'); mLvl = l;
+        ['easy','normal','hard'].forEach(x => {
+            document.getElementById(`lvl-${x}`).className = `px-2 py-1 rounded-md transition ${x===l?'bg-pink-100 text-pink-700':'text-slate-400'}`;
+        });
+        initMoji();
+    }
+    function initMoji() {
+        const p = M_LIST[Math.floor(Math.random()*M_LIST.length)];
+        const base = p[0]; const tgt = p[1]; mojiTgt = tgt;
+        document.getElementById('target-char').textContent = tgt;
+        const g = document.getElementById('moji-container'); g.innerHTML = '';
+        let cols = 3; if(mLvl === 'normal') cols = 4; if(mLvl === 'hard') cols = 5;
+        g.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+        const n = cols*cols; const ti = Math.floor(Math.random()*n);
+        for(let i=0; i<n; i++) {
+            const d = document.createElement('div'); d.className = "moji-cell";
+            d.textContent = (i === ti) ? tgt : base;
+            d.onclick = () => {
+                if(i === ti) { clearInterval(mIv); showHanamaru(); setTimeout(initMoji, 1500); }
+                else { playSfx('ng'); d.style.background = "#FECACA"; setTimeout(() => d.style.background = "white", 200); }
+            }; g.appendChild(d);
+        }
+        clearInterval(mIv); mSt = Date.now();
+        document.getElementById('timer').textContent = "0.0";
+        mIv = setInterval(() => { document.getElementById('timer').textContent = ((Date.now() - mSt)/1000).toFixed(1); }, 100);
+    }
+
+    window.onload = () => { updateSoundButton(); switchTab('tab-money'); setMojiLevel('easy'); };
+</script>
+
+</body></html>
