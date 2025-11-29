@@ -362,6 +362,15 @@
   const PARTS_R_LR = [...new Set(KANJI_LR.map(d => d.r))].sort();
   const PARTS_L_UD = ['宀', '竹', '雨', '穴', '广', '艹'];
   const PARTS_R_UD = [...new Set(KANJI_UD.map(d => d.r))].sort();
+
+  // Added missing definitions
+  const KANJI_ALL = [...KANJI_LR, ...KANJI_UD];
+  const TOTAL_QUIZ = 30;
+  const STAGE_SIZE = 10;
+  let quizPools = {};
+  let quizPool = [];
+  let currentLabMode = 'lr';
+
   let currentQuizIndex = 0;
   let currentQuiz = null;
   let qL = null;
