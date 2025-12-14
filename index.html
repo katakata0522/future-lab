@@ -369,6 +369,11 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
     <title>ワンダー・スクール | デジタル研究室ポータル v7</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&amp;family=Zen+Maru+Gothic:wght@500;700;900&amp;display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -689,7 +694,7 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
                             <p class="text-sm text-slate-500 font-bold mb-6 min-h-[40px]">
                                 3つの いろを まぜて、 あたらしい いろを つくろう！<br>いろの ふしぎを はっけん しよう！
                             </p>
-                            <button onclick="launchApp('../実験用/color-lab完成ver1.html', 'Color Lab', 'color-lab')" class="w-full bg-slate-100 hover:bg-yellow-400 hover:text-white text-slate-600 font-black py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
+                            <button onclick="launchApp('color-lab-clean.html', 'Color Lab', 'color-lab')" class="w-full bg-slate-100 hover:bg-yellow-400 hover:text-white text-slate-600 font-black py-3 rounded-xl transition-all flex items-center justify-center gap-2 group-hover:shadow-md">
                                 <span class="material-symbols-rounded">play_arrow</span>
                                 じっけんを はじめる
                             </button>
@@ -1076,19 +1081,19 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
 
     <!-- 設定モーダル -->
     <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 hidden" onclick="if(event.target === this) closeModal('settings-modal')">
-        <div class="bg-white rounded-3xl p-6 max-w-sm w-full shadow-2xl animate-pop relative" onclick="event.stopPropagation()">
-            <button onclick="closeModal('settings-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 max-w-sm w-full shadow-2xl animate-pop relative" onclick="event.stopPropagation()">
+            <button onclick="closeModal('settings-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
                 <span class="material-symbols-rounded">close</span>
             </button>
-            <h2 class="text-lg md:text-xl font-black text-slate-800 mb-6 flex items-center gap-2">
-                <span class="material-symbols-rounded text-slate-400">settings</span> 設定 (Settings)
+            <h2 class="text-lg md:text-xl font-black text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+                <span class="material-symbols-rounded text-slate-400 dark:text-slate-500">settings</span> 設定 (Settings)
             </h2>
             <div class="space-y-6">
                 <!-- Sound -->
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">音量 (Sound)</label>
+                    <label class="block text-sm font-bold text-slate-500 dark:text-slate-400 mb-2">音量 (Sound)</label>
                     <div class="flex items-center gap-4">
-                        <button onclick="toggleMute()" class="p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200">
+                        <button onclick="toggleMute()" class="p-2 bg-slate-100 dark:bg-slate-700 rounded-full text-slate-500 hover:bg-slate-200 dark:hover:bg-slate-600">
                             <span id="settings-mute-icon" class="material-symbols-rounded text-green-500">volume_up</span>
                         </button>
                         <input type="range" id="volume-slider" min="-40" max="0" value="-10" step="1" oninput="setVolume(this.value)" class="w-full accent-indigo-500">
@@ -1096,24 +1101,36 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
                 </div>
                 <!-- Font Size -->
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">文字サイズ (Text Size)</label>
-                    <div class="flex bg-slate-100 rounded-xl p-1">
-                        <button id="text-normal" onclick="setTextSize('normal')" class="flex-1 py-1 rounded-lg text-sm font-bold bg-white shadow-sm text-indigo-600 transition-all">ふつう</button>
+                    <label class="block text-sm font-bold text-slate-500 dark:text-slate-400 mb-2">文字サイズ (Text Size)</label>
+                    <div class="flex bg-slate-100 dark:bg-slate-700 rounded-xl p-1">
+                        <button id="text-normal" onclick="setTextSize('normal')" class="flex-1 py-1 rounded-lg text-sm font-bold bg-white shadow-sm text-indigo-600 transition-all dark:bg-slate-600 dark:text-white">ふつう</button>
                         <button id="text-large" onclick="setTextSize('large')" class="flex-1 py-1 rounded-lg text-sm font-bold text-slate-400 hover:text-slate-600 transition-all">おおきく</button>
                     </div>
                 </div>
                 <!-- Motion -->
                 <div>
-                    <label class="block text-sm font-bold text-slate-500 mb-2">動きをへらす (Reduce Motion)</label>
-                    <div class="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-100">
-                        <span class="text-xs text-slate-400 font-bold">アニメーションを停止</span>
-                        <button id="motion-toggle" onclick="toggleMotion()" class="w-12 h-6 bg-slate-300 rounded-full relative transition-colors duration-300">
+                    <label class="block text-sm font-bold text-slate-500 dark:text-slate-400 mb-2">動きをへらす (Reduce Motion)</label>
+                    <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <span class="text-xs text-slate-400 dark:text-slate-400 font-bold">アニメーションを停止</span>
+                        <button id="motion-toggle" onclick="toggleMotion()" class="w-12 h-6 bg-slate-300 rounded-full relative transition-colors duration-300 dark:bg-slate-600">
                             <div id="motion-knob" class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300"></div>
                         </button>
                     </div>
                 </div>
+
+                <!-- Dark Mode -->
+                <div>
+                    <label class="block text-sm font-bold text-slate-500 dark:text-slate-400 mb-2">ダークモード (Dark Mode)</label>
+                    <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <span class="text-xs text-slate-400 font-bold">夜も見やすいモード</span>
+                        <button id="dark-toggle" onclick="toggleDarkMode()" class="w-12 h-6 bg-slate-300 rounded-full relative transition-colors duration-300 dark:bg-slate-600">
+                            <div id="dark-knob" class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300"></div>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Reset Data -->
-                <div class="pt-4 border-t border-slate-100">
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
                     <button onclick="resetUserData()" class="text-xs font-bold text-red-400 hover:text-red-600 flex items-center gap-1 mx-auto">
                         <span class="material-symbols-rounded text-sm">delete_forever</span> データをリセット (ログアウト)
                     </button>
@@ -1445,6 +1462,54 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
         let tonePoly = null;
         let toneMembrane = null;
 
+        // --- ダークモード ---
+        const DARK_MODE_KEY = 'wonder_school_dark_mode';
+
+        function applyDarkMode(isDark) {
+            const toggle = document.getElementById('dark-toggle');
+            const knob = document.getElementById('dark-knob');
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                if (toggle) {
+                    toggle.classList.remove('bg-slate-300');
+                    toggle.classList.add('bg-indigo-500');
+                }
+                if (knob) knob.style.transform = 'translateX(24px)';
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (toggle) {
+                    toggle.classList.add('bg-slate-300');
+                    toggle.classList.remove('bg-indigo-500');
+                }
+                if (knob) knob.style.transform = 'translateX(0)';
+            }
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.documentElement.classList.contains('dark');
+            applyDarkMode(!isDark);
+            try {
+                localStorage.setItem(DARK_MODE_KEY, !isDark);
+            } catch (e) {
+                console.error('Failed to save dark mode preference:', e);
+            }
+            playSound('click');
+        }
+
+        // 初期読み込み時にダークモード設定を適用
+        try {
+            const savedDarkMode = localStorage.getItem(DARK_MODE_KEY);
+            if (savedDarkMode === 'true' || (savedDarkMode === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                applyDarkMode(true);
+            } else {
+                applyDarkMode(false);
+            }
+        } catch (e) {
+            console.error('Failed to load dark mode preference:', e);
+            applyDarkMode(false); // エラー時はデフォルトでライトモード
+        }
+
+
         function ensureInstruments() {
             if(!isAudioStarted) return false;
             if(!toneSynth) toneSynth = new Tone.Synth().toDestination();
@@ -1454,12 +1519,16 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
         }
 
         async function startAudio() {
-            if (!isAudioStarted) {
+            if (isAudioStarted) return;
+            try {
                 await Tone.start();
                 Tone.Destination.volume.value = -10;
                 isAudioStarted = true;
                 ensureInstruments();
                 updateSoundIcon();
+            } catch (e) {
+                console.error("Audio could not be started:", e);
+                isAudioStarted = false; // Ensure we can try again if needed.
             }
         }
         
@@ -1751,13 +1820,21 @@ window.addEventListener("message",a=>t(function*(){if(za.some(d=>a.origin.includ
         }
 
         function saveProfile() {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(userProfile));
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(userProfile));
+            } catch (e) {
+                console.error("Failed to save profile:", e);
+            }
         }
 
         function resetUserData() {
             if(confirm('ほんとうに データを けしますか？ (ログアウト)')) {
-                localStorage.removeItem(STORAGE_KEY);
-                location.reload(); 
+                try {
+                    localStorage.removeItem(STORAGE_KEY);
+                } catch (e) {
+                    console.error("Failed to remove profile from localStorage:", e);
+                }
+                location.reload();
             }
         }
 
